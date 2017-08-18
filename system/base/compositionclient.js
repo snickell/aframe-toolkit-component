@@ -68,6 +68,7 @@ define.class('./compositionbase', function(require, baseclass){
 		}
 
 		if(previous || parent) this.doRender(previous, parent)
+		else this.doRender() // SETH: without RPC, we need to trigger a render manually
 	}
 
 	this.doRender = function(previous, parent){
