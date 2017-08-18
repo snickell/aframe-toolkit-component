@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function($ui$, view, label){
+defineDreem.class(function($ui$, view, label){
 	// Markdown display class - this element can display a small subset of the "markdown" syntax. See the SUPPORTED_MARKDOWN.md file in the docviewer for supported elements.
 
 	this.attributes = {

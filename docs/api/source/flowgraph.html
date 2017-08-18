@@ -1496,7 +1496,7 @@ define.<span class="reserved">class</span>(<span class="string"><span class="del
                 <span class="local-variable">this</span>.screen.<span class="function">locationhash</span> = <span class="keyword">function</span>(event) {
                         <span class="keyword">if</span> (event.value.composition) {
                                 <span class="comment">// ok lets put it in define.js</span>
-                                require.async(event.value.composition).then(<span class="keyword">function</span>(result) {
+                                requireDreem.async(event.value.composition).then(<span class="keyword">function</span>(result) {
                                         define.ignore_reload[define.expandVariables(event.value.composition)] = <span class="predefined-constant">true</span>
                                         <span class="local-variable">this</span>.sourceset.parse(result)
                                         <span class="comment">// console.log('&gt;&gt;', this.sourceset.ast)</span>

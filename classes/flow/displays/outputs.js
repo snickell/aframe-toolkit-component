@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$ui/screen', function(require, $ui$, screen, cadgrid, textbox, view, label, checkbox){
+defineDreem.class('$ui/screen', function(requireDreem, $ui$, screen, cadgrid, textbox, view, label, checkbox){
 
     this.attributes = {
 		number: Config({type:Number, flow:"out", value:99, persist:true}),

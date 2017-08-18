@@ -7,7 +7,7 @@
 
 // some shapes based on http://iquilezles.org/www/articles/distfunctions/distfunctions.htm
 
-define(function (require, exports) {
+defineDreem(function (require, exports) {
 	
 	exports.roundedrectdistance = function(sized, width, height, topleftcorner, toprightcorner, bottomleftcorner, bottomrightcorner){
 		var c1 = vec2(topleftcorner-0.5 , topleftcorner -0.5);

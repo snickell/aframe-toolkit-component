@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define(function(require, exports){
+defineDreem(function(requireDreem, exports){
 
 	var VTX_COUNT = 512
 

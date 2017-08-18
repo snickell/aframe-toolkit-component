@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$system/base/worker', function(require, exports){
+defineDreem.class('$system/base/worker', function(requireDreem, exports){
  	var rpchub = requireDreem('$system/rpc/rpchub')
 
 	this._allocPromise = rpchub.allocPromise
@@ -71,7 +71,7 @@ define.class('$system/base/worker', function(require, exports){
 					outdeps[dep] = str
 				}
 				else{
-					outdeps[dep] = 'define(' + module.factory.toString() + ',"'+dep+'");\n'
+					outdeps[dep] = 'defineDreem(' + module.factory.toString() + ',"'+dep+'");\n'
 				}
 			}
 		}

@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // childPromise turns a childprocess into a promise that resolves with the output of the process
 
-define(function(require){
+defineDreem(function(requireDreem){
 	var child_process = requireDreem('child_process')
 
 	return function childPromise(execpath, args){

@@ -10,7 +10,7 @@
 // The nodejs server is CLIENT-SIDE-MIDDELWARE for prototyping and development
 // not a web-facing backend.
 // dreemGL is not optimized to be a neat NPM module, fit into browserify or express or otherwise
-// be a grab-and-use JS thing that respects the constraints that this would require.
+// be a grab-and-use JS thing that respects the constraints that this would requireDreem.
 // Also any nodejs code is NOT deploy-safe because of the automatic RPC system and should
 // NOT be put webfacing as is.
 // And since it keeps websocket connections to all clients for live reloading
@@ -48,14 +48,14 @@
 	else if(typeof global !== 'undefined') config_define = global.define
 
 	// the main define function
-	function define(factory, package){
+	function defineDreem(factory, package){
 		if(package !== undefined){ // precompiled version
 			define.factory[package] = factory
 			return
 		}
 		define.last_factory = factory // store for the script tag
 		// continue calling
-		if(define.define) define.define(factory)
+		if(define.define) define.defineDreem(factory)
 	}
 
 	if(typeof window !== 'undefined') window.define = define, define.$environment = 'browser'
@@ -290,14 +290,14 @@
 			return module.exports
 		}
 
-		require.loaded = function(path, ext){
+		requireDreem.loaded = function(path, ext){
 			var dep_path = define.joinPath(base_path, define.expandVariables(path))
 			if(define.factory[dep_path]){
 				return true
 			}
 		}
 
-		require.async = function(path, ext){
+		requireDreem.async = function(path, ext){
 			var dep_path = define.joinPath(base_path, define.expandVariables(path))
 			return new define.Promise(function(resolve, reject){
 				if(define.factory[dep_path]){
@@ -312,7 +312,7 @@
 			})
 		}
 
-		require.reloadAsync = function(path){
+		requireDreem.reloadAsync = function(path){
 
 			return new define.Promise(function(resolve, reject){
 
@@ -325,7 +325,7 @@
 				define.module[path] = define.factory[path] = undefined
 
 				// lets require it async
-				define.require.async(path).then(function(new_class){
+				define.requireDreem.async(path).then(function(new_class){
 					// fetch all modules dependent on this class, and all dependent on those
 					// and cause them to reinitialize
 					function wipe_module(name){
@@ -641,9 +641,9 @@
 		define.class.apply(define, args)
 	}
 
-	// define.class('base', function(){})                2
-	// define.class(function(){})                        1
-	// define.class(this, 'prop', 'base', function(){})  4
+	// defineDreem.class('base', function(){})                2
+	// defineDreem.class(function(){})                        1
+	// defineDreem.class(this, 'prop', 'base', function(){})  4
 
 	define.class = function(){
 		// lets make a class
@@ -718,7 +718,7 @@
 		if(base_class && typeof base_class === 'string'){
 			moduleFactory.baseclass = define.expandVariables(base_class)
 			moduleFactory.deps.push(define.expandVariables(base_class))
-			moduleFactory.depstring = 'require("' + base_class + '")'
+			moduleFactory.depstring = 'requireDreem("' + base_class + '")'
 		}
 
 		// add automatic requires
@@ -727,7 +727,7 @@
 				if(builtin) return
 				if(!moduleFactory.depstring) moduleFactory.depstring = ''
 				moduleFactory.deps.push(define.expandVariables(requirepath))
-				moduleFactory.depstring += 'require("' + requirepath + '")'
+				moduleFactory.depstring += 'requireDreem("' + requirepath + '")'
 				if(!base_class) base_class = requirepath
 			})
 		}
@@ -736,7 +736,7 @@
 		// so then treat it as a local class
 		if(define.local_require_stack.length){
 			var outer_require = define.local_require_stack[define.local_require_stack.length - 1]
-			var outer_module = outer_require.module
+			var outer_module = outer_requireDreem.module
 			var module = {exports:{}, filename:outer_module.filename, factory:moduleFactory, outer:outer_module}
 			moduleFactory(outer_require, module.exports, module)
 
@@ -750,10 +750,10 @@
 			return module.exports
 		}
 		//if(typeof arguments[arguments.length - 1] == 'string'){ // packaged
-		//	define(moduleFactory, arguments[arguments.length - 1])
+		//	defineDreem(moduleFactory, arguments[arguments.length - 1])
 		//}
 		//else{ // unpackaged
-		define(moduleFactory, body.packaged)
+		defineDreem(moduleFactory, body.packaged)
 		//}
 	}
 
@@ -1258,7 +1258,7 @@
 					var old_module = define.module[msg.file]
 					define.hideException()
 					if(define.partial_reload && old_module && typeof old_module.exports === 'function'){
-						define.require.reloadAsync(msg.file).then(function(){
+						define.requireDreem.reloadAsync(msg.file).then(function(){
 							if(define.atMain) define.atMain(define.require, define.main)
 						}).catch(function(exception){
 							define.showException(exception)
@@ -1307,10 +1307,10 @@
 
 		define.$root = define.filePath(process.mainModule.filename.replace(/\\/g,'/'))
 
-		var http = require("http")
-		var url = require("url")
-		var fs = require("fs")
-		var path = require("path")
+		var http = requireDreem("http")
+		var url = requireDreem("url")
+		var fs = requireDreem("fs")
+		var path = requireDreem("path")
 
 		var root = define.expandVariables(define.$root)
 
@@ -1396,7 +1396,7 @@
 		}
 
 		// hook compile to keep track of module objects
-		var Module = require("module")
+		var Module = requireDreem("module")
 		var modules = []
 		var original_paths = []
 		var _compile = Module.prototype._compile
@@ -1421,7 +1421,7 @@
 
 			if(factory instanceof Array) throw new Error("injects-style not supported")
 
-			var module = modules[modules.length - 1] || require.main
+			var module = modules[modules.length - 1] || requireDreem.main
 			//console.log(original_paths)
 			// store module and factory just like in the other envs
 			define.module[module.filename] = module
@@ -1657,11 +1657,11 @@
 				if (define.$platform == 'dali' && modname.indexOf('./') == 0)
 					modname = '$root' + '/' + define.$example + '/' + modname;
 
-				if(typeof modname !== 'string') throw new Error("module name in require.async not a string")
+				if(typeof modname !== 'string') throw new Error("module name in requireDreem.async not a string")
 				modname = define.expandVariables(modname)
 
 				// Query if module is in local file system (DALI)
-				var fs = require("fs")
+				var fs = requireDreem("fs")
 				try {
 					stats = fs.lstatSync(modname)
 					var data = fs.readFileSync(modname)
@@ -1685,7 +1685,7 @@
 
 			if (typeof factory !== "function") return module.exports = factory
 
-			// we are being used for require.async
+			// we are being used for requireDreem.async
 			if(define.process_factory){
 				define.process_factory = factory
 				return
@@ -1708,7 +1708,7 @@
 		global.define.module = {}
 		global.define.factory = {}
 		// fetch a new require for the main module and return that
-		define.define(function(require){
+		define.defineDreem(function(requireDreem){
 			module.exports = require
 		})
 	}

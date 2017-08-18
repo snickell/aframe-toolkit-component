@@ -1,4 +1,4 @@
-define.class("$server/service", function (require) {
+defineDreem.class("$server/service", function (require) {
 	// The iot class makes it very easy to connect to a wide variety of devices including
 	// SmartThings, Philips Hue and many more.
 	//
@@ -101,7 +101,7 @@ define.class("$server/service", function (require) {
 
 	this.init = function() {
 		// allow connection logic to be overridden
-		this.__things = this.connect(require("iotdb"));
+		this.__things = this.connect(requireDreem("iotdb"));
 		// console.log('THINGS: ', this.__things);
 
 		// listen for new things

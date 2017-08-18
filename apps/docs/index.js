@@ -112,7 +112,7 @@ define.class('$server/composition', function(require, $server$, fileio, dataset,
 					init:function(){
 						this.screen.locationhash = function(event){
 						//	debugger
-							if(event.value.path) require.async(event.value.path).then(function(module){
+							if(event.value.path) requireDreem.async(event.value.path).then(function(module){
 								this.classconstr = module
 							}.bind(this))
 						}.bind(this)

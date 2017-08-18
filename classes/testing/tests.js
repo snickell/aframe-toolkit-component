@@ -6,7 +6,7 @@
 
 
 // tests class
-define.class(function(){
+defineDreem.class(function(){
 	this.init = function(){
 	}
 })

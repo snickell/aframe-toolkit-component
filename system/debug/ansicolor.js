@@ -10,7 +10,7 @@
 // br - bold red, bg - bold green,  bb - bold blue
 // by - bold yellow, bm - bold magenta, bc - bold cyan, bw - bold white
 
-define(function(){
+defineDreem(function(){
 	return function(output) {
 		var colors = {
 			bl:"30",bo:"1",r:"0;31",g:"0;32",y:"0;33",b:"0;34",m:"0;35",c:"0;36",

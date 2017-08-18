@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(requireDreem,$ui$, view){
+defineDreem.class(function(requireDreem,$ui$, view){
 	// internal, Simple knob: a dial with a value
 
 	this.attributes = {
@@ -35,7 +35,7 @@ define.class(function(requireDreem,$ui$, view){
 		this.findChild("thedialbg").height = this.layout.width
 	}
 
-	define.class(this, "dial", function($ui$, view){
+	defineDreem.class(this, "dial", function($ui$, view){
 
 		this.innerradius = 20
 		this.outerradius = 26

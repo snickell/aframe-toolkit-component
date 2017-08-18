@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define(function(require, exports, module){
+defineDreem(function(requireDreem, exports, module){
 	module.exports = function dump(ast, defs, depth){
 		if(!ast) return ''
 		if (depth === undefined) depth = "";

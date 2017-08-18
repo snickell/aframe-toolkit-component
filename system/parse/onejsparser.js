@@ -6,7 +6,7 @@
 
 // Parts Copyright (C) Marijn Haverbeke (Apache 2.0 license)
 
-define.class(function(requireDreem, exports){
+defineDreem.class(function(requireDreem, exports){
 
 	// This parser is a modified version of Acorn
 	// It parses the ONEJS superset of JavaScript
@@ -1423,7 +1423,7 @@ define.class(function(requireDreem, exports){
 		Var: function Var(){},
 		TypeVar: function TypeVar(){},
 		Struct: function Struct(){},
-		Define: function Define(){},
+		Define: function defineDreem(){},
 		Enum: function Enum(){},
 
 		Def: function Def(){},

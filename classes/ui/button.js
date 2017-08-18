@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$ui/view', function(require, $ui$, view, label, icon){
+defineDreem.class('$ui/view', function(requireDreem, $ui$, view, label, icon){
 // Simple gradient button: a rectangle with a textlabel and an icon
 // <br/><a href="/examples/buttons">examples &raquo;</a>
 

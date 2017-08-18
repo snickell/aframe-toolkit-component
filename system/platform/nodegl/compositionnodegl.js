@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // this class
 
-define.class('$system/base/compositionclient', function(require, baseclass){
+defineDreem.class('$system/base/compositionclient', function(requireDreem, baseclass){
 
 	var Device = this.Device = requireDreem('$system/platform/$platform/device$platform')
 	var BusClient = requireDreem('$system/rpc/busclient')

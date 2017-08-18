@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function($ui$, view, label, bargraphic){
+defineDreem.class(function($ui$, view, label, bargraphic){
 // Simple audio player, without controls. While the audio plays, a visual
 // representation of the audio can be displayed in the view
 

@@ -4,9 +4,9 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$blending/blend', function($blending$, mixer, blurv, blurh){
+defineDreem.class('$blending/blend', function($blending$, mixer, blurv, blurh){
 
-	this.hblend = define.class('$blending/blend', function(){
+	this.hblend = defineDreem.class('$blending/blend', function(){
 		// so we have one output, the size we can specify
 		this.size = vec2(0.5, 0.5) // take on the size of the framebuffer
 		// we can have multiple input that are named
@@ -15,7 +15,7 @@ define.class('$blending/blend', function($blending$, mixer, blurv, blurh){
 		}
 	})
 
-	this.vblend = define.class('$blending/blend', function(){
+	this.vblend = defineDreem.class('$blending/blend', function(){
 		// so we have one output, the size we can specify
 		this.size = vec2(0.5, 0.5) // take on the size of the framebuffer
 		// we can have multiple input that are named

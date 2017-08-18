@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(requireDreem,$ui$, view, textbox, label, button){
+defineDreem.class(function(requireDreem,$ui$, view, textbox, label, button){
 	// Simple numberbox: a number with a plus and a minus button
 
 	this.attributes = {

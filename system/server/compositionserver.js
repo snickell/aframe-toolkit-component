@@ -6,7 +6,7 @@
 
 // parse a color string into a [r,g,b] 0-1 float array
 
-define.class(function(requireDreem){
+defineDreem.class(function(requireDreem){
 
 	var fs = requireDreem('fs')
 
@@ -150,7 +150,7 @@ define.class(function(requireDreem){
 			'      paths:'+pathset+',\n'+
 			'     '+paths+',\n'+
 			'      main:["$system/base/math", "' + boot + '"],\n'+
-			'      atMain:function(require, modules){\n'+
+			'      atMain:function(requireDreem, modules){\n'+
 			'        define.endLoader()\n'+
 			'		 require(modules[0])\n'+
 			'		 var Composition = require(modules[1])\n'+

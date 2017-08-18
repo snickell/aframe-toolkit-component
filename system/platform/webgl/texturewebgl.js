@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$system/base/texture', function(exports){
+defineDreem.class('$system/base/texture', function(exports){
 	var Texture = exports
 	Texture.Image = typeof window !== 'undefined'? window.Image: function(){}
 

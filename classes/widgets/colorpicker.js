@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numberbox){
+defineDreem.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numberbox){
 
 	var Shader = this.Shader = requireDreem('$system/platform/$platform/shader$platform')
 
@@ -153,7 +153,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 		this.updateallcontrols();
 	}
 
-	define.class(this, "customslider", function($ui$,view){
+	defineDreem.class(this, "customslider", function($ui$,view){
 
 		this.attributes = {
 
@@ -300,7 +300,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 		this.drawcount = 0;
 	})
 
-	define.class(this, 'colorcirclecontrol', function($ui$view){
+	defineDreem.class(this, 'colorcirclecontrol', function($ui$view){
 		this.name = 'colorcirclecontrol'
 		this.width = 200;
 		this.height = 200;
@@ -331,7 +331,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 			this.redraw();
 		}
 
-		define.class(this, 'bgfill', this.Shader, function(){
+		defineDreem.class(this, 'bgfill', this.Shader, function(){
 			this.draworder = 1;
 
 			this.vertexstruct =  define.struct({
@@ -379,7 +379,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 			}
 		})
 
-		define.class(this, 'fgfill', this.Shader, function(){
+		defineDreem.class(this, 'fgfill', this.Shader, function(){
 			this.draworder = 2;
 			this.vertexstruct = define.struct({
 				p:vec2,
@@ -427,7 +427,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 		this.fgfill = true
 	})
 
-	define.class(this, 'squareview', function($ui$view){
+	defineDreem.class(this, 'squareview', function($ui$view){
 		this.name = 'squareview'
 		this.width = 200;
 		this.height = 200;
@@ -464,7 +464,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 			this.updatecolorfrompointer(p);
 		}
 
-		define.class(this, 'fgfill', this.Shader, function(){
+		defineDreem.class(this, 'fgfill', this.Shader, function(){
 			this.draworder = 5
 
 			this.vertexstruct = define.struct({
@@ -517,7 +517,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 
 		this.fgfill = true
 
-		define.class(this, 'bgfill', this.Shader, function(){
+		defineDreem.class(this, 'bgfill', this.Shader, function(){
 			this.draworder = 1
 			this.vertexstruct = define.struct({
 				p:float,
@@ -571,7 +571,7 @@ define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numbe
 		this.bgfill = true
 	})
 
-	define.class(this, 'colorarea', function($ui$view){
+	defineDreem.class(this, 'colorarea', function($ui$view){
 		this.hardrect ={
 			color:function(){
 					return vec4(mesh.x, mesh.y,0,1);

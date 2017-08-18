@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Sprite class
 
-define.class( function(require, $ui$, view, label, menubutton){
+defineDreem.class( function(requireDreem, $ui$, view, label, menubutton){
 
 	this.bgcolor = "#585858"
 	this.flexdirection = "row"

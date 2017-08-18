@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(requireDreem, exports){
+defineDreem.class(function(requireDreem, exports){
 
 	var OneJSParser =  requireDreem('$system/parse/onejsparser')
 	var GLSLGen = requireDreem('./glslgen')

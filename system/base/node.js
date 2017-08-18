@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(requireDreem){
+defineDreem.class(function(requireDreem){
 	// Node class provides attributes for events and values, propertybinding and constructor semantics
 
 	var OneJSParser =  requireDreem('$system/parse/onejsparser')
@@ -456,7 +456,7 @@ define.class(function(requireDreem){
 		}
 	})
 
-	var Style = define.class(function(){
+	var Style = defineDreem.class(function(){
 
 		this.composeStyle = function(){
 			// lets find the highest matching level

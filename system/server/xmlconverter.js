@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 // converts .dre xml into dreemgl-compliant javascript. Supports methods, attributes, attribute declarations and handlers.
-define(function(require){
+defineDreem(function(requireDreem){
 	var fs = requireDreem('fs')
 	var HTMLParser = requireDreem('$system/parse/htmlparser')
 
@@ -193,7 +193,7 @@ define(function(require){
     // find includes based on tags found
     var includes = findIncludes(Object.keys(tagnames));
 		// console.log('includes', includes)
-		var out = 'define.class(\'$server/composition\', function(' + includes.join(', ') + '){\n'
+		var out = 'defineDreem.class(\'$server/composition\', function(' + includes.join(', ') + '){\n'
 		out += '\tthis.render = function() {\n'
 		out += '\t\treturn [\n';
 		out += body;

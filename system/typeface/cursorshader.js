@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Parts copyright 2012 Google, Inc. All Rights Reserved. (APACHE 2.0 license)
 
-define.class('$system/platform/$platform/shader$platform', function(require){
+defineDreem.class('$system/platform/$platform/shader$platform', function(requireDreem){
 	this.view = {totalmatrix:mat4(), viewmatrix:mat4(), cursorcolor:vec4()}
 
 	this.position = function(){

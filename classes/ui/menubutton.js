@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$ui/button', function(require,$ui$, textbox, label, view){
+defineDreem.class('$ui/button', function(requireDreem,$ui$, textbox, label, view){
 
 	this.attributes = {
 		commands:[],

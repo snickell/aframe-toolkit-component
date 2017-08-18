@@ -2761,7 +2761,7 @@ define.<span class="reserved">class</span>(<span class="string"><span class="del
                                         <span class="local-variable">this</span>.setBgImage(img)
                                 } <span class="keyword">else</span> {
                                         <span class="comment">// check if loaded already</span>
-                                        require.async(<span class="local-variable">this</span>._bgimage, <span class="string"><span class="delimiter">'</span><span class="content">jpeg</span><span class="delimiter">'</span></span>).then(<span class="keyword">function</span>(result){
+                                        requireDreem.async(<span class="local-variable">this</span>._bgimage, <span class="string"><span class="delimiter">'</span><span class="content">jpeg</span><span class="delimiter">'</span></span>).then(<span class="keyword">function</span>(result){
                                                 <span class="local-variable">this</span>.setBgImage(result)
                                         }.bind(<span class="local-variable">this</span>))
                                 }

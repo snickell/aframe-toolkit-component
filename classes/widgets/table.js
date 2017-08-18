@@ -4,7 +4,7 @@
  software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$ui/view', function(require, $ui$, view, icon) {
+defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon) {
 // A table is a container view that lays out it's children in either rows or columns.
 // Individual rows and columns can be configured via styles and are given names and style classes conforming to
 // either `row#` or `column#` style where `#` is the index of the particular row or column.
@@ -73,7 +73,7 @@ define.class('$ui/view', function(require, $ui$, view, icon) {
 
 	}
 
-	define.class(this, "rowcol", "$ui/view", function() {
+	defineDreem.class(this, "rowcol", "$ui/view", function() {
 	})
 
 	var table = this.constructor;

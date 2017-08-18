@@ -211,7 +211,7 @@ define.<span class="reserved">class</span>(<span class="keyword">function</span>
                 console.log(<span class="string"><span class="delimiter">'</span><span class="content">Downloading nodegl</span><span class="delimiter">'</span></span>)
                 <span class="comment">// lets make the math library requireable</span>
                 
-                require.async(args[<span class="string"><span class="delimiter">'</span><span class="content">-nodegl</span><span class="delimiter">'</span></span>]).then(<span class="keyword">function</span>(composition){        
+                requireDreem.async(args[<span class="string"><span class="delimiter">'</span><span class="content">-nodegl</span><span class="delimiter">'</span></span>]).then(<span class="keyword">function</span>(composition){        
                         console.log(<span class="string"><span class="delimiter">'</span><span class="content">Booting nodegl</span><span class="delimiter">'</span></span>)
                         <span class="local-variable">this</span>.comp = <span class="keyword">new</span> composition(<span class="predefined-constant">undefined</span>, <span class="predefined-constant">undefined</span>, args[<span class="string"><span class="delimiter">'</span><span class="content">-nodegl</span><span class="delimiter">'</span></span>])
                         

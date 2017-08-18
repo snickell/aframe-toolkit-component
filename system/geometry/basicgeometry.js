@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define(function(require, exports){
+defineDreem(function(requireDreem, exports){
 	var v1 = vec3(0,0,0)
 	var v2 = vec3(0,0,0)
 	var v3 = vec3(0,0,0)

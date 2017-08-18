@@ -1,4 +1,4 @@
-define.class("$system/parse/onejswalk", function(baseclass, require) {
+defineDreem.class("$system/parse/onejswalk", function(baseclass, require) {
 
 	var jsformatter = requireDreem('$system/parse/jsformatter');
 

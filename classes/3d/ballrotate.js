@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(requireDreem, $ui$button){
+defineDreem.class(function(requireDreem, $ui$button){
 	//internal, this widget controls
 
 	this.attributes = {

@@ -395,7 +395,7 @@ define.<span class="reserved">class</span>(<span class="string"><span class="del
                                         <span class="function">init</span>:<span class="keyword">function</span>(){
                                                 <span class="local-variable">this</span>.screen.<span class="function">locationhash</span> = <span class="keyword">function</span>(event){
                                                 <span class="comment">//        debugger</span>
-                                                        <span class="keyword">if</span>(event.value.path) require.async(event.value.path).then(<span class="keyword">function</span>(module){
+                                                        <span class="keyword">if</span>(event.value.path) requireDreem.async(event.value.path).then(<span class="keyword">function</span>(module){
                                                                 <span class="local-variable">this</span>.classconstr = module
                                                         }.bind(<span class="local-variable">this</span>))
                                                 }.bind(<span class="local-variable">this</span>)

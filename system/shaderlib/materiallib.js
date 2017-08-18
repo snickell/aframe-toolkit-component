@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define(function(require, exports){	
+defineDreem(function(requireDreem, exports){	
 	// Use material-capture "lit sphere" texture to approximate material behaviour for a surface.
 	exports.matcap = function(eye, normal){	
 		var r = reflect( eye, normal );

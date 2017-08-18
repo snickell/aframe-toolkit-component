@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class("$ui/view", function(require,
+defineDreem.class("$ui/view", function(requireDreem,
 								  $ui$, view, label, textbox, icon, checkbox, treeview, button, tabbar,
 								  $widgets$, palette, propviewer, jseditor,
 								  $server$, astio){
@@ -261,7 +261,7 @@ define.class("$ui/view", function(require,
 
 		var fullpath = this.screen.composition.constructor.module.filename;
 		var filename = fullpath.substring(fullpath.lastIndexOf('/') + 1);
-		var source = 'define.class("$server/composition",' + src + ');'
+		var source = 'defineDreem.class("$server/composition",' + src + ');'
 		var blob = new Blob([source], {type: 'plain/text'});
 		formData.append('file', blob, filename);
 
@@ -1682,7 +1682,7 @@ define.class("$ui/view", function(require,
 		}
 	};
 
-	define.class(this, "selectorrect", view, function() {
+	defineDreem.class(this, "selectorrect", view, function() {
 		this.name = "selectorrect";
 		this.drawtarget = "color";
 		this.bordercolorfn = function(pos) {
@@ -1699,7 +1699,7 @@ define.class("$ui/view", function(require,
 		this.tooltarget = false;
 	});
 
-	define.class(this, "selectedrect", view, function() {
+	defineDreem.class(this, "selectedrect", view, function() {
 		this.visible = wire('this.outer.visible');
 		this.drawtarget = "color";
 		this.attributes = {
@@ -1791,7 +1791,7 @@ define.class("$ui/view", function(require,
 		}
 	});
 
-	define.class(this, "ruler", view, function() {
+	defineDreem.class(this, "ruler", view, function() {
 		this.visible = wire('this.outer.visible');
 		this.drawtarget = "color";
 		this.bgcolor = "transparent";
@@ -1921,7 +1921,7 @@ define.class("$ui/view", function(require,
 		}
 	});
 
-	define.class(this, "handle", icon, function() {
+	defineDreem.class(this, "handle", icon, function() {
 		this.tooltarget = false;
 		this.visible = wire('this.outer.visible');
 		this.position = "absolute";
@@ -2007,7 +2007,7 @@ define.class("$ui/view", function(require,
 		}
 	});
 
-	define.class(this, "input", textbox, function() {
+	defineDreem.class(this, "input", textbox, function() {
 		this.tooltarget = false;
 		this.visible = wire('this.outer.visible');
 		this.position = "absolute";
@@ -2085,7 +2085,7 @@ define.class("$ui/view", function(require,
 		}
 	});
 
-	define.class(this, 'panel', view, function(){
+	defineDreem.class(this, 'panel', view, function(){
 		this.attributes = {
 			fontsize: Config({type:float, value:12, meta:"fontsize"}),
 			activechild: Config({type:int, value:0})

@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$ui/view', function(icon, label){
+defineDreem.class('$ui/view', function(icon, label){
 // Simple checkbox/tobble button: a rectangle with a textlabel and an icon
 // <br/><a href="/examples/checkboxes">examples &raquo;</a>
 

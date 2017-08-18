@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // self generating onejs walker utility class, run with nodejs to regenerate
 
-if(typeof process !== 'undefined' && require.main === module){
+if(typeof process !== 'undefined' && requireDreem.main === module){
 	var require = requireDreem('../base/define')
 	var defs = requireDreem('./onejsdef.js')
 	var fs = requireDreem('fs')
@@ -13,7 +13,7 @@ if(typeof process !== 'undefined' && require.main === module){
 	var head = fs.readFileSync(module.filename).toString().match(/^[\S\s]*\/\/ generated/)[0]
 	// the template for the generated bottom part
 	var template = function(){
-		define.class(function(){
+		defineDreem.class(function(){
 			this.walk = function(node, parent, state, index){
 				if(!node) return
 				var fn = this[node.type]
@@ -43,7 +43,7 @@ if(typeof process !== 'undefined' && require.main === module){
 }
 
 // generated
-define.class(function(){
+defineDreem.class(function(){
 	this.walk = function(node, parent, state, index){
 		if(!node) return
 		var fn = this[node.type]

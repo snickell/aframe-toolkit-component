@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class("$ui/label", function(require){
+defineDreem.class("$ui/label", function(requireDreem){
 // Text input field
 // <br/><a href="/examples/text">examples &raquo;</a>
 
@@ -50,7 +50,7 @@ define.class("$ui/label", function(require){
 
 	}
 
-	define.class(this, 'cursors', requireDreem('$system/typeface/cursorshader.js'), function(){
+	defineDreem.class(this, 'cursors', requireDreem('$system/typeface/cursorshader.js'), function(){
 		this.updateorder = 5
 		this.draworder = 6
 		this.atConstructor = function(){
@@ -73,7 +73,7 @@ define.class("$ui/label", function(require){
 	this.cursors = true
 	this.tabstop = 0
 	this.linespacing = 1.3
-	define.class(this, 'markers', requireDreem('$system/typeface/markershader.js'), function(){
+	defineDreem.class(this, 'markers', requireDreem('$system/typeface/markershader.js'), function(){
 		this.updateorder = 6
 		this.draworder = 4
 		this.atConstructor = function(){

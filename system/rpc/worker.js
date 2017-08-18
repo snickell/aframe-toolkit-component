@@ -1,3 +1,3 @@
-define(function(require, exports, module){
+defineDreem(function(requireDreem, exports, module){
 	module.exports = requireDreem('$system/platform/$platform/worker$platform')
 })

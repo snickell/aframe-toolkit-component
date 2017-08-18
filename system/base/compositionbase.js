@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // teem class
 
-define.class('$system/base/node',function(require){
+defineDreem.class('$system/base/node',function(requireDreem){
 
 	var RpcHub = requireDreem('$system/rpc/rpchub')
 	var Render = requireDreem('./render')

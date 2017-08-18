@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Sprite class
 
-define.class("$ui/view", function(require, $ui$, view){
+defineDreem.class("$ui/view", function(requireDreem, $ui$, view){
 // A drawer view that slides to reveal trays either to the left and right in horizontal mode or or the top and
 // bottom in vertical mode.  Subviews can contain components which will become activated as the lower tray is revealed.
 // Up to three subviews can be added to the drawer's constructor, providing the top drawer view, the right tray view
@@ -220,7 +220,7 @@ define.class("$ui/view", function(require, $ui$, view){
 	var drawer = this.constructor;
 	this.constructor.examples = {
 		Usage:function(){
-			var label = require("$ui/label");
+			var label = requireDreem("$ui/label");
 			return [
 				drawer({
 					x:50,y:50,

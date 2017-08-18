@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$ui/label', function(require){
+defineDreem.class('$ui/label', function(requireDreem){
 
 	this.attributes = {
 		cursorcol: 1,
@@ -96,13 +96,13 @@ define.class('$ui/label', function(require){
 	this.tabstop = 0
 
 	// background lines
-	define.class(this, 'bgline', this.Shader, function(){
+	defineDreem.class(this, 'bgline', this.Shader, function(){
 		this.update = function(){
 
 		}
 	})
 
-	define.class(this, 'cursorbar_row', this.Shader, function(){
+	defineDreem.class(this, 'cursorbar_row', this.Shader, function(){
 		this.updateorder = 8
 		this.draworder = 2
 		this.mesh = vec2.array()
@@ -139,7 +139,7 @@ define.class('$ui/label', function(require){
 	})
 	this.cursorbar_row = true
 
-	define.class(this, 'cursorbar_col', this.Shader, function(){
+	defineDreem.class(this, 'cursorbar_col', this.Shader, function(){
 		this.updateorder = 8
 		this.draworder = 4
 		this.mesh = vec2.array()

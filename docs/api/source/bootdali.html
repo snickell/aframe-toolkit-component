@@ -511,7 +511,7 @@ define.<span class="reserved">class</span>(<span class="keyword">function</span>
                 <span class="keyword">if</span> (<span class="local-variable">this</span>.server) {
                         <span class="comment">// Remote server</span>
                         <span class="keyword">var</span> self = <span class="local-variable">this</span>;
-                        require.async(self.server).then(<span class="keyword">function</span>(composition){
+                        requireDreem.async(self.server).then(<span class="keyword">function</span>(composition){
                                 <span class="keyword">return</span> self.loadComposition(composition);
                         }).<span class="keyword">catch</span>(<span class="keyword">function</span>(error){
                                 console.log(<span class="string"><span class="delimiter">'</span><span class="content">Composition load failure</span><span class="delimiter">'</span></span>, error.stack)

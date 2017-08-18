@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Rpc single proxy
 
-define.class('$system/base/node', function(require, exports){
+defineDreem.class('$system/base/node', function(requireDreem, exports){
 	var RpcProxy = exports
 
 	// disconnect all listeners to this rpc object
@@ -112,7 +112,7 @@ define.class('$system/base/node', function(require, exports){
 		return proxy
 	}
 
-	var RpcChildSet = define.class(function RpcChildSet(){
+	var RpcChildSet = defineDreem.class(function RpcChildSet(){
 		this.methodRpc = function(rpcid, message){
 			return this.parent.methodRpc(this.name + '.' + rpcid, message)
 		}

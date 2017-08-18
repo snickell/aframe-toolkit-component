@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // ruler class
 
-define.class('$ui/view', function(require, $ui$, view, label, icon){
+defineDreem.class('$ui/view', function(requireDreem, $ui$, view, label, icon){
 	// The foldcontainer shows/hides all its children when the top bar is clicked
 
 	this.position = "relative"
@@ -36,7 +36,7 @@ define.class('$ui/view', function(require, $ui$, view, label, icon){
 	}
 
 	// subclass to lay out the clickable portion of the folding container
-	define.class(this, 'clickablebar', view, function(){
+	defineDreem.class(this, 'clickablebar', view, function(){
 
 		this.bggradient = function(a,b){
 			var fill = mix(col1, col2,  (a.y)/0.8);
@@ -131,7 +131,7 @@ define.class('$ui/view', function(require, $ui$, view, label, icon){
 	})
 
 	// the main container view
-	define.class(this, 'containerview', function(view){
+	defineDreem.class(this, 'containerview', function(view){
 		this.hardrect = {
 			color:function(){
 				return mix(view.bgcolor*1.7, vec4("white"), (mesh.y/8))

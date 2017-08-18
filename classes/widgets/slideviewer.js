@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function($ui$, view, label){
+defineDreem.class(function($ui$, view, label){
 
 	// internal, Slide viewer is an automatic slide viewer that turns child nodes into slides
 	// use attributes named 'slidetitle' on a child to set the slide title1
@@ -25,7 +25,7 @@ define.class(function($ui$, view, label){
 	}
 
 	// the class for a nested slide, its automatically wrapped around children
-	define.class(this, 'slide', function($ui$, view){
+	defineDreem.class(this, 'slide', function($ui$, view){
 		this.borderradius = vec4(10)
 		this.borderwidth = 0
 		this.bordercolor = vec4("blue")

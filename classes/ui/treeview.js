@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$ui/view', function($ui$, view, label, button, icon){
+defineDreem.class('$ui/view', function($ui$, view, label, button, icon){
 // The treeview control - classic treeview with expandable nodes.
 
 	this.attributes = {
@@ -20,7 +20,7 @@ define.class('$ui/view', function($ui$, view, label, button, icon){
 	this.overflow ='scroll'
 
 	// The fold button is a very very flat button.
-	define.class(this, 'foldbutton', button, function(){
+	defineDreem.class(this, 'foldbutton', button, function(){
 		this.borderwidth = 0
 		this.bold = false;
 		this.fontsize = 14;
@@ -44,7 +44,7 @@ define.class('$ui/view', function($ui$, view, label, button, icon){
 	})
 
 	// newitemheading combines a few foldbuttons in to a full "item" in the tree
-	define.class(this, 'newitemheading', view, function(){
+	defineDreem.class(this, 'newitemheading', view, function(){
 		this.borderwidth = 0;
 		this.attributes = {
 			folded: false,
@@ -102,7 +102,7 @@ define.class('$ui/view', function($ui$, view, label, button, icon){
 	});
 
 	// the treeitem subclass contains 3 controls: a newitemheading, a set of treelines and an optional set of children treeitems in case the current node is expanded
-	define.class(this, 'treeitem', view, function(){
+	defineDreem.class(this, 'treeitem', view, function(){
 
 		this.attributes = {
 			text: "",
@@ -215,7 +215,7 @@ define.class('$ui/view', function($ui$, view, label, button, icon){
 	})
 
 	// subclass to render the gridlines of the tree
-	define.class(this, 'treeline', view, function(){
+	defineDreem.class(this, 'treeline', view, function(){
 		//this.bgcolor = vec4("red");
 		//this.flex = 1
 		this.last = 0

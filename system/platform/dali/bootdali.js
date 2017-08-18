@@ -7,7 +7,7 @@
 // Copied from compositionserver.js for dali. This assumes that the
 // node server is running on the same machine where dali is running.
 
-define.class(function(requireDreem){
+defineDreem.class(function(requireDreem){
 
 	console.log('Loading bootdali', define.$environment);
 

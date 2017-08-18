@@ -6,7 +6,7 @@
 
 "use strict"
 
-define.class('$system/base/node', function(require){
+defineDreem.class('$system/base/node', function(requireDreem){
 // Base UI view object
 
 
@@ -560,12 +560,12 @@ define.class('$system/base/node', function(require){
 		if (this.initialized){
 			if (typeof this._bgimage === 'string'){
 				// Path to image was specified
-				if (require.loaded(this._bgimage)){
-					var img = require(this._bgimage)
+				if (requireDream.loaded(this._bgimage)){
+					var img = requireDreem(this._bgimage)
 					this.setBgImage(img)
 				} else {
 					// check if loaded already
-					require.async(this._bgimage, 'jpeg').then(function(result){
+					requireDreem.async(this._bgimage, 'jpeg').then(function(result){
 						this.setBgImage(result)
 					}.bind(this))
 				}
@@ -1375,7 +1375,7 @@ define.class('$system/base/node', function(require){
 		this.relayout()
 	}
 
-	define.class(this, 'hardrect', this.Shader, function(){
+	defineDreem.class(this, 'hardrect', this.Shader, function(){
 		this.updateorder = 0
 		this.draworder = 0
 		this.dont_scroll_as_viewport = true
@@ -1398,7 +1398,7 @@ define.class('$system/base/node', function(require){
 		return bordercolor
 	}
 
-	define.class(this, 'hardborder', this.Shader, function(){
+	defineDreem.class(this, 'hardborder', this.Shader, function(){
 		this.updateorder = 0
 		this.draworder = 1
 		this.mesh = vec2.array()
@@ -1438,7 +1438,7 @@ define.class('$system/base/node', function(require){
 	})
 
 	// hard edged bgimage shader
-	define.class(this, 'hardimage', this.hardrect, function(){
+	defineDreem.class(this, 'hardimage', this.hardrect, function(){
 		this.dont_scroll_as_viewport = true
 		this.updateorder = 0
 		this.draworder = 0
@@ -1620,7 +1620,7 @@ define.class('$system/base/node', function(require){
 	}
 
 	// rounded rect shader class
-	define.class(this, 'roundedrect', this.Shader, function(){
+	defineDreem.class(this, 'roundedrect', this.Shader, function(){
 		this.dont_scroll_as_viewport = true
 		this.updateorder = 0
 		this.draworder = 0
@@ -1703,7 +1703,7 @@ define.class('$system/base/node', function(require){
 	})
 
 	// hard edged bgimage shader
-	define.class(this, 'roundedimage', this.roundedrect, function(){
+	defineDreem.class(this, 'roundedimage', this.roundedrect, function(){
 		this.dont_scroll_as_viewport = true
 		this.updateorder = 0
 		this.draworder = 0
@@ -1721,7 +1721,7 @@ define.class('$system/base/node', function(require){
 	})
 
 	// rounded rect shader class
-	define.class(this, 'shadowrect', this.Shader, function(){
+	defineDreem.class(this, 'shadowrect', this.Shader, function(){
 		this.updateorder = 0
 
 		this.vertexstruct = define.struct({
@@ -1884,7 +1884,7 @@ define.class('$system/base/node', function(require){
 
 	// When passes > 0, create inner classes with names pass0..9 to implement the shaders
 	// for each pass.
-	this.RenderPass = define.class(this.Shader, function(){
+	this.RenderPass = defineDreem.class(this.Shader, function(){
 		// create placeholder passes for the compiler
 		this.framebuffer = this.pass0 = this.pass1 = this.pass2 = this.pass3 =
 			this.pass4 = this.pass5 = this.pass6 = this.pass7 = this.pass8 =
@@ -1914,7 +1914,7 @@ define.class('$system/base/node', function(require){
 	})
 
 	// blends current viewport into the parent
-	define.class(this, 'viewportblend', this.Shader, function(){
+	defineDreem.class(this, 'viewportblend', this.Shader, function(){
 		this.draworder = 10
 		this.updateorder = 10
 		this.omit_from_shader_list = true
@@ -1935,7 +1935,7 @@ define.class('$system/base/node', function(require){
 	})
 
 	// rounded corner border shader
-	define.class(this, 'roundedborder', this.Shader, function(){
+	defineDreem.class(this, 'roundedborder', this.Shader, function(){
 		this.dont_scroll_as_viewport = true
 		this.draworder = 1
 		this.updateorder = 1
@@ -2023,7 +2023,7 @@ define.class('$system/base/node', function(require){
 	})
 
 	// lets pull in the scrollbar on the view
-	define.class(this, 'scrollbar', requireDreem('$ui/scrollbar'),function(){
+	defineDreem.class(this, 'scrollbar', requireDreem('$ui/scrollbar'),function(){
 		this.hardrect = {
 			noscroll:true
 		}

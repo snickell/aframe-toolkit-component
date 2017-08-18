@@ -4,7 +4,7 @@
  software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class("$system/base/node", function(require) {
+defineDreem.class("$system/base/node", function(requireDreem) {
 // 	The gyro receives gyroscope and compass data where available.
 // See [deviceorientation](https://w3c.github.io/deviceorientation/spec-source-orientation.html#deviceorientation) and [DeviceOrientationEvent](https://developer.apple.com/library/safari/documentation/SafariDOMAdditions/Reference/DeviceOrientationEventClassRef/DeviceOrientationEvent/DeviceOrientationEvent.html) for details.
 // <br/><a href="/examples/sensors">example &raquo;</a>
@@ -57,7 +57,7 @@ define.class("$system/base/node", function(require) {
 	var gyroscope = this.constructor;
 	this.constructor.examples = {
 		Usage: function() {
-			var label = require("$ui/label");
+			var label = requireDreem("$ui/label");
 			return [
 				gyroscope({
 					onorientation:function(ev,v,o) {

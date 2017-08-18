@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Script error holds a file/line
 
-define.class(function(requireDreem, exports){
+defineDreem.class(function(requireDreem, exports){
 
 	this.atConstructor = function(message, path, line, col){
 		this.message = message

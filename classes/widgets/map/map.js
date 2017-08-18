@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License. */
 
-define.class('$ui/view', function(require, $ui$, view, label, button, labelset, $$, geo, urlfetch)
+defineDreem.class('$ui/view', function(requireDreem, $ui$, view, label, button, labelset, $$, geo, urlfetch)
 {
 
 	var BufferGen = requireDreem('$widgets/map/mapbuffers')()
@@ -116,7 +116,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 	}
 
 	// data interaction, needs to inherit from view because of animation
-	define.class(this, 'mapdataset', '$ui/view', function($$, geo) {
+	defineDreem.class(this, 'mapdataset', '$ui/view', function($$, geo) {
 
 		this.requestPending = false
 		// all the blocks that need to be loaded (empty tile objects)
@@ -322,7 +322,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 		}
 
 		// the geometry generation worker
-		var worker = define.class('$system/rpc/worker', function(require) {
+		var worker = defineDreem.class('$system/rpc/worker', function(requireDreem) {
 			this.BufferGen = requireDreem('$widgets/map/mapbuffers')()
 
 			this.build = function(str, r) {
@@ -522,7 +522,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 	var alltiles = 0
 
 	// All tiles use tilebasemixin
-	var tilebasemixin = define.class(Object, function() {
+	var tilebasemixin = defineDreem.class(Object, function() {
 
 		this.drawtarget = 'color'
 
@@ -648,7 +648,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 	})
 
 	// view implementation of the building
-	define.class(this, 'buildingtile', '$ui/view', function() {
+	defineDreem.class(this, 'buildingtile', '$ui/view', function() {
 		this.is = tilebasemixin
 		this.loadBufferFromTile = function(tile) {
 			if (!this.shaders || !this.shaders.hardrect || !tile.buildingVertexBuffer) return false
@@ -692,7 +692,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 	})
 
 	// view implementation of the land
-	define.class(this, 'landtile', '$ui/view', function() {
+	defineDreem.class(this, 'landtile', '$ui/view', function() {
 
 		this.is = tilebasemixin
 
@@ -740,7 +740,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 	})
 
 	// view implementation of the label tile
-	define.class(this, 'labeltile', '$ui/labelset', function() {
+	defineDreem.class(this, 'labeltile', '$ui/labelset', function() {
 		//this.polygonoffset = 100.0
 		this.is = tilebasemixin
 		this.fgcolor = 'black'
@@ -815,7 +815,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 	})
 
 	// view class of the roadtile
-	define.class(this, 'roadtile', '$ui/view', function() {
+	defineDreem.class(this, 'roadtile', '$ui/view', function() {
 		this.is = tilebasemixin
 		this.loadBufferFromTile = function(tile) {
 			if (!this.shaders || !this.shaders.hardrect || !tile.roadVertexBuffer) return

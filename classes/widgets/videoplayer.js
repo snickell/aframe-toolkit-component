@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(requireDreem, $ui$, view, label, bargraphic){
+defineDreem.class(function(requireDreem, $ui$, view, label, bargraphic){
 	// Simple video player, without controls. Frames from a html5 video are
 	// copied into a canvas element. Each image is written to the view's texture.
 	// The view needs to use the hardimage shader, so the view is initialized

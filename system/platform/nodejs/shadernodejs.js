@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$system/base/shader', function(require, exports){
+defineDreem.class('$system/base/shader', function(requireDreem, exports){
 	exports.Texture = 
 	this.Texture = requireDreem('./texturenodejs')
 })

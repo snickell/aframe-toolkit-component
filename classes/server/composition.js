@@ -5,6 +5,6 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 // composition base class, inherit your compositions from this one
-define(function(require, node){
+defineDreem(function(requireDreem, node){
 	return requireDreem('$system/platform/$platform/composition$platform')
 })

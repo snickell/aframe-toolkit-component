@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 // Parts copyright 2012 Google, Inc. All Rights Reserved. (APACHE 2.0 license)
-define.class('$system/platform/$platform/shader$platform', function(require){
+defineDreem.class('$system/platform/$platform/shader$platform', function(requireDreem){
 	this.view = {totalmatrix:mat4(), viewmatrix:mat4(), markercolor:vec4()}
 
 	this.border_radius = 2.5

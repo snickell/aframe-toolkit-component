@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$system/base/texture', function(require, exports){
+defineDreem.class('$system/base/texture', function(requireDreem, exports){
 	// internal, DaliApi is a static object to access the dali api
 	DaliApi = requireDreem('./dali_api')
 

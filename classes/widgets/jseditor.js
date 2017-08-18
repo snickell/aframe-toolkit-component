@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('./jsviewer', function(require, baseclass, $ui$, textbox, label){
+defineDreem.class('./jsviewer', function(requireDreem, baseclass, $ui$, textbox, label){
 
 	this.readonly = false
 
@@ -130,7 +130,7 @@ define.class('./jsviewer', function(require, baseclass, $ui$, textbox, label){
 	}
 
 	// alright lets make a worker that parses and reserializes
-	var worker = define.class('$system/rpc/worker', function(require){
+	var worker = defineDreem.class('$system/rpc/worker', function(requireDreem){
 
 		var Parser = requireDreem('$system/parse/onejsparser')
 		var JSFormatter = requireDreem('$system/parse/jsformatter')

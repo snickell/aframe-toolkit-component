@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Sprite class
 
-define.class("$ui/view", function($ui$, view, icon) {
+defineDreem.class("$ui/view", function($ui$, view, icon) {
 // Slider with customizable handle.  To customize the handle put views as the slider's constructor children.
 // <br/><a href="/examples/sliders">examples &raquo;</a>
 
@@ -221,7 +221,7 @@ define.class("$ui/view", function($ui$, view, icon) {
 		return views;
 	};
 
-	define.class(this, "handle", view, function() {
+	defineDreem.class(this, "handle", view, function() {
 		this.bgcolor = vec4(1,1,1,0.51);
 		this.height = this.width = 26;
 		this.borderradius = (this.height * 0.5) - 0.5;

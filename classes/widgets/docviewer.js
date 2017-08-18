@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(requireDreem, $ui$, view, foldcontainer, label, button, icon, $widgets$, markdown, jsviewer){
+defineDreem.class(function(requireDreem, $ui$, view, foldcontainer, label, button, icon, $widgets$, markdown, jsviewer){
 
 	var parseDoc = requireDreem('$system/parse/jsdocgen').parseDoc
 
@@ -22,7 +22,7 @@ define.class(function(requireDreem, $ui$, view, foldcontainer, label, button, ic
 	}
 
 	// A doc item is an item with a heading, such as methods or attributes
-	define.class(this, 'ClassDocItem', function($ui$, view){
+	defineDreem.class(this, 'ClassDocItem', function($ui$, view){
 		this.bgcolor = NaN
 		// the item to display.
 		// An "attribute" item can have name, body_text, defvalue and type properties.
@@ -144,7 +144,7 @@ define.class(function(requireDreem, $ui$, view, foldcontainer, label, button, ic
 
 	// This class will recursively expand a class_doc sturcture to an on-screen view.
 
-	define.class(this, 'dividerline', function($ui$, view){
+	defineDreem.class(this, 'dividerline', function($ui$, view){
 		this.height = 1;
 		this.borderwidth = 1;
 		this.bgcolor = vec4("#202020");
@@ -154,7 +154,7 @@ define.class(function(requireDreem, $ui$, view, foldcontainer, label, button, ic
 	})
 
 
-	define.class(this, 'ClassDocView', function($ui$, view){
+	defineDreem.class(this, 'ClassDocView', function($ui$, view){
 
 		this.attributes = {
 			// If collapsible is true, the render function will build a foldcontainer around this class. This is used for recursion levels > 0 of the docviewer class.
@@ -239,7 +239,7 @@ define.class(function(requireDreem, $ui$, view, foldcontainer, label, button, ic
 	this.render = function(){
 		var functions = [];
 		var res = [];
-		var R = this.classconstr// 	require("$classes/dataset")
+		var R = this.classconstr// 	requireDreem("$classes/dataset")
 		if(typeof(R) === "string") {
 			return [markdown({bgcolor:NaN, body: " " + R.toString()})]
 		}

@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // dump js
 
-define(function(){
+defineDreem(function(){
 
 	function dump(arg, space, colors, arraynames){
 		if(!colors) colors = dump_plain

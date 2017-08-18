@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$ui/label', function (require, $ui$, view, label) {
+defineDreem.class('$ui/label', function (require, $ui$, view, label) {
 
 	var ROW_HEIGHT = 28
 
@@ -60,7 +60,7 @@ define.class('$ui/label', function (require, $ui$, view, label) {
 	// 	timeline.lockscroll = false
 	// }
 
-	define.class(this, 'event', view, function(){
+	defineDreem.class(this, 'event', view, function(){
 
 		this.bgcolor = '#999999'
 		this.position = 'absolute'
@@ -195,7 +195,7 @@ define.class('$ui/label', function (require, $ui$, view, label) {
 			}
 		}
 
-		define.class(this, 'eventlabel', label, function(){
+		defineDreem.class(this, 'eventlabel', label, function(){
 			this.xoffset = 0
 			this.xwidth = 0
 			this.fgcolor = "black"
@@ -276,7 +276,7 @@ define.class('$ui/label', function (require, $ui$, view, label) {
 		]
 	}
 
-	// define.class(this, 'eventrects', this.Shader, function(){
+	// defineDreem.class(this, 'eventrects', this.Shader, function(){
 	//
 	// 	var vertstruct = define.struct({
 	// 		pos: vec2,

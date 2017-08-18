@@ -331,7 +331,7 @@ define.class('$ui/view', function(require,
 		this.screen.locationhash = function(event) {
 			if (event.value.composition) {
 				// ok lets put it in define.js
-				require.async(event.value.composition).then(function(result) {
+				requireDreem.async(event.value.composition).then(function(result) {
 					define.ignore_reload[define.expandVariables(event.value.composition)] = true
 					this.sourceset.parse(result)
 					// console.log('>>', this.sourceset.ast)

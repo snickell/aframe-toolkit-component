@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$system/base/compositionclient', function(require, baseclass){
+defineDreem.class('$system/base/compositionclient', function(requireDreem, baseclass){
 
 	var Device = requireDreem('$system/platform/$platform/device$platform')
 	var WebRTC = requireDreem('$system/rpc/webrtc')

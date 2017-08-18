@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define(function(require, exports, module){
+defineDreem(function(requireDreem, exports, module){
 
 	module.exports = function generateSDFCache(font){
     throw "SETH FIXME: This function disabled because it wasn't valid JS";

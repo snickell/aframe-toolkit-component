@@ -3411,7 +3411,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
                                 define.module[path] = define.factory[path] = <span class="predefined-constant">undefined</span>
 
                                 <span class="comment">// lets require it async</span>
-                                define.require.async(path).then(<span class="keyword">function</span>(new_class){
+                                define.requireDreem.async(path).then(<span class="keyword">function</span>(new_class){
                                         <span class="comment">// fetch all modules dependent on this class, and all dependent on those</span>
                                         <span class="comment">// and cause them to reinitialize</span>
                                         <span class="keyword">function</span> <span class="function">wipe_module</span>(name){
@@ -4743,7 +4743,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
                                 <span class="keyword">if</span> (define.<span class="predefined">$platform</span> == <span class="string"><span class="delimiter">'</span><span class="content">dali</span><span class="delimiter">'</span></span> &amp;&amp; modname.indexOf(<span class="string"><span class="delimiter">'</span><span class="content">./</span><span class="delimiter">'</span></span>) == <span class="integer">0</span>)
                                         modname = <span class="string"><span class="delimiter">'</span><span class="content">$root</span><span class="delimiter">'</span></span> + <span class="string"><span class="delimiter">'</span><span class="content">/</span><span class="delimiter">'</span></span> + define.<span class="predefined">$example</span> + <span class="string"><span class="delimiter">'</span><span class="content">/</span><span class="delimiter">'</span></span> + modname;
 
-                                <span class="keyword">if</span>(<span class="keyword">typeof</span> modname !== <span class="string"><span class="delimiter">'</span><span class="content">string</span><span class="delimiter">'</span></span>) <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string"><span class="delimiter">&quot;</span><span class="content">module name in require.async not a string</span><span class="delimiter">&quot;</span></span>)
+                                <span class="keyword">if</span>(<span class="keyword">typeof</span> modname !== <span class="string"><span class="delimiter">'</span><span class="content">string</span><span class="delimiter">'</span></span>) <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string"><span class="delimiter">&quot;</span><span class="content">module name in requireDreem.async not a string</span><span class="delimiter">&quot;</span></span>)
                                 modname = define.expandVariables(modname)
 
                                 <span class="comment">// Query if module is in local file system (DALI)</span>
@@ -4771,7 +4771,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
                         <span class="keyword">if</span> (<span class="keyword">typeof</span> factory !== <span class="string"><span class="delimiter">&quot;</span><span class="content">function</span><span class="delimiter">&quot;</span></span>) <span class="keyword">return</span> module.exports = factory
 
-                        <span class="comment">// we are being used for require.async</span>
+                        <span class="comment">// we are being used for requireDreem.async</span>
                         <span class="keyword">if</span>(define.process_factory){
                                 define.process_factory = factory
                                 <span class="keyword">return</span>

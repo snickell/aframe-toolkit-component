@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$ui/view',  function(view, label){
+defineDreem.class('$ui/view',  function(view, label){
 	// The CADGrid class provides a simple way to fill a frame with a classic engineering grid.
 	// todo:
 	// - support zooming with incremental subdivision lines

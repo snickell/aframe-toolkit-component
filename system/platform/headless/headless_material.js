@@ -10,7 +10,7 @@
  * Simulate a materital (an array of textures with blending)
  */
 
-define.class(function(requireDreem, exports){
+defineDreem.class(function(requireDreem, exports){
 	// internal, HeadlessApi is a static object to access the headless api
 	HeadlessApi = requireDreem('./headless_api')
 

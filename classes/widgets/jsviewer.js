@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class('$ui/textbox', function(require){
+defineDreem.class('$ui/textbox', function(requireDreem){
 
 	var JSFormatter = requireDreem('$system/parse/jsformatter')
 	var Parser = requireDreem('$system/parse/onejsparser')

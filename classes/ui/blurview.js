@@ -6,7 +6,7 @@
 
 "use strict"
 
-define.class('$ui/view', function(require){
+defineDreem.class('$ui/view', function(requireDreem){
 // Example of how to use multiple render passes
 
 	// k0 is the weight for the center pixel. k1 is used for +1 and -1 away,
@@ -92,7 +92,7 @@ define.class('$ui/view', function(require){
 
 
 	// x or y shader filter for a 1D Gaussian
-	define.class(this, "Gaussian1D", this.RenderPass, function() {
+	defineDreem.class(this, "Gaussian1D", this.RenderPass, function() {
 		// Shader requires all instance variables to be defined.
 		this.spacing = vec2(1, 0)
 
@@ -106,14 +106,14 @@ define.class('$ui/view', function(require){
 
 	// Each pass _must_ be named pass0..9, define based on this.passes, e.g. this.passes of
 	// 1 must define pass0, 2 must define pass0 and pass1...
-	define.class(this, "pass0", this.Gaussian1D, function() {
+	defineDreem.class(this, "pass0", this.Gaussian1D, function() {
 		this.atConstructor = function(view) {
 			// horizontal filter
 			this.spacing = vec2(1.0, 0)
 		}
 	})
 
-	define.class(this, "pass1", this.Gaussian1D, function() {
+	defineDreem.class(this, "pass1", this.Gaussian1D, function() {
 		this.atConstructor = function(view) {
 			// vertical filter
 			this.spacing = vec2(0, 1.0)

@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$system/platform/webgl/workerwebgl', function(require, exports){
+defineDreem.class('$system/platform/webgl/workerwebgl', function(requireDreem, exports){
  	var rpchub = requireDreem('$system/rpc/rpchub')
  	var NodeWebsocket = requireDreem('$system/server/nodewebsocket')
 
@@ -81,7 +81,7 @@ define.class('$system/platform/webgl/workerwebgl', function(require, exports){
 		function worker_boot(){
 			var net = requireDreem('net')
 			var worker = define.requireDreem('/myworker')()
-			var NodeWebsocket = define.require("$system/server/nodewebsocket")
+			var NodeWebsocket = define.requireDreem("$system/server/nodewebsocket")
 			var io = new net.Socket({fd:3})
 			var sock = worker._socket = new NodeWebsocket(io)
 			sock.makeJSONSocket()
