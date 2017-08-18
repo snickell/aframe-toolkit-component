@@ -40,6 +40,8 @@
 // - optimized live editability and reloading of all class hierarchy parts (thats the reason
 //   the modulesystem + classes are fused)
 
+import library from '../../library';
+
 (function define_module(){
 
 	var config_define

@@ -100,7 +100,6 @@ import videoplayer from './classes/widgets/videoplayer';
 import animate from './system/base/animate';
 import compositionbase from './system/base/compositionbase';
 import compositionclient from './system/base/compositionclient';
-import define from './system/base/define';
 import device from './system/base/device';
 import glslgen from './system/base/glslgen';
 import gltypes from './system/base/gltypes';
@@ -237,4 +236,3 @@ import cursorshader from './system/typeface/cursorshader';
 import fontsdfgen from './system/typeface/fontsdfgen';
 import markershader from './system/typeface/markershader';
 import typefaceshader from './system/typeface/typefaceshader';
-
