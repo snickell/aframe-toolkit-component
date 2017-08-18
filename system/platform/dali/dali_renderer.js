@@ -20,9 +20,9 @@
  * dali.Renderer object
  */
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 	// internal, DaliApi is a static object to access the dali api
-	DaliApi = require('./dali_api')
+	DaliApi = requireDreem('./dali_api')
 
 	// Assign a unique id to each dalirenderer object
 	var DaliRenderer = exports
@@ -146,7 +146,7 @@ define.class(function(require, exports){
 
 	this.inspect = function(depth) {
 		var obj = {daliRenderer:this.id, obj:[this.daligeometry.inspect(depth), this.dalimaterial.inspect(depth)]};
-		var util = require('util')
+		var util = requireDreem('util')
 		return util.inspect(obj, {depth: null});
 	}
 

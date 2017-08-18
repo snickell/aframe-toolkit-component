@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(require, exports, self){
+define.class(function(requireDreem, exports, self){
 
 	self.atConstructor = function(defs){
 		this.defs = defs

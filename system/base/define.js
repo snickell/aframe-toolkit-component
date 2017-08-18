@@ -48,9 +48,9 @@
 	else if(typeof global !== 'undefined') config_define = global.define
 
 	// the main define function
-	function define(factory, package){
-		if(package !== undefined){ // precompiled version
-			define.factory[package] = factory
+	function define(factory, pkg){
+		if(pkg !== undefined){ // precompiled version
+			define.factory[pkg] = factory
 			return
 		}
 		define.last_factory = factory // store for the script tag
@@ -1301,7 +1301,8 @@
 
 
 
-
+  // SETH: we don't need the nodejs version, and cannot webpack it
+/*
 	function define_nodejs(){ // nodeJS implementation
 		module.exports = global.define = define
 
@@ -1712,7 +1713,7 @@
 			module.exports = require
 		})
 	}
-
+*/
 
 
 

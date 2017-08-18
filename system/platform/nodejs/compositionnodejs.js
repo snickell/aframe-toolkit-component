@@ -6,15 +6,15 @@
 
 define.class('$system/base/compositionbase', function(require, exports, baseclass){
 
-	var Node = require('$system/base/node')
-	var RpcProxy = require('$system/rpc/rpcproxy')
-	var RpcHub = require('$system/rpc/rpchub')
+	var Node = requireDreem('$system/base/node')
+	var RpcProxy = requireDreem('$system/rpc/rpcproxy')
+	var RpcHub = requireDreem('$system/rpc/rpchub')
 
-	var Render = require('$system/base/render')
-	var screen = require('$ui/screen')
+	var Render = requireDreem('$system/base/render')
+	var screen = requireDreem('$ui/screen')
 
-	var path = require('path');
-	var fs = require('fs');
+	var path = requireDreem('path');
+	var fs = requireDreem('fs');
 
 	// ok now what. well we need to build our RPC interface
 	this.postAPI = function(msg, response){

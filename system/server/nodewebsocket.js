@@ -4,12 +4,12 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require){
+define.class(function(requireDreem){
 // internal, node websocket
 
-	var crypto = require('crypto')
-	var url = require('url')
-	var http = require('http')
+	var crypto = requireDreem('crypto')
+	var url = requireDreem('url')
+	var http = requireDreem('http')
 
 	this.atConstructor = function(req, socket, head){
 		if(arguments.length === 1){

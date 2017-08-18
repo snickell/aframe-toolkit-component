@@ -4,11 +4,11 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require){
+define.class(function(requireDreem){
 // internal, Prints documentation
 
-    var path = require('path');
-    var fs = require('fs');
+    var path = requireDreem('path');
+    var fs = requireDreem('fs');
 
     this.atConstructor = function(args){
         var tree = this.readAllPaths(['resources','server.js','resources','cache','@/\\.','.git', '.gitignore']);
@@ -46,7 +46,7 @@ define.class(function(require){
         function fetch(path) {
             console.log('Fetch Path:', path)
             var expandedPath = define.expandVariables('$' + path);
-            var module = require(expandedPath)
+            var module = requireDreem(expandedPath)
             var class_doc = this.parseDoc(module)
 			class_doc.sourcePath = path;
             var out = this.printJSDuck(class_doc).join('\n');
@@ -139,7 +139,7 @@ define.class(function(require){
 
 
     // Build a documentation structure for a given constructor function
-    this.parseDoc = require('$system/parse/jsdocgen').parseDoc
+    this.parseDoc = requireDreem('$system/parse/jsdocgen').parseDoc
 
     this.printJSDuck = function(class_doc, parentclass) {
         var i, j, str, firstline;

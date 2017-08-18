@@ -10,9 +10,9 @@
  * Simulate a materital (an array of textures with blending)
  */
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 	// internal, HeadlessApi is a static object to access the headless api
-	HeadlessApi = require('./headless_api')
+	HeadlessApi = requireDreem('./headless_api')
 
 	// Assign a unique id to each headlessmaterial object
 	var HeadlessMaterial = exports
@@ -156,7 +156,7 @@ define.class(function(require, exports){
 		//HACK
 		this.currentstate();
 		var obj = {headlessMaterial:this.id, obj:[this.headlessshader.inspect(depth)]};
-		var util = require('util')
+		var util = requireDreem('util')
 		return util.inspect(obj, {depth: null});
 	}
 

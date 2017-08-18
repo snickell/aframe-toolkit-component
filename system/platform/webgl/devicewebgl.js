@@ -4,16 +4,16 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
-	this.Keyboard = require('./keyboardwebgl')
-	this.Pointer = require('./pointerwebgl')
-	this.Midi = require('./midiwebgl')
+	this.Keyboard = requireDreem('./keyboardwebgl')
+	this.Pointer = requireDreem('./pointerwebgl')
+	this.Midi = requireDreem('./midiwebgl')
 
 	// require embedded classes
-	this.Shader = require('./shaderwebgl')
-	this.Texture = require('./texturewebgl')
-	this.DrawPass = require('./drawpasswebgl')
+	this.Shader = requireDreem('./shaderwebgl')
+	this.Texture = requireDreem('./texturewebgl')
+	this.DrawPass = requireDreem('./drawpasswebgl')
 
 	this.preserveDrawingBuffer = false
 	this.premultipliedAlpha = false

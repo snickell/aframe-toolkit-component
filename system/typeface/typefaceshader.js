@@ -8,7 +8,7 @@ define.class('$system/platform/$platform/shader$platform', function(require, exp
 	//internal
 
 	// the font
-	this.font = require('$resources/fonts/opensans_regular_ascii.glf')
+	this.font = requireDreem('$resources/fonts/opensans_regular_ascii.glf')
 
 	// initial pixel and vertex shaders
 	this.position = "glyphy_mesh()"

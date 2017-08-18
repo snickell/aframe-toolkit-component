@@ -6,9 +6,9 @@
 
 define.mixin(function(require){
 
-	var CursorSet = require('./cursorset')
-	var Cursor = require('./singlecursor')
-	var parse = new (require('$system/parse/onejsparser'))()
+	var CursorSet = requireDreem('./cursorset')
+	var Cursor = requireDreem('./singlecursor')
+	var parse = new (requireDreem('$system/parse/onejsparser'))()
 
 	this.change = 0
 

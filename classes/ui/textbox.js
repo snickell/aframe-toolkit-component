@@ -8,7 +8,7 @@ define.class("$ui/label", function(require){
 // Text input field
 // <br/><a href="/examples/text">examples &raquo;</a>
 
-	this.mixin(require('$system/textbox/textboximpl'))
+	this.mixin(requireDreem('$system/textbox/textboximpl'))
 
 	this.attributes = {
 		// the color of the cursor
@@ -50,7 +50,7 @@ define.class("$ui/label", function(require){
 
 	}
 
-	define.class(this, 'cursors', require('$system/typeface/cursorshader.js'), function(){
+	define.class(this, 'cursors', requireDreem('$system/typeface/cursorshader.js'), function(){
 		this.updateorder = 5
 		this.draworder = 6
 		this.atConstructor = function(){
@@ -73,7 +73,7 @@ define.class("$ui/label", function(require){
 	this.cursors = true
 	this.tabstop = 0
 	this.linespacing = 1.3
-	define.class(this, 'markers', require('$system/typeface/markershader.js'), function(){
+	define.class(this, 'markers', requireDreem('$system/typeface/markershader.js'), function(){
 		this.updateorder = 6
 		this.draworder = 4
 		this.atConstructor = function(){

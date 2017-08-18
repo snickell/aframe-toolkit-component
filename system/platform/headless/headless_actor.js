@@ -10,9 +10,9 @@
  * Simulate an actor (modeled from DALi platform).
  */
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 	// internal, HeadlessApi is a static object to access the headless api
-	HeadlessApi = require('./headless_api')
+	HeadlessApi = requireDreem('./headless_api')
 
 	// Assign a unique id to each headlessactor object
 	var HeadlessActor = exports
@@ -187,7 +187,7 @@ define.class(function(require, exports){
 		this.currentstate();
 		
 		var obj = {headlessActor:this.id, obj:[this.headlessrenderer.inspect(depth)]};
-		var util = require('util')
+		var util = requireDreem('util')
 		return util.inspect(obj, {depth: null});
 	}
 

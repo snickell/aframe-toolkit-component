@@ -6,9 +6,9 @@
 // self generating onejs walker utility class, run with nodejs to regenerate
 
 if(typeof process !== 'undefined' && require.main === module){
-	var require = require('../base/define')
-	var defs = require('./onejsdef.js')
-	var fs = require('fs')
+	var require = requireDreem('../base/define')
+	var defs = requireDreem('./onejsdef.js')
+	var fs = requireDreem('fs')
 	// read self
 	var head = fs.readFileSync(module.filename).toString().match(/^[\S\s]*\/\/ generated/)[0]
 	// the template for the generated bottom part

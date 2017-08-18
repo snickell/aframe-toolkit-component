@@ -7,12 +7,12 @@
 define.class('./compositionbase', function(require, baseclass){
 	// internal, Composition base class
 
-	var RpcProxy = require('$system/rpc/rpcproxy')
-	var RpcHub = require('$system/rpc/rpchub')
-	var screen = require('$ui/screen')
-	var Render = require('./render')
-	var ASTScanner = require('$system/parse/astscanner')
-	var OneJSParser = require('$system/parse/onejsparser')
+	var RpcProxy = requireDreem('$system/rpc/rpcproxy')
+	var RpcHub = requireDreem('$system/rpc/rpchub')
+	var screen = requireDreem('$ui/screen')
+	var Render = requireDreem('./render')
+	var ASTScanner = requireDreem('$system/parse/astscanner')
+	var OneJSParser = requireDreem('$system/parse/onejsparser')
 
 	this.screenForClient = function() {
 		return typeof location !== 'undefined' && location.search && location.search.slice(1)

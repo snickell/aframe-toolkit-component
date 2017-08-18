@@ -5,9 +5,9 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 define(function(require, exports){
-	exports.noise = require('./noiselib')
-	exports.pal = require('./palettelib')
-	exports.math = require('./mathlib')
+	exports.noise = requireDreem('./noiselib')
+	exports.pal = requireDreem('./palettelib')
+	exports.math = requireDreem('./mathlib')
 	
 	exports.kali2d = function(pos, steps, space){
 

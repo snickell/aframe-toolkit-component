@@ -12,7 +12,7 @@ define.class('$ui/label', function (require) {
 	this.drawtarget = 'color'
 	this.bold = true
 
-	var ubuntufont = require('$resources/fonts/ubuntu_medium_256_baked.glf')
+	var ubuntufont = requireDreem('$resources/fonts/ubuntu_medium_256_baked.glf')
 	this.font = ubuntufont
 
 	this.attributes = {

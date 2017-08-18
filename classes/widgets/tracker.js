@@ -20,7 +20,7 @@ define.class('$ui/label', function(require){
 	this.subpixel = true
 	this.linespacing = 1.3
 
-	var font = this.font = require('$resources/fonts/ubuntu_monospace_ascii.glf')
+	var font = this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii.glf')
 
 	this.oninit = function(){
 		// store the line positions from the textgenerator

@@ -47,9 +47,9 @@ define(function (require, exports) {
 		return a + b * cos(6.28318 * (c * t + d));
 	}
 
-	exports.texture = require('$resources/textures/noise.png');
-	exports.checkertex  = require('$resources/textures/checker.png');
-	exports.crystaltex  = require('$resources/textures/hex_tiles.png');
+	exports.texture = requireDreem('$resources/textures/noise.png');
+	exports.checkertex  = requireDreem('$resources/textures/checker.png');
+	exports.crystaltex  = requireDreem('$resources/textures/hex_tiles.png');
 
 	exports.fetch = function (pos) {
 		return texture.sample(pos)

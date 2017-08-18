@@ -19,8 +19,8 @@ define(function(){
 		return function(){
 			for (var v = Array.prototype.slice.call(arguments), i = 0; i < v.length; i++) {
 				v[i] = String(v[i]).replace(/~(\w*)~/g, function(m, a) {
-					return "\033[" + (colors[a] || 0) + "m";
-				}) + "\033[0m";
+					return "\x1B[" + (colors[a] || 0) + "m";
+				}) + "\x1B[0m";
 				output(v[i])
 			}
 		}

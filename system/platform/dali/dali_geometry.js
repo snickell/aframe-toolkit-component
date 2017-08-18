@@ -20,11 +20,11 @@
  * dali.Geometry object
  */
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 	// internal, DaliApi is a static object to access the dali api
-	DaliApi = require('./dali_api')
+	DaliApi = requireDreem('./dali_api')
 
-	var gltypes = require('$system/base/gltypes')
+	var gltypes = requireDreem('$system/base/gltypes')
 
 	// Assign a unique id to each daligeometry object
 	var DaliGeometry = exports
@@ -447,7 +447,7 @@ define.class(function(require, exports){
 
 	this.inspect = function(depth) {
 		var obj = {daliGeometry: this.id};
-		var util = require('util')
+		var util = requireDreem('util')
 		return util.inspect(obj, {depth: null});
 	}
 

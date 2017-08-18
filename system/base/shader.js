@@ -5,23 +5,23 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
-	var OneJSParser =  require('$system/parse/onejsparser')
-	var GLSLGen = require('./glslgen')
-	var gltypes = require('./gltypes')
-	var dump = require('$system/parse/astdumper')
-	var astdef = require('$system/parse/onejsdef')
+	var OneJSParser =  requireDreem('$system/parse/onejsparser')
+	var GLSLGen = requireDreem('./glslgen')
+	var gltypes = requireDreem('./gltypes')
+	var dump = requireDreem('$system/parse/astdumper')
+	var astdef = requireDreem('$system/parse/onejsdef')
 
 	//this.default_texture = GLTexture.fromArray(new Float32Array(4*4*4), 4,4)
 
-	this.noise = require('$system/shaderlib/noiselib')
-	this.pal = require('$system/shaderlib/palettelib')
-	this.shape = require('$system/shaderlib/shapelib')
-	this.math = require('$system/shaderlib/mathlib')
-	this.demo = require('$system/shaderlib/demolib')
-	this.material = require('$system/shaderlib/materiallib')
-	this.colorlib = require('$system/shaderlib/colorlib')
+	this.noise = requireDreem('$system/shaderlib/noiselib')
+	this.pal = requireDreem('$system/shaderlib/palettelib')
+	this.shape = requireDreem('$system/shaderlib/shapelib')
+	this.math = requireDreem('$system/shaderlib/mathlib')
+	this.demo = requireDreem('$system/shaderlib/demolib')
+	this.material = requireDreem('$system/shaderlib/materiallib')
+	this.colorlib = requireDreem('$system/shaderlib/colorlib')
 
 	this.RAD = '1'
 	this.DEG = '0.017453292519943295'

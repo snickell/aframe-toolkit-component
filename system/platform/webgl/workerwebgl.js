@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 define.class('$system/base/worker', function(require, exports){
- 	var rpchub = require('$system/rpc/rpchub')
+ 	var rpchub = requireDreem('$system/rpc/rpchub')
 
 	this._allocPromise = rpchub.allocPromise
 	this._resolveReturn = rpchub.resolveReturn

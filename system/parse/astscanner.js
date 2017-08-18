@@ -1,6 +1,6 @@
 define.class("$system/parse/onejswalk", function(baseclass, require) {
 
-	var jsformatter = require('$system/parse/jsformatter');
+	var jsformatter = requireDreem('$system/parse/jsformatter');
 
 	this.toSource = function(ast) {
 		if (!ast) {

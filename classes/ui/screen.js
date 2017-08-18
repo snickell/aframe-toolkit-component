@@ -7,9 +7,9 @@
 define.class('$ui/view', function(require, $ui$, view, menubutton) {
 // Screens are the root of a view hierarchy, typically mapping to a physical device.
 
-	var Render = require('$system/base/render')
-	var Animate = require('$system/base/animate')
-	var ASTScanner = require('$system/parse/astscanner')
+	var Render = requireDreem('$system/base/render')
+	var Animate = requireDreem('$system/base/animate')
+	var ASTScanner = requireDreem('$system/parse/astscanner')
 
 	this.attributes = {
 		// internal, the locationhash is a parsed JS object version of the #var2=1;var2=2 url arguments

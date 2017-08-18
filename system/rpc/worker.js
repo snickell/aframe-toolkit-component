@@ -1,3 +1,3 @@
 define(function(require, exports, module){
-	module.exports = require('$system/platform/$platform/worker$platform')
+	module.exports = requireDreem('$system/platform/$platform/worker$platform')
 })

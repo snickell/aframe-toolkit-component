@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
 	//internal, HACK to simulate gl (during dev)
 	gl = {
@@ -56,13 +56,13 @@ define.class(function(require, exports){
 	,texImage2D: function() {}
 	};
 
-	this.Keyboard = require('./keyboarddali')
-	this.Pointer = require('./pointerdali')
+	this.Keyboard = requireDreem('./keyboarddali')
+	this.Pointer = requireDreem('./pointerdali')
 
 	// require embedded classes
-	this.Shader = require('./shaderdali')
-	this.Texture = require('./texturedali')
-	this.DrawPass = require('./drawpassdali')
+	this.Shader = requireDreem('./shaderdali')
+	this.Texture = requireDreem('./texturedali')
+	this.DrawPass = requireDreem('./drawpassdali')
 
 	this.preserveDrawingBuffer = false
 	this.premultipliedAlpha = false
@@ -73,7 +73,7 @@ define.class(function(require, exports){
 
 	this.atConstructor = function(previous){
 		// DaliApi is a static object to access the dali api
-		this.DaliApi = require('./dali_api')
+		this.DaliApi = requireDreem('./dali_api')
 
 		this.extensions = previous && previous.extensions || {}
 		this.shadercache = previous &&  previous.shadercache || {}

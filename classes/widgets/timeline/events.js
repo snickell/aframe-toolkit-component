@@ -13,7 +13,7 @@ define.class('$ui/label', function (require, $ui$, view, label) {
 	this.height = ROW_HEIGHT
 	this.cursor = 'move'
 
-	var ubuntufont = require('$resources/fonts/ubuntu_medium_256_baked.glf')
+	var ubuntufont = requireDreem('$resources/fonts/ubuntu_medium_256_baked.glf')
 
 	this.attributes = {
 		zoom: wire('this.parent.zoom'),

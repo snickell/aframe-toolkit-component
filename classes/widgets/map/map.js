@@ -7,9 +7,9 @@
 define.class('$ui/view', function(require, $ui$, view, label, button, labelset, $$, geo, urlfetch)
 {
 
-	var BufferGen = require('$widgets/map/mapbuffers')()
+	var BufferGen = requireDreem('$widgets/map/mapbuffers')()
 	var geo = this.geo = geo()
-	var ubuntufont = require('$resources/fonts/ubuntu_medium_256_baked.glf')
+	var ubuntufont = requireDreem('$resources/fonts/ubuntu_medium_256_baked.glf')
 
 	this.attributes = {
 		// TODO(aki): Why latlong inverse?
@@ -323,7 +323,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 
 		// the geometry generation worker
 		var worker = define.class('$system/rpc/worker', function(require) {
-			this.BufferGen = require('$widgets/map/mapbuffers')()
+			this.BufferGen = requireDreem('$widgets/map/mapbuffers')()
 
 			this.build = function(str, r) {
 				var ret = vec2.array(10)
@@ -705,7 +705,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 		}
 		this.pickalpha  = 0.1
 		this.hardrect = function() {
-			this.texture = require('./mapmaterial.png')
+			this.texture = requireDreem('./mapmaterial.png')
 			this.position = function() {
 				idxpos = (view.trans.xy * vec2(1, -1)) * vec2(1, -1)
 				pos = vec2(1, -1) * mesh.pos.xy;
@@ -825,7 +825,7 @@ define.class('$ui/view', function(require, $ui$, view, label, button, labelset, 
 		}
 
 		this.hardrect = function() {
-			this.texture = require('./mapmaterial.png')
+			this.texture = requireDreem('./mapmaterial.png')
 			this.position = function() {
 				var sidevec = mesh.pos.zw
 				var side = mesh.geom.x

@@ -22,9 +22,9 @@ define.class('$system/base/texture', function(exports, require){
 	// Map hash of texture to an existing texture
 	Texture.Cache = {};
 
-	HeadlessApi = require('./headless_api')
-	HeadlessUtil = require('./headless_util')
-	fs = require('fs');
+	HeadlessApi = requireDreem('./headless_api')
+	HeadlessUtil = requireDreem('./headless_util')
+	fs = requireDreem('fs');
 
 	this.atConstructor = function(type, w, h, device){
 		this.id = ++Texture.GlobalId;
@@ -173,7 +173,7 @@ define.class('$system/base/texture', function(exports, require){
 		// Create a layer object and attach to the texture. This will be
 		// activated when headlessdevice#bindFramebuffer is called. The layer's
 		// parent will be the current layer
-		HeadlessLayer = require('./headless_layer')
+		HeadlessLayer = requireDreem('./headless_layer')
 		this.headless_layer = new HeadlessLayer(HeadlessApi.currentlayer, this.size[0], this.size[1]);
 
 		console.log('textureheadless.initAsRendertarget texture NOT implemented');

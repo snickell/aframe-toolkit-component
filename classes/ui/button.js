@@ -93,14 +93,14 @@ define.class('$ui/view', function(require, $ui$, view, label, icon){
 	}
 
 	//this.buttonres = {};
-	this.font = require('$resources/fonts/opensans_bold_ascii.glf')
+	this.font = requireDreem('$resources/fonts/opensans_bold_ascii.glf')
 	/*
 	this.onbold = function(){
 		if (this.bold) {
-			this.font = require('$resources/fonts/opensans_bold_ascii.glf')
+			this.font = requireDreem('$resources/fonts/opensans_bold_ascii.glf')
 		}
 		else{
-			this.font = require('$resources/fonts/opensans_regular_ascii.glf')
+			this.font = requireDreem('$resources/fonts/opensans_regular_ascii.glf')
 		}
 	}*/
 

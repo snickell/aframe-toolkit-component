@@ -132,8 +132,8 @@ define.class('./jsviewer', function(require, baseclass, $ui$, textbox, label){
 	// alright lets make a worker that parses and reserializes
 	var worker = define.class('$system/rpc/worker', function(require){
 
-		var Parser = require('$system/parse/onejsparser')
-		var JSFormatter = require('$system/parse/jsformatter')
+		var Parser = requireDreem('$system/parse/onejsparser')
+		var JSFormatter = requireDreem('$system/parse/jsformatter')
 
 		this.onmessage = function(msg){
 			// lets start a parse!

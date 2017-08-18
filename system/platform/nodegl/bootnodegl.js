@@ -4,13 +4,13 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
 	this.atConstructor = function(args){
 		// allright lets fire up 
 		define.$platform = 'nodegl'
 
-		var Image = require('node-webgl/lib/image') 
+		var Image = requireDreem('node-webgl/lib/image') 
 
 		define.loadImage = function(name){
 			var img = new Image()
@@ -22,7 +22,7 @@ define.class(function(require, exports){
 		console.log('Downloading nodegl')
 		// lets make the math library requireable
 		
-		require.async(args['-nodegl']).then(function(composition){	
+		requireDreem.async(args['-nodegl']).then(function(composition){	
 			console.log('Booting nodegl')
 			this.comp = new composition(undefined, undefined, args['-nodegl'])
 			

@@ -7,19 +7,19 @@
 
 define.class('$system/base/shader', function(require, exports){
 
-	var gltypes = require('$system/base/gltypes')
+	var gltypes = requireDreem('$system/base/gltypes')
 
 	exports.Texture =
-	this.Texture =  require('./texturedali')
+	this.Texture =  requireDreem('./texturedali')
 
-	util = require('util');
+	util = requireDreem('util');
 
 	// DaliApi is a static object to access the dali api
-	DaliApi = require('./dali_api')
+	DaliApi = requireDreem('./dali_api')
 
 	// DaliDreemgl is the interface between dreemgl and dali.
-	DaliShader = require('./dali_shader')
-	DaliActor = require('./dali_actor')
+	DaliShader = requireDreem('./dali_shader')
+	DaliActor = requireDreem('./dali_actor')
 
 	/**
 	 * @method compileShader

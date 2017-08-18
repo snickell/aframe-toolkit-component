@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // BusClient class, always available auto reconnecting socket
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
 	this.atConstructor = function(url, websocketclass){
 		this.websocketclass = websocketclass || WebSocket

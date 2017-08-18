@@ -100,7 +100,7 @@ define.class(function(exports){
    *   verbose true to generate additional output
 	 */
 	HeadlessApi.initialize = function(settings) {
-		HeadlessLayer = require('./headless_layer')
+		HeadlessLayer = requireDreem('./headless_layer')
 
 		HeadlessApi.size = {x:settings.width, y:settings.height};
 		HeadlessApi.duration = settings.duration;
@@ -140,7 +140,7 @@ define.class(function(exports){
 				process.stdout.write(state_json);
 			}
 			else {
-				var fs = require('fs');
+				var fs = requireDreem('fs');
 				fs.writeFileSync(file, state_json);
 			}
 		}
@@ -236,10 +236,10 @@ define.class(function(exports){
 	 *                 information (from createHeadlessObjects).
 	 */
 	HeadlessApi.createHeadlessActor = function(obj, shader) {
-		HeadlessGeometry = require('./headless_geometry')
-		HeadlessMaterial = require('./headless_material')
-		HeadlessRenderer = require('./headless_renderer')
-		HeadlessActor = require('./headless_actor')
+		HeadlessGeometry = requireDreem('./headless_geometry')
+		HeadlessMaterial = requireDreem('./headless_material')
+		HeadlessRenderer = requireDreem('./headless_renderer')
+		HeadlessActor = requireDreem('./headless_actor')
 
 		// TODO: Re-use the geometry, unless we have a texture
 		obj.headlessgeometry = new HeadlessGeometry(obj.drawtype);

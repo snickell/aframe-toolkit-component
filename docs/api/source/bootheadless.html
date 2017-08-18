@@ -410,7 +410,7 @@ define.<span class="reserved">class</span>(<span class="keyword">function</span>
         <span class="local-variable">this</span>.<span class="function">loadComposition</span> = <span class="keyword">function</span>(){
                 <span class="keyword">if</span> (<span class="local-variable">this</span>.verbose)
                         console.log(<span class="string"><span class="delimiter">&quot;</span><span class="content">Reloading composition </span><span class="delimiter">&quot;</span></span>+<span class="local-variable">this</span>.filename)
-                require.clearCache()
+                requireDreem.clearCache()
 
                 <span class="local-variable">this</span>.HeadlessApi = require(<span class="string"><span class="delimiter">'</span><span class="content">./headless_api</span><span class="delimiter">'</span></span>);
                 <span class="local-variable">this</span>.HeadlessApi.initialize({<span class="key">width</span>: <span class="local-variable">this</span>.width, <span class="key">height</span>: <span class="local-variable">this</span>.height, <span class="key">name</span>: <span class="local-variable">this</span>.name, <span class="key">duration</span>: <span class="local-variable">this</span>.duration, <span class="key">verbose</span>: <span class="local-variable">this</span>.verbose, <span class="key">dumpstate</span>: <span class="local-variable">this</span>.dumpstate});
@@ -423,7 +423,7 @@ define.<span class="reserved">class</span>(<span class="keyword">function</span>
                 <span class="local-variable">this</span>.destroy()
 
                 <span class="comment">// lets fill</span>
-                require.clearCache()
+                requireDreem.clearCache()
 
                 <span class="comment">// lets see if our composition is a dir or a jsfile</span>
                 <span class="keyword">var</span> dir = <span class="string"><span class="delimiter">'</span><span class="content">$root/</span><span class="delimiter">'</span></span>

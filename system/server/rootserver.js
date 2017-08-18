@@ -4,24 +4,24 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require){
+define.class(function(requireDreem){
 // Teem server
 
-	var http = require('http')
-	var os = require('os')
-	var path = require('path')
-	var fs = require('fs')
-	var url = require('url')
-	var zlib = require('zlib')
+	var http = requireDreem('http')
+	var os = requireDreem('os')
+	var path = requireDreem('path')
+	var fs = requireDreem('fs')
+	var url = requireDreem('url')
+	var zlib = requireDreem('zlib')
 
-	var FileWatcher = require('./filewatcher')
-	var ExternalApps = require('./externalapps')
-	var NodeWebSocket = require('./nodewebsocket')
-	var mimeFromFile = require('./mimefromfile')
-	var CompositionServer = require('./compositionserver')
-	var XMLConverter = require('./xmlconverter')
+	var FileWatcher = requireDreem('./filewatcher')
+	var ExternalApps = requireDreem('./externalapps')
+	var NodeWebSocket = requireDreem('./nodewebsocket')
+	var mimeFromFile = requireDreem('./mimefromfile')
+	var CompositionServer = requireDreem('./compositionserver')
+	var XMLConverter = requireDreem('./xmlconverter')
 
-	var BusServer = require('$system/rpc/busserver')
+	var BusServer = requireDreem('$system/rpc/busserver')
 
 	// Doccumentation
 	this.atConstructor = function(args){

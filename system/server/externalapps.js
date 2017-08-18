@@ -7,7 +7,7 @@
 define(function(require, exports){
 // controls external applications
 
-	var child_process = require('child_process')
+	var child_process = requireDreem('child_process')
 
 	 // Opens a webbrowser on the specified url 
 	 exports.browser = function(url, withdevtools){

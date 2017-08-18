@@ -10,9 +10,9 @@ define.class('$system/base/node', function(require){
 // Base UI view object
 
 
-	var FlexLayout = require('$system/lib/layout')
-	var Render = require('$system/base/render')
-	var Shader = this.Shader = require('$system/platform/$platform/shader$platform')
+	var FlexLayout = requireDreem('$system/lib/layout')
+	var Render = requireDreem('$system/base/render')
+	var Shader = this.Shader = requireDreem('$system/platform/$platform/shader$platform')
 	var view = this.constructor
 
 	this.attributes = {
@@ -49,7 +49,7 @@ define.class('$system/base/node', function(require){
 
 		// the background color of a view, referenced by various shaders
 		bgcolor: Config({group:"style", type:vec4, value: vec4(0,0,0,0), meta:"color"}),
-		// the background image of a view. Accepts a string-url or can be assigned a require('./mypic.png')
+		// the background image of a view. Accepts a string-url or can be assigned a requireDreem('./mypic.png')
 		bgimage: Config({group:"style",type:Object, meta:"texture"}),
 		// the opacity of the image
 		opacity: Config({group:"style", value: 1.0, type:float}),
@@ -329,13 +329,13 @@ define.class('$system/base/node', function(require){
 	this.layout = {width:0, height:0, left:-1, top:-1, right:0, bottom:0}
 	this.screen = {device:{size:vec2(), frame:{size:vec2()}}}
 
-	this.noise = require('$system/shaderlib/noiselib')
-	this.pal = require('$system/shaderlib/palettelib')
-	this.shape = require('$system/shaderlib/shapelib')
-	this.math = require('$system/shaderlib/mathlib')
-	this.demo = require('$system/shaderlib/demolib')
-	this.material = require('$system/shaderlib/materiallib')
-	this.colorlib = require('$system/shaderlib/colorlib')
+	this.noise = requireDreem('$system/shaderlib/noiselib')
+	this.pal = requireDreem('$system/shaderlib/palettelib')
+	this.shape = requireDreem('$system/shaderlib/shapelib')
+	this.math = requireDreem('$system/shaderlib/mathlib')
+	this.demo = requireDreem('$system/shaderlib/demolib')
+	this.material = requireDreem('$system/shaderlib/materiallib')
+	this.colorlib = requireDreem('$system/shaderlib/colorlib')
 
 	// turn off rpc proxy generation for this prototype level
 	this.rpcproxy = false
@@ -2023,7 +2023,7 @@ define.class('$system/base/node', function(require){
 	})
 
 	// lets pull in the scrollbar on the view
-	define.class(this, 'scrollbar', require('$ui/scrollbar'),function(){
+	define.class(this, 'scrollbar', requireDreem('$ui/scrollbar'),function(){
 		this.hardrect = {
 			noscroll:true
 		}

@@ -6,7 +6,7 @@
 // childPromise turns a childprocess into a promise that resolves with the output of the process
 
 define(function(require){
-	var child_process = require('child_process')
+	var child_process = requireDreem('child_process')
 
 	return function childPromise(execpath, args){
 		return new Promise(function(resolve, reject){

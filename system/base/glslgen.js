@@ -7,11 +7,11 @@
 
 define.class('$system/parse/onejsserialize', function(require, exports, baseclass){
 
-	var gltypes = require('./gltypes')
-	var OneJSParser =  require('$system/parse/onejsparser')
-	var OneJSGen = require('$system/parse/onejsgen.js')
-	var Texture = require('$system/platform/$platform/texture$platform')
-	//var vectorParser = require('$system/parse/vectorparser')
+	var gltypes = requireDreem('./gltypes')
+	var OneJSParser =  requireDreem('$system/parse/onejsparser')
+	var OneJSGen = requireDreem('$system/parse/onejsgen.js')
+	var Texture = requireDreem('$system/platform/$platform/texture$platform')
+	//var vectorParser = requireDreem('$system/parse/vectorparser')
 	var onejsparser = new OneJSParser()
 	onejsparser.parser_cache = {}
 

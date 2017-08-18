@@ -103,7 +103,7 @@ define.class(function(exports){
 	 *                            stdout is no file is specified
 	 */
 	DaliApi.initialize = function(settings) {
-		DaliLayer = require('./dali_layer')
+		DaliLayer = requireDreem('./dali_layer')
 
 		DaliApi.width = settings.width
 		DaliApi.height = settings.height
@@ -200,10 +200,10 @@ define.class(function(exports){
 	 *                 information (from createDaliObjects).
 	 */
 	DaliApi.createDaliActor = function(obj, shader) {
-		DaliGeometry = require('./dali_geometry')
-		DaliMaterial = require('./dali_material')
-		DaliRenderer = require('./dali_renderer')
-		DaliActor = require('./dali_actor')
+		DaliGeometry = requireDreem('./dali_geometry')
+		DaliMaterial = requireDreem('./dali_material')
+		DaliRenderer = requireDreem('./dali_renderer')
+		DaliActor = requireDreem('./dali_actor')
 
 		// TODO: Re-use the geometry, unless we have a texture
 		obj.daligeometry = new DaliGeometry(obj.drawtype);

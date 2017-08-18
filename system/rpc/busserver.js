@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // BusServer class, a package of websockets you can broadcast on (server side)
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
 	this.atConstructor = function(){
 		this.sockets = []

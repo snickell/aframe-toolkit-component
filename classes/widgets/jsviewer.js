@@ -7,8 +7,8 @@
 
 define.class('$ui/textbox', function(require){
 
-	var JSFormatter = require('$system/parse/jsformatter')
-	var Parser = require('$system/parse/onejsparser')
+	var JSFormatter = requireDreem('$system/parse/jsformatter')
+	var Parser = requireDreem('$system/parse/onejsparser')
 
 	this.attributes = {
 		// The code to display
@@ -50,7 +50,7 @@ define.class('$ui/textbox', function(require){
 	this.fontsize = 12
 	this.subpixel = false
 
-	var font = this.font = require('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
+	var font = this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
 
 	for(var key in JSFormatter.types){
 		this[key] = String(JSFormatter.types[key])

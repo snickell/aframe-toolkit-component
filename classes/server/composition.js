@@ -6,5 +6,5 @@
 
 // composition base class, inherit your compositions from this one
 define(function(require, node){
-	return require('$system/platform/$platform/composition$platform')
+	return requireDreem('$system/platform/$platform/composition$platform')
 })

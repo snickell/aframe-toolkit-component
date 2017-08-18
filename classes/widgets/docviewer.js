@@ -5,9 +5,9 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(require, $ui$, view, foldcontainer, label, button, icon, $widgets$, markdown, jsviewer){
+define.class(function(requireDreem, $ui$, view, foldcontainer, label, button, icon, $widgets$, markdown, jsviewer){
 
-	var parseDoc = require('$system/parse/jsdocgen').parseDoc
+	var parseDoc = requireDreem('$system/parse/jsdocgen').parseDoc
 
 	this.bgcolor = vec4("#343434")
 	this.padding = 20

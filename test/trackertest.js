@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 //Pure JS based composition
-define.class(function(require, $server$, composition, $ui$, button,screen, view, $widgets$, tracker){
+define.class(function(requireDreem, $server$, composition, $ui$, button,screen, view, $widgets$, tracker){
 	this.render = function(){ return [
 		screen({name:'default', clearcolor:vec4('black')},[
 		

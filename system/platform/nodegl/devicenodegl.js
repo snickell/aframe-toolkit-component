@@ -6,17 +6,17 @@
 
 define.class("../webgl/devicewebgl", function(require, exports, baseclass){
 
-	this.Keyboard = require('./keyboardnodegl')
-	this.Pointer = require('./pointernodegl')
+	this.Keyboard = requireDreem('./keyboardnodegl')
+	this.Pointer = requireDreem('./pointernodegl')
 
 	// require embedded classes
-	this.Shader = require('./shadernodegl')
-	this.Texture = require('./texturenodegl')
-	this.DrawPass = require('./drawpassnodegl')
+	this.Shader = requireDreem('./shadernodegl')
+	this.Texture = requireDreem('./texturenodegl')
+	this.DrawPass = requireDreem('./drawpassnodegl')
 
-	var WebGL = require('node-webgl/lib/webgl')
-	var Image = this.Image = require('node-webgl/lib/image')
-	var GLFW = require('node-glfw')
+	var WebGL = requireDreem('node-webgl/lib/webgl')
+	var Image = this.Image = requireDreem('node-webgl/lib/image')
+	var GLFW = requireDreem('node-glfw')
 
 	this.atConstructor = function(){
 		this.window = 

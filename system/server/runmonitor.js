@@ -4,13 +4,13 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require){
+define.class(function(requireDreem){
 // internal, RunMonitor class executes ourselves as a subprocess, receives the dependency file names
 // from the child process and manages restart/killing when files change
 
-	var FileWatcher = require('./filewatcher')
-	var ExternalApps = require('./externalapps')
-	var child_process = require('child_process')
+	var FileWatcher = requireDreem('./filewatcher')
+	var ExternalApps = requireDreem('./externalapps')
+	var child_process = requireDreem('child_process')
 
 	this.atConstructor = function(args){
 

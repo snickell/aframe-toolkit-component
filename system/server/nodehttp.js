@@ -7,8 +7,8 @@
 define(function(require, exports, module){
 // promisified node http api
 
-	var http = require('http')
-	var url = require('url')
+	var http = requireDreem('http')
+	var url = requireDreem('url')
 	
 	exports.get = function nodehttp(httpurl){
 		return new Promise(function(resolve, reject){

@@ -7,8 +7,8 @@
 
 define.class('$system/base/node',function(require){
 
-	var RpcHub = require('$system/rpc/rpchub')
-	var Render = require('./render')
+	var RpcHub = requireDreem('$system/rpc/rpchub')
+	var Render = requireDreem('./render')
 
 	this._atConstructor = function(){
 

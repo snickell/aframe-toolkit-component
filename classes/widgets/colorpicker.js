@@ -4,9 +4,9 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, $ui$, view, label, scrollbar, textbox, numberbox){
+define.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, numberbox){
 
-	var Shader = this.Shader = require('$system/platform/$platform/shader$platform')
+	var Shader = this.Shader = requireDreem('$system/platform/$platform/shader$platform')
 
 	this.attributes =  {
 		// the value of the colorpicker, a color

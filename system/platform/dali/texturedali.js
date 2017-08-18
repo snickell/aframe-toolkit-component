@@ -7,7 +7,7 @@
 
 define.class('$system/base/texture', function(require, exports){
 	// internal, DaliApi is a static object to access the dali api
-	DaliApi = require('./dali_api')
+	DaliApi = requireDreem('./dali_api')
 
 	var Texture = exports
 
@@ -21,7 +21,7 @@ define.class('$system/base/texture', function(require, exports){
 	// Map hash of texture to an existing texture
 	Texture.Cache = {};
 
-	fs = require('fs');
+	fs = requireDreem('fs');
 
 	this.atConstructor = function(type, w, h, device){
 		this.id = ++Texture.GlobalId;
@@ -261,7 +261,7 @@ define.class('$system/base/texture', function(require, exports){
 		// Create a layer object and attach to the texture. This will be
 		// activated when dalidevice#bindFramebuffer is called. The layer's
 		// parent will be the current layer
-		DaliLayer = require('./dali_layer')
+		DaliLayer = requireDreem('./dali_layer')
 		this.dali_layer = new DaliLayer(DaliApi.currentlayer, this.size[0], this.size[1]);
 
 		console.log('texturedali.initAsRendertarget texture NOT implemented');

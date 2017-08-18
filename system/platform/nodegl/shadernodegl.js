@@ -6,7 +6,7 @@
 
 
 define.class('../webgl/shaderwebgl', function(require, exports){
-	exports.Texture = this.Texture = require('./texturenodegl')
+	exports.Texture = this.Texture = requireDreem('./texturenodegl')
 	this.set_precision = ""
 	this.set_extensions = ""//'#extension GL_OES_standard_derivatives : enable\n'
 })

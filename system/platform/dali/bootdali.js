@@ -7,27 +7,27 @@
 // Copied from compositionserver.js for dali. This assumes that the
 // node server is running on the same machine where dali is running.
 
-define.class(function(require){
+define.class(function(requireDreem){
 
 	console.log('Loading bootdali', define.$environment);
 
 	// composition_client references WebSocket
-	//WebSocket = require('$system/base/nodewebsocket')
+	//WebSocket = requireDreem('$system/base/nodewebsocket')
 
-	//var Render = require('$system/platform/render')
+	//var Render = requireDreem('$system/platform/render')
 
-	var path = require('path')
-	var fs = require('fs')
+	var path = requireDreem('path')
+	var fs = requireDreem('fs')
 
-	var ExternalApps = require('$system/server/externalapps')
-	var FileWatcher = require('$system/server/filewatcher')
+	var ExternalApps = requireDreem('$system/server/externalapps')
+	var FileWatcher = requireDreem('$system/server/filewatcher')
 
-	var BusServer = require('$system/rpc/busserver')
-	var HTMLParser = require('$system/parse/htmlparser')
-	var ScriptError = require('$system/parse/scripterror')
+	var BusServer = requireDreem('$system/rpc/busserver')
+	var HTMLParser = requireDreem('$system/parse/htmlparser')
+	var ScriptError = requireDreem('$system/parse/scripterror')
 	var legacy_support = 0
 
-	var Texture = require('$system/platform/$platform/texture$platform')
+	var Texture = requireDreem('$system/platform/$platform/texture$platform')
 
 	this.atConstructor = function(
 		args, //Object: Process arguments
@@ -125,13 +125,13 @@ define.class(function(require){
 	// loaded.
 	this.initDali = function() {
 		// Load DALi module
-		this.DaliApi = require('./dali_api');
+		this.DaliApi = requireDreem('./dali_api');
 		this.DaliApi.initialize({width: this.width, height: this.height, name: this.name, dalilib: this.dalilib, dumpprog: this.dumpprog});
 	}
 
 	// Load the composition. If composition is defined, load it remotely
 	this.loadComposition = function(composition){
-		require.clearCache()
+		requireDreem.clearCache()
 
 		if (composition) {
 			// Remote server
@@ -139,7 +139,7 @@ define.class(function(require){
 		}
 		else {
 			// Local assets
-			var Composition = require(define.expandVariables(this.filename))
+			var Composition = requireDreem(define.expandVariables(this.filename))
 			this.composition = new Composition(this.busserver, this.session)
 		}
 	}
@@ -148,13 +148,13 @@ define.class(function(require){
 		this.destroy()
 
 		// lets fill
-		require.clearCache()
+		requireDreem.clearCache()
 
 		// lets see if our composition is a dir or a jsfile
 		if (this.server) {
 			// Remote server
 			var self = this;
-			require.async(self.server).then(function(composition){
+			requireDreem.async(self.server).then(function(composition){
 				return self.loadComposition(composition);
 			}).catch(function(error){
 				console.log('Composition load failure', error.stack)

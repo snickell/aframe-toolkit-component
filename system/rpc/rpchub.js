@@ -5,9 +5,9 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Rpc Promise handler object
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
-	var rpcproxy = require('./rpcproxy')
+	var rpcproxy = requireDreem('./rpcproxy')
 
 	this.atConstructor = function(host){
 		this.__host = host

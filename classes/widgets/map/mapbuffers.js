@@ -4,10 +4,10 @@
    software distributed under the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, $server$, service){
+define.class(function(requireDreem, $server$, service){
 
-	var earcut = require('$system/lib/earcut-port.js')().earcut
-	var styleset = require('$widgets/map/mapstyle.js')()
+	var earcut = requireDreem('$system/lib/earcut-port.js')().earcut
+	var styleset = requireDreem('$widgets/map/mapstyle.js')()
 
 	this.TileSize = 256.0;
 

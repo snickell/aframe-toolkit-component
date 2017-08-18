@@ -7,5 +7,5 @@
 
 define.class('$system/base/shader', function(require, exports){
 	exports.Texture = 
-	this.Texture = require('./texturenodejs')
+	this.Texture = requireDreem('./texturenodejs')
 })

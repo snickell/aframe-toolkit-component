@@ -6,13 +6,13 @@
 
 // parse a color string into a [r,g,b] 0-1 float array
 
-define.class(function(require){
+define.class(function(requireDreem){
 
-	var fs = require('fs')
+	var fs = requireDreem('fs')
 
-	var FileWatcher = require('./filewatcher')
+	var FileWatcher = requireDreem('./filewatcher')
 
-	var BusServer = require('$system/rpc/busserver')
+	var BusServer = requireDreem('$system/rpc/busserver')
 
 	this.atConstructor = function(
 		args, //Object: Process arguments
@@ -68,8 +68,8 @@ define.class(function(require){
 
 	this.loadComposition = function(){
 		console.log("Reloading composition "+this.filename)
-		require.clearCache()
-		var Composition = require(define.expandVariables(this.filename))
+		requireDreem.clearCache()
+		var Composition = requireDreem(define.expandVariables(this.filename))
 		this.composition = new Composition(this.busserver, this.session, this.composition)
 	}
 
@@ -77,7 +77,7 @@ define.class(function(require){
 		this.destroy()
 
 		// lets fill
-		require.clearCache()
+		requireDreem.clearCache()
 
 		this.title = define.fileName(this.compname)
 		// lets see if our composition is a dir or a jsfile

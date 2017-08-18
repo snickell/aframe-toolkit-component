@@ -5,9 +5,9 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(require, shape3d){
+define.class(function(requireDreem, shape3d){
 
-	var GLGeom= require('$system/geometry/basicgeometry')
+	var GLGeom= requireDreem('$system/geometry/basicgeometry')
 	this.init = function(){
 		//console.log(this.size, this.width)
 	}

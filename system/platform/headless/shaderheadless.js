@@ -7,19 +7,19 @@
 
 define.class('$system/base/shader', function(require, exports){
 
-	var gltypes = require('$system/base/gltypes')
+	var gltypes = requireDreem('$system/base/gltypes')
 
 	exports.Texture =
-	this.Texture =	require('./textureheadless')
+	this.Texture =	requireDreem('./textureheadless')
 
-	util = require('util');
+	util = requireDreem('util');
 
 	// HeadlessApi is a static object to access the headless api
-	HeadlessApi = require('./headless_api')
+	HeadlessApi = requireDreem('./headless_api')
 
 	// HeadlessDreemgl is the interface between dreemgl and headless.
-	HeadlessShader = require('./headless_shader')
-	HeadlessActor = require('./headless_actor')
+	HeadlessShader = requireDreem('./headless_shader')
+	HeadlessActor = requireDreem('./headless_actor')
 
 	/**
 	 * @method compileShader

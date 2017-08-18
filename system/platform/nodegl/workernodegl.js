@@ -5,12 +5,12 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 define.class('$system/platform/webgl/workerwebgl', function(require, exports){
- 	var rpchub = require('$system/rpc/rpchub')
- 	var NodeWebsocket = require('$system/server/nodewebsocket')
+ 	var rpchub = requireDreem('$system/rpc/rpchub')
+ 	var NodeWebsocket = requireDreem('$system/server/nodewebsocket')
 
- 	var child_process = require('child_process')
- 	var crypto = require('crypto')
- 	var fs = require('fs')
+ 	var child_process = requireDreem('child_process')
+ 	var crypto = requireDreem('crypto')
+ 	var fs = requireDreem('fs')
 
 	this._startWorkers = function(head, tail, count){
 
@@ -60,7 +60,7 @@ define.class('$system/platform/webgl/workerwebgl', function(require, exports){
 			if(define.cputhreads === 2) cores = 1
 			else cores = define.cputhreads - 2
 		}
-		//var sockets = require('$system/server/nodewebsocket').module.factory
+		//var sockets = requireDreem('$system/server/nodewebsocket').module.factory
 		//console.log(sockets)
 		var deps = this._collectDeps(this.constructor.module.factory, [define.expandVariables('$system/server/nodewebsocket'),define.expandVariables("$system/base/worker")])
 		var head = 'var _myworker = ' + this.constructor.body.toString() + ';\n'
@@ -79,8 +79,8 @@ define.class('$system/platform/webgl/workerwebgl', function(require, exports){
 		this._transformThisToRPC()
 
 		function worker_boot(){
-			var net = require('net')
-			var worker = define.require('/myworker')()
+			var net = requireDreem('net')
+			var worker = define.requireDreem('/myworker')()
 			var NodeWebsocket = define.require("$system/server/nodewebsocket")
 			var io = new net.Socket({fd:3})
 			var sock = worker._socket = new NodeWebsocket(io)

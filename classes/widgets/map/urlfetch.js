@@ -4,9 +4,9 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, $server$, service){
+define.class(function(requireDreem, $server$, service){
 
-	var BufferGen = require("$widgets/map/mapbuffers")();
+	var BufferGen = requireDreem("$widgets/map/mapbuffers")();
 
 	this.generatebuffer = function(targetfile, datastring){
 		try{
@@ -27,8 +27,8 @@ define.class(function(require, $server$, service){
 	this.cachemap = define.classPath(this) + "../../../cache/map/"
 
 	this.grabmap = function(x,y,z){
-		var nodehttp = require('$system/server/nodehttp');
-		var fs = require('fs');
+		var nodehttp = requireDreem('$system/server/nodehttp');
+		var fs = requireDreem('fs');
 		try{
 			fs.mkdirSync(define.expandVariables(this.cachemap))
 		}catch(e){}

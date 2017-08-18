@@ -7,10 +7,10 @@
 
 define.class('$system/base/shader', function(require, exports){
 
-	var gltypes = require('$system/base/gltypes')
+	var gltypes = requireDreem('$system/base/gltypes')
 
 	exports.Texture =
-	this.Texture =  require('./texturewebgl')
+	this.Texture =  requireDreem('./texturewebgl')
 
 	this.compileShader = function(gldevice){
 		var vtx_state = this.vtx_state

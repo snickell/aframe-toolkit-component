@@ -8,7 +8,9 @@
 define(function(require, exports, module){
 
 	module.exports = function generateSDFCache(font){
-		vec4[] buf = vec4[]()
+    throw "SETH FIXME: This function disabled because it wasn't valid JS";
+    /*
+    vec4[] buf = vec4[]()
 		buf.quad.length = font.count
 		buf.length = 0
 		// we have to allocate actual texture positions
@@ -142,5 +144,6 @@ define(function(require, exports, module){
 				}
 			}			
 		}
+    */
 	}
 })

@@ -6,9 +6,9 @@
 
 define.class('$system/base/compositionclient', function(require, baseclass){
 
-	var Device = require('$system/platform/$platform/device$platform')
-	var BusClient = require('$system/rpc/busclient')
-	var NodeWebSocket = require('$system/server/nodewebsocket')
+	var Device = requireDreem('$system/platform/$platform/device$platform')
+	var BusClient = requireDreem('$system/rpc/busclient')
+	var NodeWebSocket = requireDreem('$system/server/nodewebsocket')
 
 	// Override from compositionclient. Returns the screen name from the url.
 	// compositionclient assumes a browser (ie. the location object exists)

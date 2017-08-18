@@ -4,12 +4,12 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, $ui$, view){
+define.class(function(requireDreem, $ui$, view){
 // A simple UI label for displaying text
 // <br/><a href="/examples/text">examples &raquo;</a>
 
 
-	var TypeFace = require('$system/typeface/typefaceshader')
+	var TypeFace = requireDreem('$system/typeface/typefaceshader')
 
 	this.bgcolor = vec4("transparent")
 	this.polygonoffset = 0.0;
@@ -34,7 +34,7 @@ define.class(function(require, $ui$, view){
 		// line spacing
 		linespacing: Config({type:float, value: 1.0}),
 
-		// reference to the font typeface, require it with require('font:')
+		// reference to the font typeface, require it with requireDreem('font:')
 		font: Config({type:Object, value: undefined, meta:"font"}),
 
 		// Should the text wrap around when its width has been reached?
@@ -56,10 +56,10 @@ define.class(function(require, $ui$, view){
 
 	this.bold = function(){
 		if (this.bold) {
-			this.font = require('$resources/fonts/opensans_bold_256.glf')
+			this.font = requireDreem('$resources/fonts/opensans_bold_256.glf')
 		}
 		else{
-			this.font = require('$resources/fonts/opensans_regular_256.glf')
+			this.font = requireDreem('$resources/fonts/opensans_regular_256.glf')
 		}
 	}
 
@@ -139,7 +139,7 @@ define.class(function(require, $ui$, view){
 	this.font = function(event){
 		// DALi needs a baked font
 		if (!this.font.baked  && define.$platform === 'dali')
-			this.font = require('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
+			this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
 
 		this.selectShader()
 	}
@@ -169,9 +169,9 @@ define.class(function(require, $ui$, view){
 	}
 
 	if (define.$platform === 'dali')
-		this.font = require('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
+		this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
 	else
-		this.font = require('$resources/fonts/opensans_regular_256.glf')
+		this.font = requireDreem('$resources/fonts/opensans_regular_256.glf')
 
 	var label = this.constructor
 	// A label.

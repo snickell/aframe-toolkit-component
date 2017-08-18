@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Acorn Serializer
 
-define.class(function(require, exports, self){
+define.class(function(requireDreem, exports, self){
 
 	// entrypoint for the serializer
 	self.walk = function(node, parent, state){

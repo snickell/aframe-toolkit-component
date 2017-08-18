@@ -6,11 +6,11 @@
 
 define.class('$system/base/compositionclient', function(require, baseclass){
 
-	var Device = require('$system/platform/$platform/device$platform')
-	var WebRTC = require('$system/rpc/webrtc')
-	var BusClient = require('$system/rpc/busclient')
+	var Device = requireDreem('$system/platform/$platform/device$platform')
+	var WebRTC = requireDreem('$system/rpc/webrtc')
+	var BusClient = requireDreem('$system/rpc/busclient')
 
-	HeadlessApi = require('./headless_api')
+	HeadlessApi = requireDreem('./headless_api')
 
 
 	this.atConstructor = function(previous, parent){

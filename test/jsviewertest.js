@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 //Pure JS based composition
-define.class(function(require, $server$, composition, $ui$, screen, view, $widgets$, jsviewer){
+define.class(function(requireDreem, $server$, composition, $ui$, screen, view, $widgets$, jsviewer){
 	this.render = function(){ return [
 		screen({name:'default', clearcolor:vec4('black')},
 			jsviewer({flex:1, overflow:'scroll',

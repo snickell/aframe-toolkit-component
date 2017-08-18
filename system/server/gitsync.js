@@ -4,12 +4,12 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, exports, self){
+define.class(function(requireDreem, exports, self){
 // Git synchronize your project automatically
 
-	var childPromise = require('./childpromise')
-	var async = require('$system/lib/async')
-	var promisify = require('$system/lib/promisify')
+	var childPromise = requireDreem('./childpromise')
+	var async = requireDreem('$system/lib/async')
+	var promisify = requireDreem('$system/lib/promisify')
 
 	self.atConstructor = function(args){
 		this.run()

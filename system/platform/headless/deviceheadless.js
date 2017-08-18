@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 	//internal
 
 	//Stub out gl calls
@@ -57,15 +57,15 @@ define.class(function(require, exports){
 	};
 
 	// HeadlessApi is a static object to access the headless api
-	this.HeadlessApi = require('./headless_api')
+	this.HeadlessApi = requireDreem('./headless_api')
 
-	this.Keyboard = require('./keyboardheadless')
-	this.Pointer = require('./pointerheadless')
+	this.Keyboard = requireDreem('./keyboardheadless')
+	this.Pointer = requireDreem('./pointerheadless')
 
 	// require embedded classes
-	this.Shader = require('./shaderheadless')
-	this.Texture = require('./textureheadless')
-	this.DrawPass = require('./drawpassheadless')
+	this.Shader = requireDreem('./shaderheadless')
+	this.Texture = requireDreem('./textureheadless')
+	this.DrawPass = requireDreem('./drawpassheadless')
 
 	this.preserveDrawingBuffer = false
 	this.premultipliedAlpha = false

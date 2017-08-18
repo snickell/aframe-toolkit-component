@@ -488,7 +488,7 @@ define.<span class="reserved">class</span>(<span class="keyword">function</span>
 
         <span class="comment">// Load the composition. If composition is defined, load it remotely</span>
         <span class="local-variable">this</span>.<span class="function">loadComposition</span> = <span class="keyword">function</span>(composition){
-                require.clearCache()
+                requireDreem.clearCache()
 
                 <span class="keyword">if</span> (composition) {
                         <span class="comment">// Remote server</span>
@@ -505,7 +505,7 @@ define.<span class="reserved">class</span>(<span class="keyword">function</span>
                 <span class="local-variable">this</span>.destroy()
 
                 <span class="comment">// lets fill</span>
-                require.clearCache()
+                requireDreem.clearCache()
 
                 <span class="comment">// lets see if our composition is a dir or a jsfile</span>
                 <span class="keyword">if</span> (<span class="local-variable">this</span>.server) {

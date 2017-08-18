@@ -4,12 +4,12 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class(function(require, $ui$, view){
+define.class(function(requireDreem, $ui$, view){
 // internal, A simple UI label for displaying text
 
 //	require("$fonts/arial_bold.glf")
 
-	var TypeFace = require('$system/typeface/typefaceshader')
+	var TypeFace = requireDreem('$system/typeface/typefaceshader')
 
 	this.bgcolor = vec4("transparent")
 	this.textpositionfn = function(pos,tag) {return pos;};
@@ -28,7 +28,7 @@ define.class(function(require, $ui$, view){
 		// the boldness of the font (try values 0 - 1)
 		boldness: Config({type:float, value: 0.}),
 
-		// reference to the font typeface, require it with require('font:')
+		// reference to the font typeface, require it with requireDreem('font:')
 		font: Config({type:Object, value: undefined, meta:"font"}),
 
 		// turn on subpixel aa, this requieres a bgcolor to be present
@@ -48,10 +48,10 @@ define.class(function(require, $ui$, view){
 
 	this.bold = function(){
 		if (this.bold) {
-			this.font = require('$resources/fonts/opensans_bold_256.glf')
+			this.font = requireDreem('$resources/fonts/opensans_bold_256.glf')
 		}
 		else{
-			this.font = require('$resources/fonts/opensans_regular_256.glf')
+			this.font = requireDreem('$resources/fonts/opensans_regular_256.glf')
 		}
 	}
 
@@ -171,9 +171,9 @@ define.class(function(require, $ui$, view){
 	}
 
 	if (define.$platform === 'dali')
-		this.font = require('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
+		this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
 	else
-		this.font = require('$resources/fonts/opensans_regular_ascii.glf')
+		this.font = requireDreem('$resources/fonts/opensans_regular_ascii.glf')
 
 	var labelset = this.constructor
 	// A label.

@@ -8,7 +8,7 @@ define.class('$system/base/node', function(require){
 	// internal, the role class holds all the role server side component and screens. Currently only a single role is supported
 	// later on the role class allows multiple roles to be defined and have different screen setups
 
-	var RpcProxy = require('$system/rpc/rpcproxy')
+	var RpcProxy = requireDreem('$system/rpc/rpcproxy')
 	this.atConstructor = function(){
 		throw new Error('role is depricated, please remove it from your composition and place the screens in the composition root')
 	}

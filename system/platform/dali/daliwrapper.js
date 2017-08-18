@@ -7,7 +7,7 @@
 // dali wrapper file, adapted from dali example applications.
 // (For example: dali-nodejs/dali-toolkit/node-addon/line-mesh.js).
 
-define.class(function(require, exports){
+define.class(function(requireDreem, exports){
 
 	// internal, Initialize and show the dali screen
 	this.atConstructor = function(width, height, name) {
@@ -48,7 +48,7 @@ define.class(function(require, exports){
 		//TODO Use a fixed location to locate dali code
 
 		//TODO FIX absolute path and use of require_builtin
-		this.dali = define.require('/home/dali/teem/src/dreemgl/Release/dali')(this.options);
+		this.dali = define.requireDreem('/home/dali/teem/src/dreemgl/Release/dali')(this.options);
 
 
 	    // Application

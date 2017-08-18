@@ -5,14 +5,14 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-define.class(function(require, $ui$, view, label, bargraphic){
+define.class(function(requireDreem, $ui$, view, label, bargraphic){
 	// Simple video player, without controls. Frames from a html5 video are
 	// copied into a canvas element. Each image is written to the view's texture.
 	// The view needs to use the hardimage shader, so the view is initialized
 	// with an empty texture. The video and canvas resources are allocated when
 	// the video plays, and released when the video is finished.
 
-	var Shader = require('$system/platform/$platform/shader$platform')
+	var Shader = requireDreem('$system/platform/$platform/shader$platform')
   var emptytexture = Shader.Texture.fromArray(new Uint8Array(4, 1), 1, 1);
 
 

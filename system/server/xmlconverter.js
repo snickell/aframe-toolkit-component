@@ -6,8 +6,8 @@
 
 // converts .dre xml into dreemgl-compliant javascript. Supports methods, attributes, attribute declarations and handlers.
 define(function(require){
-	var fs = require('fs')
-	var HTMLParser = require('$system/parse/htmlparser')
+	var fs = requireDreem('fs')
+	var HTMLParser = requireDreem('$system/parse/htmlparser')
 
 	var makeSpace = function(indent) {
 		var out = '';
