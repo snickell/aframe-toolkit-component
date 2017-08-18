@@ -32,7 +32,7 @@ define.class(function(require, exports){
 	this.reconnect = function(){
 		this.disconnect()
 		if(!this.queue) this.queue = []
-
+		return; // SETH: we don't want RPC, no server yo
 		this.socket = new this.websocketclass(this.url)
 
 		this.socket.binaryType = 'arraybuffer'
@@ -61,7 +61,6 @@ define.class(function(require, exports){
 			var binary_xhr = []
 
 			this.socket.onmessage = function(event){
-
 				// if its huuuge and value has escaped json, dont parse it
 				var data = event.data
 				if(data.charAt(0) === '$'){
@@ -96,6 +95,8 @@ define.class(function(require, exports){
 				else{
 					// lets retrieve the missing binary blobs via XHR
 					msg = define.structFromJSON(msg)
+					console.log("this.socket.onmessage", msg);
+					
 					this.atMessage(msg, this)
 				}
 			}.bind(this)

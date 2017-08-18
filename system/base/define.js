@@ -1228,7 +1228,7 @@
 
 		var backoff = 1
 		define.autoreloadConnect = function(){
-
+			return; // SETH: don't reconnect, we don't want RPC
 			if(this.reload_socket){
 				this.reload_socket.onclose = undefined
 				this.reload_socket.onerror = undefined
