@@ -52,7 +52,6 @@ import lookupInImportLibrary from 'library';
 
 	// the main define function
 	function defineDreem(factory, pkg){
-    console.log("defineDream()", factory, pkg)
 		if(pkg !== undefined){ // precompiled version
 			defineDreem.factory[pkg] = factory
 			return
