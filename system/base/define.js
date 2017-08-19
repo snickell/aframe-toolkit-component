@@ -50,9 +50,9 @@ console.log("loading Define");
 (function define_module(){
 
 	var config_define
-	if(typeof window !== 'undefined') config_define =  window.define
-	else if(typeof self !== 'undefined') config_define = self.define
-	else if(typeof global !== 'undefined') config_define = global.define
+	if(typeof window !== 'undefined') config_define =  window.defineDreem
+	else if(typeof self !== 'undefined') config_define = self.defineDreem
+	else if(typeof global !== 'undefined') config_define = global.defineDreem
 
 	// the main define function
 	function defineDreem(factory, pkg){
@@ -62,14 +62,14 @@ console.log("loading Define");
 		}
 		defineDreem.last_factory = factory // store for the script tag
 		// continue calling
-		if(defineDreem.define) defineDreem.defineDreem(factory)
+		if(defineDreem.defineDreem) defineDreem.defineDreem(factory)
 	}
 
 	if(typeof window !== 'undefined') window.defineDreem = defineDreem, defineDreem.$environment = 'browser'
 	else if(typeof self !== 'undefined') self.defineDreem = defineDreem, defineDreem.$environment = 'worker'
 	else if (typeof global !== 'undefined'){
-		Object.defineProperty(global, "define", {
-		    value: define,
+		Object.defineProperty(global, "defineDreem", {
+		    value: defineDreem,
 		    writable: false
 		})
 		defineDreem.$environment = 'nodejs'
@@ -187,7 +187,7 @@ console.log("loading Define");
 			if(!(lut in defineDreem)){
 				throw new Error("Cannot find " + lut + " used in require")
 			}
-			return defineDreem.expandVariables(define[lut])
+			return defineDreem.expandVariables(defineDreem[lut])
 		}))
 	}
 
@@ -218,7 +218,7 @@ console.log("loading Define");
 		var mod = cls.constructor.module
 		var fn = mod.filename.replace(/\\/g,'/')
 		for(var key in defineDreem.paths){
-			var path = defineDreem.expandVariables(define['$'+key])
+			var path = defineDreem.expandVariables(defineDreem['$'+key])
 			if(fn.indexOf(path) === 0){
 				// Return the class path as a symbol base
 				var ext = fn.slice(path.length)
@@ -644,12 +644,12 @@ console.log("loading Define");
 	defineDreem.mixin = function(body, body2){
 		if(typeof body2 === 'function') body = body2
 		body.mixin = true
-		return defineDreem.class.apply(define, arguments)
+		return defineDreem.class.apply(defineDreem, arguments)
 	}
 
 	defineDreem.packagedClass = function(packaged, args){
 		args[args.length - 1].packaged = packaged
-		defineDreem.class.apply(define, args)
+		defineDreem.class.apply(defineDreem, args)
 	}
 
 	// defineDreem.class('base', function(){})                2
@@ -1204,7 +1204,7 @@ console.log("loading Define");
 		}
 
 		// make it available globally
-		window.define = define
+		window.defineDreem = defineDreem
 
 		defineDreem.hideException = function(){
 			if(defineDreem.exception_div){
@@ -1739,9 +1739,9 @@ console.log("loading Define");
 
 
 	function define_worker(){
-		self.define = define
+		self.defineDreem = defineDreem
 
-		defineDreem.define = function(body){
+		defineDreem.defineDreem = function(body){
 		}
 	}
 
@@ -2843,7 +2843,7 @@ console.log("loading Define");
 
 	defineGlobals(typeof process !== 'undefined'? global: typeof window !== 'undefined'? window: self)
 
-	// store the types on define
+	// store the types on defineDreem
 	defineDreem.typeToString = function(type){
 		if(type === String) return 'String'
 		if(type === Object) return 'Object'
