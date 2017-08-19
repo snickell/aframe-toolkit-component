@@ -37,13 +37,15 @@
 		$test:"$root/test",
       main:["$system/base/math", "$examples/buttons.js"],
       atMain:function(requireDreem, modules){
-        defineDreem.endLoader()
-        requireDreem(modules[0])
-        var Composition = requireDreem(modules[1])
-        var serverattrs = {}
-        var renderTarget;
-        defineDreem.rootComposition = new Composition(defineDreem.rootComposition, undefined, serverattrs, renderTarget)
-        console.log("atEndOfMain", defineDreem.rootComposition, require);
+        setTimeout(function () {
+          defineDreem.endLoader()
+          requireDreem(modules[0])
+          var Composition = requireDreem(modules[1])
+          var serverattrs = {}
+          var renderTarget;
+          defineDreem.rootComposition = new Composition(defineDreem.rootComposition, undefined, serverattrs, renderTarget)
+          console.log("atEndOfMain", defineDreem.rootComposition, require); 
+        }, 0);
         
       },
 	   atEnd:function(){
