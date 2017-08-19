@@ -5,6 +5,6 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class('$system/base/device', function(){
+export default defineDreem.class('$system/base/device', function(){
 	
 })

@@ -193,7 +193,7 @@ defineDreem(function(requireDreem){
     // find includes based on tags found
     var includes = findIncludes(Object.keys(tagnames));
 		// console.log('includes', includes)
-		var out = 'defineDreem.class(\'$server/composition\', function(' + includes.join(', ') + '){\n'
+		var out = 'export default defineDreem.class(\'$server/composition\', function(' + includes.join(', ') + '){\n'
 		out += '\tthis.render = function() {\n'
 		out += '\t\treturn [\n';
 		out += body;

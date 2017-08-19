@@ -6,7 +6,7 @@
 
 // parse a color string into a [r,g,b] 0-1 float array
 
-defineDreem.class(function(requireDreem){
+export default defineDreem.class(function(requireDreem){
 
 	var fs = requireDreem('fs')
 

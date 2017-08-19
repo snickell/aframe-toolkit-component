@@ -10,7 +10,7 @@
  * Top-level, static, class to manage the dali stage.
  */
 
-defineDreem.class(function(exports){
+export default defineDreem.class(function(exports){
 	var DaliApi = exports
 
 	/**

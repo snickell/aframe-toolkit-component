@@ -20,7 +20,7 @@
  * dali.Material object
  */
 
-defineDreem.class(function(requireDreem, exports){
+export default defineDreem.class(function(requireDreem, exports){
 	// internal, DaliApi is a static object to access the dali api
 	DaliApi = requireDreem('./dali_api')
 

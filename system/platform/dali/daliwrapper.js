@@ -7,7 +7,7 @@
 // dali wrapper file, adapted from dali example applications.
 // (For example: dali-nodejs/dali-toolkit/node-addon/line-mesh.js).
 
-defineDreem.class(function(requireDreem, exports){
+export default defineDreem.class(function(requireDreem, exports){
 
 	// internal, Initialize and show the dali screen
 	this.atConstructor = function(width, height, name) {

@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // this class
 
-defineDreem.class('$system/base/compositionclient', function(requireDreem, baseclass){
+export default defineDreem.class('$system/base/compositionclient', function(requireDreem, baseclass){
 
 	var Device = requireDreem('$system/platform/$platform/device$platform')
 	var WebRTC = requireDreem('$system/rpc/webrtc')

@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Rpc Promise handler object
 
-defineDreem.class(function(requireDreem, exports){
+export default defineDreem.class(function(requireDreem, exports){
 
 	var rpcproxy = requireDreem('./rpcproxy')
 

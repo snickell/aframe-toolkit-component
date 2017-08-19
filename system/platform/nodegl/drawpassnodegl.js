@@ -5,6 +5,6 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class("../webgl/drawpasswebgl", function(requireDreem, baseclass){
+export default defineDreem.class("../webgl/drawpasswebgl", function(requireDreem, baseclass){
 
 })

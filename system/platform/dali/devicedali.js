@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class(function(requireDreem, exports){
+export default defineDreem.class(function(requireDreem, exports){
 
 	//internal, HACK to simulate gl (during dev)
 	gl = {

@@ -7,7 +7,7 @@
 // Copied from compositionserver.js for headless. This assumes that the
 // node server is running on the same machine where headless is running.
 
-defineDreem.class(function(requireDreem){
+export default defineDreem.class(function(requireDreem){
 	//internal
 
 

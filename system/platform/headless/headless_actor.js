@@ -10,7 +10,7 @@
  * Simulate an actor (modeled from DALi platform).
  */
 
-defineDreem.class(function(requireDreem, exports){
+export default defineDreem.class(function(requireDreem, exports){
 	// internal, HeadlessApi is a static object to access the headless api
 	HeadlessApi = requireDreem('./headless_api')
 

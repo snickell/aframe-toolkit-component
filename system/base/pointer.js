@@ -6,7 +6,7 @@
 
 // Pointer emits events that unify mouse and touch interactions.
 
-defineDreem.class('$system/base/node', function(){
+export default defineDreem.class('$system/base/node', function(){
 
 	var TAPSPEED = 150
 	var TAPDIST = 5

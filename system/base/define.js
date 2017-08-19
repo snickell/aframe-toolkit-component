@@ -466,9 +466,9 @@
 		defineDreem.class.apply(defineDreem, args)
 	}
 
-	// defineDreem.class('base', function(){})                2
-	// defineDreem.class(function(){})                        1
-	// defineDreem.class(this, 'prop', 'base', function(){})  4
+	// export default defineDreem.class('base', function(){})                2
+	// export default defineDreem.class(function(){})                        1
+	// export default defineDreem.class(this, 'prop', 'base', function(){})  4
 
 	defineDreem.class = function(){
 		// lets make a class

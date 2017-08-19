@@ -13,7 +13,7 @@ function HeadlessImage(path)
 }
 
 
-defineDreem.class('$system/base/texture', function(exports, require){
+export default defineDreem.class('$system/base/texture', function(exports, require){
 	var Texture = exports
 
 	Texture.GlobalId = 0

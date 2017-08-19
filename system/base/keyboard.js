@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class('$system/base/node', function(){
+export default defineDreem.class('$system/base/node', function(){
 	this.atConstructor = function(){}
 	this.attributes = {
 		up:Config({type:Event}),

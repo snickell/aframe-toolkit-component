@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // WebRTC class
 
-defineDreem.class(function(requireDreem, exports){
+export default defineDreem.class(function(requireDreem, exports){
 	var WebRTCData = exports
 	
 	WebRTCData.createOffer = function(){

@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class('../webgl/pointerwebgl', function(requireDreem, exports){
+export default defineDreem.class('../webgl/pointerwebgl', function(requireDreem, exports){
 
 	Object.defineProperty(this, 'cursor', {
 		get:function() {

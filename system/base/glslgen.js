@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class('$system/parse/onejsserialize', function(requireDreem, exports, baseclass){
+export default defineDreem.class('$system/parse/onejsserialize', function(requireDreem, exports, baseclass){
 
 	var gltypes = requireDreem('./gltypes')
 	var OneJSParser =  requireDreem('$system/parse/onejsparser')

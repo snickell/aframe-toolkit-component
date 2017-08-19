@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class('../webgl/shaderwebgl', function(requireDreem, exports){
+export default defineDreem.class('../webgl/shaderwebgl', function(requireDreem, exports){
 	exports.Texture = this.Texture = requireDreem('./texturenodegl')
 	this.set_precision = ""
 	this.set_extensions = ""//'#extension GL_OES_standard_derivatives : enable\n'

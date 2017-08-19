@@ -10,7 +10,7 @@
  * Top-level, static, class to manage the headless stage.
  */
 
-defineDreem.class(function(exports){
+export default defineDreem.class(function(exports){
 	var HeadlessApi = exports
 
 
