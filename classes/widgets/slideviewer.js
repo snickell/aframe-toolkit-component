@@ -25,7 +25,7 @@ export default defineDreem.class(function($ui$, view, label){
 	}
 
 	// the class for a nested slide, its automatically wrapped around children
-	export default defineDreem.class(this, 'slide', function($ui$, view){
+	defineDreem(this, 'slide', function($ui$, view){
 		this.borderradius = vec4(10)
 		this.borderwidth = 0
 		this.bordercolor = vec4("blue")

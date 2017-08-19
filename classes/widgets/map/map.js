@@ -116,7 +116,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	}
 
 	// data interaction, needs to inherit from view because of animation
-	export default defineDreem.class(this, 'mapdataset', '$ui/view', function($$, geo) {
+	defineDreem(this, 'mapdataset', '$ui/view', function($$, geo) {
 
 		this.requestPending = false
 		// all the blocks that need to be loaded (empty tile objects)
@@ -648,7 +648,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	})
 
 	// view implementation of the building
-	export default defineDreem.class(this, 'buildingtile', '$ui/view', function() {
+	defineDreem(this, 'buildingtile', '$ui/view', function() {
 		this.is = tilebasemixin
 		this.loadBufferFromTile = function(tile) {
 			if (!this.shaders || !this.shaders.hardrect || !tile.buildingVertexBuffer) return false
@@ -692,7 +692,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	})
 
 	// view implementation of the land
-	export default defineDreem.class(this, 'landtile', '$ui/view', function() {
+	defineDreem(this, 'landtile', '$ui/view', function() {
 
 		this.is = tilebasemixin
 
@@ -740,7 +740,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	})
 
 	// view implementation of the label tile
-	export default defineDreem.class(this, 'labeltile', '$ui/labelset', function() {
+	defineDreem(this, 'labeltile', '$ui/labelset', function() {
 		//this.polygonoffset = 100.0
 		this.is = tilebasemixin
 		this.fgcolor = 'black'
@@ -815,7 +815,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	})
 
 	// view class of the roadtile
-	export default defineDreem.class(this, 'roadtile', '$ui/view', function() {
+	defineDreem(this, 'roadtile', '$ui/view', function() {
 		this.is = tilebasemixin
 		this.loadBufferFromTile = function(tile) {
 			if (!this.shaders || !this.shaders.hardrect || !tile.roadVertexBuffer) return

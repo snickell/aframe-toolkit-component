@@ -153,7 +153,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 		this.updateallcontrols();
 	}
 
-	export default defineDreem.class(this, "customslider", function($ui$,view){
+	defineDreem(this, "customslider", function($ui$,view){
 
 		this.attributes = {
 
@@ -300,7 +300,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 		this.drawcount = 0;
 	})
 
-	export default defineDreem.class(this, 'colorcirclecontrol', function($ui$view){
+	defineDreem(this, 'colorcirclecontrol', function($ui$view){
 		this.name = 'colorcirclecontrol'
 		this.width = 200;
 		this.height = 200;
@@ -331,7 +331,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 			this.redraw();
 		}
 
-		export default defineDreem.class(this, 'bgfill', this.Shader, function(){
+		defineDreem(this, 'bgfill', this.Shader, function(){
 			this.draworder = 1;
 
 			this.vertexstruct =  defineDreem.struct({
@@ -379,7 +379,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 			}
 		})
 
-		export default defineDreem.class(this, 'fgfill', this.Shader, function(){
+		defineDreem(this, 'fgfill', this.Shader, function(){
 			this.draworder = 2;
 			this.vertexstruct = defineDreem.struct({
 				p:vec2,
@@ -427,7 +427,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 		this.fgfill = true
 	})
 
-	export default defineDreem.class(this, 'squareview', function($ui$view){
+	defineDreem(this, 'squareview', function($ui$view){
 		this.name = 'squareview'
 		this.width = 200;
 		this.height = 200;
@@ -464,7 +464,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 			this.updatecolorfrompointer(p);
 		}
 
-		export default defineDreem.class(this, 'fgfill', this.Shader, function(){
+		defineDreem(this, 'fgfill', this.Shader, function(){
 			this.draworder = 5
 
 			this.vertexstruct = defineDreem.struct({
@@ -517,7 +517,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 
 		this.fgfill = true
 
-		export default defineDreem.class(this, 'bgfill', this.Shader, function(){
+		defineDreem(this, 'bgfill', this.Shader, function(){
 			this.draworder = 1
 			this.vertexstruct = defineDreem.struct({
 				p:float,
@@ -571,7 +571,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, label, scrol
 		this.bgfill = true
 	})
 
-	export default defineDreem.class(this, 'colorarea', function($ui$view){
+	defineDreem(this, 'colorarea', function($ui$view){
 		this.hardrect ={
 			color:function(){
 					return vec4(mesh.x, mesh.y,0,1);

@@ -22,7 +22,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, foldcontaine
 	}
 
 	// A doc item is an item with a heading, such as methods or attributes
-	export default defineDreem.class(this, 'ClassDocItem', function($ui$, view){
+	defineDreem(this, 'ClassDocItem', function($ui$, view){
 		this.bgcolor = NaN
 		// the item to display.
 		// An "attribute" item can have name, body_text, defvalue and type properties.
@@ -144,7 +144,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, foldcontaine
 
 	// This class will recursively expand a class_doc sturcture to an on-screen view.
 
-	export default defineDreem.class(this, 'dividerline', function($ui$, view){
+	defineDreem(this, 'dividerline', function($ui$, view){
 		this.height = 1;
 		this.borderwidth = 1;
 		this.bgcolor = vec4("#202020");
@@ -154,7 +154,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view, foldcontaine
 	})
 
 
-	export default defineDreem.class(this, 'ClassDocView', function($ui$, view){
+	defineDreem(this, 'ClassDocView', function($ui$, view){
 
 		this.attributes = {
 			// If collapsible is true, the render function will build a foldcontainer around this class. This is used for recursion levels > 0 of the docviewer class.

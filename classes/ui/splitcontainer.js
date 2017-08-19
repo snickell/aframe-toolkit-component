@@ -36,7 +36,7 @@
 		}
 
 	// the visual class that defines the draggable bar between the resizable children
-	export default defineDreem.class(this, 'splitter', function(view){
+	defineDreem(this, 'splitter', function(view){
 
 		this.attributes = {
 			firstnode: Config({type: int, value: 0})

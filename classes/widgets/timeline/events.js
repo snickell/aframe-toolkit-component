@@ -60,7 +60,7 @@ export default defineDreem.class('$ui/label', function (requireDreem, $ui$, view
 	// 	timeline.lockscroll = false
 	// }
 
-	export default defineDreem.class(this, 'event', view, function(){
+	defineDreem(this, 'event', view, function(){
 
 		this.bgcolor = '#999999'
 		this.position = 'absolute'
@@ -195,7 +195,7 @@ export default defineDreem.class('$ui/label', function (requireDreem, $ui$, view
 			}
 		}
 
-		export default defineDreem.class(this, 'eventlabel', label, function(){
+		defineDreem(this, 'eventlabel', label, function(){
 			this.xoffset = 0
 			this.xwidth = 0
 			this.fgcolor = "black"
@@ -276,7 +276,7 @@ export default defineDreem.class('$ui/label', function (requireDreem, $ui$, view
 		]
 	}
 
-	// export default defineDreem.class(this, 'eventrects', this.Shader, function(){
+	// defineDreem(this, 'eventrects', this.Shader, function(){
 	//
 	// 	var vertstruct = defineDreem.struct({
 	// 		pos: vec2,

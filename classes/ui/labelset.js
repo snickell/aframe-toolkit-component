@@ -65,7 +65,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 	}
 
 	// the normal font
-	export default defineDreem.class(this, 'typefacenormal', TypeFace, function(){
+	defineDreem(this, 'typefacenormal', TypeFace, function(){
 		this.updateorder = 3
 		this.draworder = 5
 		this.subpixel = false
@@ -119,20 +119,20 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 	})
 
 	// the subpixel font used to render with subpixel antialiasing
-	export default defineDreem.class(this, 'typefacesubpixelaa', this.typefacenormal, function(){
+	defineDreem(this, 'typefacesubpixelaa', this.typefacenormal, function(){
 		this.glyphy_mesh = this.glyphy_mesh_sdf
 		this.glyphy_pixel = this.glyphy_sdf_draw_subpixel_aa
 		this.subpixel = true
 		this.boldness = 0.6
 	})
 
-	export default defineDreem.class(this, 'typefaceglyphy', this.typefacenormal, function(){
+	defineDreem(this, 'typefaceglyphy', this.typefacenormal, function(){
 		this.glyphy_pixel = this.glyphy_atlas_draw
 		this.glyphy_mesh = this.glyphy_mesh_atlas
 	})
 
 	// the font which is set to fontsubpixelaa and fontnormal depending on the value of subpixel
-	export default defineDreem.class(this, 'typeface', this.typefacenormal, function(){
+	defineDreem(this, 'typeface', this.typefacenormal, function(){
 	})
 
 	this.typeface = true

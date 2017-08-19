@@ -50,7 +50,7 @@ export default defineDreem.class("$ui/label", function(requireDreem){
 
 	}
 
-	export default defineDreem.class(this, 'cursors', requireDreem('$system/typeface/cursorshader.js'), function(){
+	defineDreem(this, 'cursors', requireDreem('$system/typeface/cursorshader.js'), function(){
 		this.updateorder = 5
 		this.draworder = 6
 		this.atConstructor = function(){
@@ -73,7 +73,7 @@ export default defineDreem.class("$ui/label", function(requireDreem){
 	this.cursors = true
 	this.tabstop = 0
 	this.linespacing = 1.3
-	export default defineDreem.class(this, 'markers', requireDreem('$system/typeface/markershader.js'), function(){
+	defineDreem(this, 'markers', requireDreem('$system/typeface/markershader.js'), function(){
 		this.updateorder = 6
 		this.draworder = 4
 		this.atConstructor = function(){

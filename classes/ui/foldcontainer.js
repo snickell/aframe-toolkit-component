@@ -36,7 +36,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	}
 
 	// subclass to lay out the clickable portion of the folding container
-	export default defineDreem.class(this, 'clickablebar', view, function(){
+	defineDreem(this, 'clickablebar', view, function(){
 
 		this.bggradient = function(a,b){
 			var fill = mix(col1, col2,  (a.y)/0.8);
@@ -131,7 +131,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	})
 
 	// the main container view
-	export default defineDreem.class(this, 'containerview', function(view){
+	defineDreem(this, 'containerview', function(view){
 		this.hardrect = {
 			color:function(){
 				return mix(view.bgcolor*1.7, vec4("white"), (mesh.y/8))

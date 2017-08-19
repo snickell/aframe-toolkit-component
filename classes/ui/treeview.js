@@ -20,7 +20,7 @@ export default defineDreem.class('$ui/view', function($ui$, view, label, button,
 	this.overflow ='scroll'
 
 	// The fold button is a very very flat button.
-	export default defineDreem.class(this, 'foldbutton', button, function(){
+	defineDreem(this, 'foldbutton', button, function(){
 		this.borderwidth = 0
 		this.bold = false;
 		this.fontsize = 14;
@@ -44,7 +44,7 @@ export default defineDreem.class('$ui/view', function($ui$, view, label, button,
 	})
 
 	// newitemheading combines a few foldbuttons in to a full "item" in the tree
-	export default defineDreem.class(this, 'newitemheading', view, function(){
+	defineDreem(this, 'newitemheading', view, function(){
 		this.borderwidth = 0;
 		this.attributes = {
 			folded: false,
@@ -102,7 +102,7 @@ export default defineDreem.class('$ui/view', function($ui$, view, label, button,
 	});
 
 	// the treeitem subclass contains 3 controls: a newitemheading, a set of treelines and an optional set of children treeitems in case the current node is expanded
-	export default defineDreem.class(this, 'treeitem', view, function(){
+	defineDreem(this, 'treeitem', view, function(){
 
 		this.attributes = {
 			text: "",
@@ -215,7 +215,7 @@ export default defineDreem.class('$ui/view', function($ui$, view, label, button,
 	})
 
 	// subclass to render the gridlines of the tree
-	export default defineDreem.class(this, 'treeline', view, function(){
+	defineDreem(this, 'treeline', view, function(){
 		//this.bgcolor = vec4("red");
 		//this.flex = 1
 		this.last = 0
