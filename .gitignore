@@ -13,3 +13,4 @@ apps/_vectormap/tilecache/*.json
 apps/vectormap/tilecache/*.json
 compositions/flowtest1/index.js
 .iotdb
+dist/
