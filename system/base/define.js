@@ -94,7 +94,7 @@ console.log("loading Define");
 
 	// copy configuration onto define
 	if(typeof config_define == 'object') for(var key in config_define){
-		define[key] = config_define[key]
+		defineDreem[key] = config_define[key]
 	}
 
 
@@ -185,7 +185,9 @@ console.log("loading Define");
 	defineDreem.expandVariables = function(str){
 		return defineDreem.cleanPath(str.replace(/(\$[a-zA-Z0-9]+[a-zA-Z0-9]*)/g, function(all, lut){
 			if(!(lut in defineDreem)){
-				throw new Error("Cannot find " + lut + " used in require")
+				//throw new Error("Cannot find " + lut + " used in requireDreem")
+        console.warn("Cannot find " + lut + " used in requireDreem");
+        return;
 			}
 			return defineDreem.expandVariables(defineDreem[lut])
 		}))
@@ -391,6 +393,7 @@ console.log("loading Define");
 		// fetch string baseclasses for nested classes and add them
 		var baserx = new RegExp(/define\.class\s*\(\s*(?:this\s*,\s*['"][$_\w]+['"]\s*,\s*)?(?:['"]([^"']+)['"]\s*,\s*)function/g)
 
+    let result;
 		while((result = baserx.exec(search)) !== null) {
 			req.push(result[1])
 		}
@@ -657,6 +660,7 @@ console.log("loading Define");
 	// defineDreem.class(this, 'prop', 'base', function(){})  4
 
 	defineDreem.class = function(){
+    console.log("defineDreem.class(", ...arguments, ")");
 		// lets make a class
 		var base_class
 		var body
@@ -1227,7 +1231,7 @@ console.log("loading Define");
 		if(defineDreem.main){
 			defineDreem.loadAsync(defineDreem.main, 'main').then(function(){
 				if(defineDreem.atMain) setTimeout(function(){
-					defineDreem.atMain(defineDreem.require, defineDreem.main)
+					defineDreem.atMain(defineDreem.requireDreem, defineDreem.main)
 				},0)
 			}, function(exc){
 				if(defineDreem.atException) defineDreem.atException(exc)
@@ -1270,7 +1274,7 @@ console.log("loading Define");
 					defineDreem.hideException()
 					if(defineDreem.partial_reload && old_module && typeof old_module.exports === 'function'){
 						defineDreem.requireDreem.reloadAsync(msg.file).then(function(){
-							if(defineDreem.atMain) defineDreem.atMain(defineDreem.require, defineDreem.main)
+							if(defineDreem.atMain) defineDreem.atMain(defineDreem.requireDreem, defineDreem.main)
 						}).catch(function(exception){
 							defineDreem.showException(exception)
 						})

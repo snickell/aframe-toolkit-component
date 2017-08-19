@@ -5,6 +5,57 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // self generating onejs walker utility class, run with nodejs to regenerate
 
+if(typeof process !== 'undefined' && require && require.main === module){
+	var require = requireDreem('../base/define')
+	var defs = requireDreem('./onejsdef.js')
+	var fs = requireDreem('fs')
+	// read self
+	var head = fs.readFileSync(module.filename).toString().match(/^[\S\s]*\/\/ generated/)[0]
+	// the template for the generated bottom part
+	var template = function(){
+		defineDreem.class(function(exports){
+			BODY
+			this.Object = function(obj){
+				if(arguments.length > 1) return this._Object.apply(this, arguments)
+				var ret = {type:'Object',keys:[]}
+				for(var key in obj){
+					ret.keys.push({key:this.Id(key), value:this.Value(obj[key])})
+				}
+				return ret
+			}
+
+			this.Value = function(v){
+				if(arguments.length > 1) return this._Object.apply(this, arguments)
+				if(typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean'){
+					return {type:'Value', value:v, kind:typeof v}
+				}
+				else throw new Error('Dont support value')
+			}
+		})
+	}.toString().match(/function\s*\(\)\{\n([\S\s]*)\}/)[1].replace(/(^|\n)\t\t/g,'\n')
+
+	var rename = {for:'_for', else:'_else', try:'_try',catch:'_catch', finally:'_finally', in:'_in', do:'_do', const:'_const'}
+	var out = '\n'
+	for(var key in defs){
+		out += '	this._'+key+' = this.' + key + ' = function('
+		var def = defs[key]
+		var args = ''
+		var body = '		return {\n			type:"'+key+'"'
+		for(var sub in def){
+			var ren = rename[sub] || sub
+			if(args) args += ', '
+			args += ren
+			body += ',\n			' + sub + ':' + ren
+
+			//var type = def[sub]
+		}
+		body += '\n		}\n'
+		out += args + '){\n' + body +  '	}\n\n'
+	}
+	fs.writeFileSync(module.filename, head + template.replace(/BODY/,out))
+	console.log("Written " + module.filename)
+}
+
 // generated
 defineDreem.class(function(exports){
 	

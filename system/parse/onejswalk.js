@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // self generating onejs walker utility class, run with nodejs to regenerate
 
-if(typeof process !== 'undefined' && requireDreem.main === module){
+if(typeof process !== 'undefined' && require && requireDreem.main === module){
 	var require = requireDreem('../base/define')
 	var defs = requireDreem('./onejsdef.js')
 	var fs = requireDreem('fs')
