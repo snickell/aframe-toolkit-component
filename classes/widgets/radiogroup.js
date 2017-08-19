@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class(function(requireDreem, $ui$, view, label, button, scrollbar, textbox, icon){
+export default defineDreem.class(function(requireDreem, $ui$, view, label, button, scrollbar, textbox, icon){
 
 	this.attributes ={
 		values: Config({type:Object, value:[]}),

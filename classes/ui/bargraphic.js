@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Sprite class
 
-defineDreem.class('$ui/view', function(requireDreem, view){
+export default defineDreem.class('$ui/view', function(requireDreem, view){
 // The bargraphic class is used by the audioplayer widget to visualize the audio output. It takes a Uint8Array and produces a bar graph.
 
 	this.attributes = {

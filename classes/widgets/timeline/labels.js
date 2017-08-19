@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem.class('$ui/label', function (requireDreem) {
+export default defineDreem.class('$ui/label', function (requireDreem) {
 
 	this.position = 'absolute'
 	this.bgcolor = NaN

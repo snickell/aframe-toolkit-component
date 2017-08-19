@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Sprite class
 
-defineDreem.class("$ui/view", function($ui$, button){
+export default defineDreem.class("$ui/view", function($ui$, button){
 // Presents a bar of configurable tabs.  [example](http://localhost:2000/examples/tabbar).
 // <br/><a href="/examples/tabs">examples &raquo;</a>
 

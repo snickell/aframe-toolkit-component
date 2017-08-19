@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class(function(view, label){
+export default defineDreem.class(function(view, label){
 
 	this.flex = 1;
 	this.flexdirection = "column"

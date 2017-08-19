@@ -7,7 +7,7 @@
 // Stack container is a custom layout view where the number of children doesnt slow down
 // either the layout engine or the render engine. To be completed
 
-defineDreem.class(function(requireDreem, $ui$, view, stackcontainer){
+export default defineDreem.class(function(requireDreem, $ui$, view, stackcontainer){
 
 	this.bgcolor = 'gray'
 

@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon, label, checkbox){
+export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon, label, checkbox){
 // A palatte is a container view with drag-dropable components
 
 	this.flexdirection = 'column';
@@ -31,7 +31,7 @@ defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon, label, ch
 		drop:Config({type:Function})
 	};
 
-	defineDreem.class(this, "panel", view, function() {
+	export default defineDreem.class(this, "panel", view, function() {
 		this.bgcolor = 'transparent';
 		this.padding = vec4(20,10,20,10);
 		this.justifycontent = 'space-between';
@@ -107,7 +107,7 @@ defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon, label, ch
 		}
 	});
 
-	defineDreem.class(this, "divider", view, function() {
+	export default defineDreem.class(this, "divider", view, function() {
 		this.justifycontent = "space-between";
 		this.bgcolor = "transparent";
 		this.margin = vec4(5,5,10,0);
@@ -167,12 +167,12 @@ defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon, label, ch
 		}
 	});
 
-	defineDreem.class(this, "panelview", view, function() {
+	export default defineDreem.class(this, "panelview", view, function() {
 		this.bgcolor = "transparent";
 		this.pickalpha = -1;
 	});
 
-	defineDreem.class(this, "panellabel", label, function() {
+	export default defineDreem.class(this, "panellabel", label, function() {
 		this.bgcolor = "transparent";
 		this.pickalpha = -1;
 		this.fgcolor = "#e4e4e4";
@@ -180,7 +180,7 @@ defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon, label, ch
 		this.margin = 0;
 	});
 
-	defineDreem.class(this, "panelicon", icon, function() {
+	export default defineDreem.class(this, "panelicon", icon, function() {
 		this.bgcolor = 'transparent';
 		this.pickalpha = -1;
 		this.fgcolor = '#e4e4e4';
@@ -189,7 +189,7 @@ defineDreem.class('$ui/view', function(requireDreem, $ui$, view, icon, label, ch
 		this.margin = 0;
 	});
 
-	defineDreem.class(this, "panelitem", view, function() {
+	export default defineDreem.class(this, "panelitem", view, function() {
 
 		this.bgcolor = 'transparent';
 		this.flexdirection = 'column';

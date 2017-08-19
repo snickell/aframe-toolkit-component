@@ -6,7 +6,7 @@
 
 "use strict"
 
-defineDreem.class('$system/base/node', function(requireDreem){
+export default defineDreem.class('$system/base/node', function(requireDreem){
 // Base UI view object
 
 
@@ -1375,7 +1375,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 		this.relayout()
 	}
 
-	defineDreem.class(this, 'hardrect', this.Shader, function(){
+	export default defineDreem.class(this, 'hardrect', this.Shader, function(){
 		this.updateorder = 0
 		this.draworder = 0
 		this.dont_scroll_as_viewport = true
@@ -1398,7 +1398,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 		return bordercolor
 	}
 
-	defineDreem.class(this, 'hardborder', this.Shader, function(){
+	export default defineDreem.class(this, 'hardborder', this.Shader, function(){
 		this.updateorder = 0
 		this.draworder = 1
 		this.mesh = vec2.array()
@@ -1438,7 +1438,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	})
 
 	// hard edged bgimage shader
-	defineDreem.class(this, 'hardimage', this.hardrect, function(){
+	export default defineDreem.class(this, 'hardimage', this.hardrect, function(){
 		this.dont_scroll_as_viewport = true
 		this.updateorder = 0
 		this.draworder = 0
@@ -1620,7 +1620,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	}
 
 	// rounded rect shader class
-	defineDreem.class(this, 'roundedrect', this.Shader, function(){
+	export default defineDreem.class(this, 'roundedrect', this.Shader, function(){
 		this.dont_scroll_as_viewport = true
 		this.updateorder = 0
 		this.draworder = 0
@@ -1703,7 +1703,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	})
 
 	// hard edged bgimage shader
-	defineDreem.class(this, 'roundedimage', this.roundedrect, function(){
+	export default defineDreem.class(this, 'roundedimage', this.roundedrect, function(){
 		this.dont_scroll_as_viewport = true
 		this.updateorder = 0
 		this.draworder = 0
@@ -1721,7 +1721,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	})
 
 	// rounded rect shader class
-	defineDreem.class(this, 'shadowrect', this.Shader, function(){
+	export default defineDreem.class(this, 'shadowrect', this.Shader, function(){
 		this.updateorder = 0
 
 		this.vertexstruct = defineDreem.struct({
@@ -1884,7 +1884,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 
 	// When passes > 0, create inner classes with names pass0..9 to implement the shaders
 	// for each pass.
-	this.RenderPass = defineDreem.class(this.Shader, function(){
+	this.RenderPass = export default defineDreem.class(this.Shader, function(){
 		// create placeholder passes for the compiler
 		this.framebuffer = this.pass0 = this.pass1 = this.pass2 = this.pass3 =
 			this.pass4 = this.pass5 = this.pass6 = this.pass7 = this.pass8 =
@@ -1914,7 +1914,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	})
 
 	// blends current viewport into the parent
-	defineDreem.class(this, 'viewportblend', this.Shader, function(){
+	export default defineDreem.class(this, 'viewportblend', this.Shader, function(){
 		this.draworder = 10
 		this.updateorder = 10
 		this.omit_from_shader_list = true
@@ -1935,7 +1935,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	})
 
 	// rounded corner border shader
-	defineDreem.class(this, 'roundedborder', this.Shader, function(){
+	export default defineDreem.class(this, 'roundedborder', this.Shader, function(){
 		this.dont_scroll_as_viewport = true
 		this.draworder = 1
 		this.updateorder = 1
@@ -2023,7 +2023,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	})
 
 	// lets pull in the scrollbar on the view
-	defineDreem.class(this, 'scrollbar', requireDreem('$ui/scrollbar'),function(){
+	export default defineDreem.class(this, 'scrollbar', requireDreem('$ui/scrollbar'),function(){
 		this.hardrect = {
 			noscroll:true
 		}

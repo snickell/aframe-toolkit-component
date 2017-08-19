@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class('$ui/button', function(requireDreem,$ui$, textbox, label, view){
+export default defineDreem.class('$ui/button', function(requireDreem,$ui$, textbox, label, view){
 
 	this.attributes = {
 		commands:[],

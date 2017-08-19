@@ -22,7 +22,7 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-defineDreem.class(function(requireDreem, $server$, service){
+export default defineDreem.class(function(requireDreem, $server$, service){
 	this.init = function(){
 		console.log("geo init");
 	}

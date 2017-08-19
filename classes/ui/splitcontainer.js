@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
- defineDreem.class(function($ui$, view, label){
+ export default defineDreem.class(function($ui$, view, label){
 	// Splitcontainer adds dragbars between nodes to make all the nodes resizable.
 
 	// should the splitter bars be introduced horizontally or vertically?
@@ -36,7 +36,7 @@
 		}
 
 	// the visual class that defines the draggable bar between the resizable children
-	defineDreem.class(this, 'splitter', function(view){
+	export default defineDreem.class(this, 'splitter', function(view){
 
 		this.attributes = {
 			firstnode: Config({type: int, value: 0})

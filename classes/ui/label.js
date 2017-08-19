@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem.class(function(requireDreem, $ui$, view){
+export default defineDreem.class(function(requireDreem, $ui$, view){
 // A simple UI label for displaying text
 // <br/><a href="/examples/text">examples &raquo;</a>
 
@@ -64,7 +64,7 @@ defineDreem.class(function(requireDreem, $ui$, view){
 	}
 
 	// the normal font
-	defineDreem.class(this, 'typefacenormal', TypeFace, function(){
+	export default defineDreem.class(this, 'typefacenormal', TypeFace, function(){
 		this.updateorder = 3
 		this.draworder = 5
 		this.subpixel = false
@@ -105,20 +105,20 @@ defineDreem.class(function(requireDreem, $ui$, view){
 	})
 
 	// the subpixel font used to render with subpixel antialiasing
-	defineDreem.class(this, 'typefacesubpixelaa', this.typefacenormal, function(){
+	export default defineDreem.class(this, 'typefacesubpixelaa', this.typefacenormal, function(){
 		this.glyphy_mesh = this.glyphy_mesh_sdf
 		this.glyphy_pixel = this.glyphy_sdf_draw_subpixel_aa
 		this.subpixel = true
 		this.boldness = 0.6
 	})
 
-	defineDreem.class(this, 'typefaceglyphy', this.typefacenormal, function(){
+	export default defineDreem.class(this, 'typefaceglyphy', this.typefacenormal, function(){
 		this.glyphy_pixel = this.glyphy_atlas_draw
 		this.glyphy_mesh = this.glyphy_mesh_atlas
 	})
 
 	// the font which is set to fontsubpixelaa and fontnormal depending on the value of subpixel
-	defineDreem.class(this, 'typeface', this.typefacenormal, function(){
+	export default defineDreem.class(this, 'typeface', this.typefacenormal, function(){
 	})
 	this.typeface = true
 

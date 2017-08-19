@@ -6,7 +6,7 @@
 
 
 // tests class
-defineDreem.class(function(){
+export default defineDreem.class(function(){
 	this.init = function(){
 	}
 })

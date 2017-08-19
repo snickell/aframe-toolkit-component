@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class(function(requireDreem, $ui$, view, checkbox,foldcontainer, label, icon, button, scrollbar, textbox, numberbox, $widgets$, colorpicker, radiogroup){
+export default defineDreem.class(function(requireDreem, $ui$, view, checkbox,foldcontainer, label, icon, button, scrollbar, textbox, numberbox, $widgets$, colorpicker, radiogroup){
 // internal
 
 	this.attributes = {

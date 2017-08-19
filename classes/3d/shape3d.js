@@ -4,10 +4,10 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem.class(function(requireDreem, $ui$, view){
+export default defineDreem.class(function(requireDreem, $ui$, view){
 // Base class for 3d geometry.
 
-	defineDreem.class(this, 'shape3d', this.Shader, function(){
+	export default defineDreem.class(this, 'shape3d', this.Shader, function(){
 		this.draworder = 0
 
 		this.depth_test = 'src_depth < dst_depth'

@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem.class("$ui/view", function(){
+export default defineDreem.class("$ui/view", function(){
 
 	this.attributes = {
 		// Color of the draggable part of the scrollbar

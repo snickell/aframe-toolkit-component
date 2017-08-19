@@ -6,7 +6,7 @@
 
 import defineDreem from 'system/base/define';
 
-defineDreem.class(function(requireDreem, $ui$button){
+export default defineDreem.class(function(requireDreem, $ui$button){
 	//internal, this widget controls
 
 	this.attributes = {

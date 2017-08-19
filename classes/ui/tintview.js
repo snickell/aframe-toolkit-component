@@ -6,7 +6,7 @@
 
 "use strict"
 
-defineDreem.class('$ui/view', function(requireDreem){
+export default defineDreem.class('$ui/view', function(requireDreem){
 // Example of how to use multiple render passes
 
 	this.attributes = {
@@ -20,14 +20,14 @@ defineDreem.class('$ui/view', function(requireDreem){
 
 	// Each pass _must_ be named pass0..9, define based on this.passes, e.g. this.passes = 1
 	// must define pass0, 2 must define pass0 and pass1...
-	defineDreem.class(this, "pass0", this.RenderPass, function() {
+	export default defineDreem.class(this, "pass0", this.RenderPass, function() {
 		this.color = function(){
 			var col = this.framebuffer.sample(mesh.xy) * view.tintcolor
 			return vec4(col.rgb, col.a * view.opacity)
 		}
 	})
 
-	defineDreem.class(this, "pass1", this.RenderPass, function() {
+	export default defineDreem.class(this, "pass1", this.RenderPass, function() {
 		this.color = function(){
 			var col = this.pass0.sample(mesh.xy * 2)
 			return vec4(col.rgb, col.a * view.opacity)

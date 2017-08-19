@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Sprite class
 
-defineDreem.class("$ui/view", function(requireDreem, $ui$, view){
+export default defineDreem.class("$ui/view", function(requireDreem, $ui$, view){
 // A drawer view that slides to reveal trays either to the left and right in horizontal mode or or the top and
 // bottom in vertical mode.  Subviews can contain components which will become activated as the lower tray is revealed.
 // Up to three subviews can be added to the drawer's constructor, providing the top drawer view, the right tray view

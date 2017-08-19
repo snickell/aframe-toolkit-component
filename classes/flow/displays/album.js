@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class('$ui/screen', function(requireDreem, $ui$, screen, cadgrid, view){
+export default defineDreem.class('$ui/screen', function(requireDreem, $ui$, screen, cadgrid, view){
 // internal, An Album will display a simple list of image urls, or objects with `.image` url properties.
 
     this.attributes = {

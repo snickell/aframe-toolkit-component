@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem.class('$system/base/node', function(requireDreem){
+export default defineDreem.class('$system/base/node', function(requireDreem){
 	// internal, the role class holds all the role server side component and screens. Currently only a single role is supported
 	// later on the role class allows multiple roles to be defined and have different screen setups
 

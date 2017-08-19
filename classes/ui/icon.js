@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Sprite class
 
-defineDreem.class( function(requireDreem, exports, label){
+export default defineDreem.class( function(requireDreem, exports, label){
 	// not-supported: DALi
 	// The icon class provides an easy way to access most of the commonly used web icons. Look at the FontAwesome cheat sheet to see what can be used.
 

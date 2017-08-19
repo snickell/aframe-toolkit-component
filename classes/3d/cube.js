@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem.class(function(requireDreem, shape3d){
+export default defineDreem.class(function(requireDreem, shape3d){
 
 	var GLGeom= requireDreem('$system/geometry/basicgeometry')
 	this.init = function(){

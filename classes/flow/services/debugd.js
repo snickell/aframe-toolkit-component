@@ -4,7 +4,7 @@
  software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem.class('$server/service', function() {
+export default defineDreem.class('$server/service', function() {
 
 	this.attributes = {
 		outnumber: Config({persist:true, type:Number, flow:"out", value:100}),
