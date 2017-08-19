@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // trace JS
 
-defineDreem(function(requireDreem, exports){
+export default defineDreem(function(requireDreem, exports){
 
 	var dump = requireDreem('$system/debug/dump')
 	var file_color = {}

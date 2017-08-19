@@ -6,7 +6,7 @@
 
 // inspired by Seriously awesome GLSL noise functions.  Stefan Gustavson, Ian McEwan Ashima Arts
 
-defineDreem(function(requireDreem, exports){
+export default defineDreem(function(requireDreem, exports){
 	exports.permute1 = function(x){
 		return mod((34.0 * x + 1.0) * x, 289.0)
 	}

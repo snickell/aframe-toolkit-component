@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 // Acorn AST structure definition
 
-defineDreem({
+export default defineDreem({
 	Program:{ body:2 },
 	BinaryExpression:{left:1, right:1, operator:0},
 	ExpressionStatement:{expression:1},

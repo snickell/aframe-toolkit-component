@@ -10,7 +10,7 @@
 // 2 means array of nodes
 // 3 is the slightly off object declaration
 
-defineDreem(function(requireDreem, exports, module){
+export default defineDreem(function(requireDreem, exports, module){
 	module.exports = {
 	Program:{ steps:2 },
 	Empty:{},

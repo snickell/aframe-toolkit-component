@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 
-defineDreem(function(requireDreem, exports){
+export default defineDreem(function(requireDreem, exports){
 	exports.getType = function(type){
 		if(type === null) return 'void'
 		var name = this.typemap[type.id] || type.id

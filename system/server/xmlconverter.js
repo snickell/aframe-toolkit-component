@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 // converts .dre xml into dreemgl-compliant javascript. Supports methods, attributes, attribute declarations and handlers.
-defineDreem(function(requireDreem){
+export default defineDreem(function(requireDreem){
 	var fs = requireDreem('fs')
 	var HTMLParser = requireDreem('$system/parse/htmlparser')
 

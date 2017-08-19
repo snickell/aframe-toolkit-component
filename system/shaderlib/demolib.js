@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-defineDreem(function(requireDreem, exports){
+export default defineDreem(function(requireDreem, exports){
 	exports.noise = requireDreem('./noiselib')
 	exports.pal = requireDreem('./palettelib')
 	exports.math = requireDreem('./mathlib')

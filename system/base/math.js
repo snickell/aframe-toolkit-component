@@ -4,7 +4,7 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-export default defineDreem(function(){
+export default export default defineDreem(function(){
 
 	// provide all the apis on our math types
 	var color_wikipedia = {
