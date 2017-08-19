@@ -1,2 +1,2 @@
-import library from './library';
 import define from './system/base/define';
+import library from './library';
