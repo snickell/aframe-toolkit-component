@@ -28,8 +28,8 @@
 // you see in dreemGL, which fuses classes with modules. And this may have some
 // compatibility repercussions for some modules that assume 'define' works a certain way
 // If you need to require nodejs modules using the require provided by define,
-// use require('module') dont use './' or '/' these are interpreted as defineDreem.js modules
-// The browser require will ignore require('module') so if you stick to a clean
+// use requireDreem('module') dont use './' or '/' these are interpreted as defineDreem.js modules
+// The browser require will ignore requireDreem('module') so if you stick to a clean
 // classdef it can safely load up 'nodejs' classes to inspect their interfaces for RPC
 // All these choices are to support the design goals of dreemGL some of which are:
 // - be a low cognitive overhead prototyping toolkit
@@ -242,7 +242,7 @@
 
 
 	defineDreem.localRequire = function(base_path, from_file){
-		function require(dep_path, ext){
+		function requireDreem(dep_path, ext){
 			// skip nodejs style includes
 			var abs_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(dep_path))
 			if(!ext && !defineDreem.fileExt(abs_path)) abs_path = abs_path + '.js'
@@ -302,11 +302,11 @@
 			return new defineDreem.Promise(function(resolve, reject){
 				if(defineDreem.factory[dep_path]){
 					// if its already asynchronously loading..
-					var module = require(path, ext)
+					var module = requireDreem(path, ext)
 					return resolve(module)
 				}
 				defineDreem.loadAsync(dep_path, from_file, ext).then(function(){
-					var module = require(path, ext)
+					var module = requireDreem(path, ext)
 					resolve(module)
 				}, reject)
 			})
@@ -503,7 +503,7 @@
 			}
 			else{
 
-				args[i] = require(path)
+				args[i] = requireDreem(path)
 				args[i].nested_module = Constructor.module
 			}
 		})
@@ -703,7 +703,7 @@
 
 		function moduleFactory(require, exports, module){
 			var base
-			if(typeof base_class === 'string') base = require(base_class)
+			if(typeof base_class === 'string') base = requireDreem(base_class)
 			else if (base_class) base = base_class
 			defineDreem.makeClass(base, body, require, module, undefined, outer_this)
 		}
@@ -1479,7 +1479,7 @@
 							// open the fucker
 							try{
 								//!TODO, make a neater way to fetch the module dependencies (dont require it twice)
-								require(result.path)
+								requireDreem(result.path)
 								// and lets remove it again immediately
 								delete Module._cache[result.path.indexOf("\\") !== -1?result.path.replace(/\//g, '\\'):result.path]
 							}
@@ -1584,7 +1584,7 @@
 				defineDreem.local_require_stack = []
 
 				try{
-					var ret = require(full_name)
+					var ret = requireDreem(full_name)
 				}
 				//catch(e){
 

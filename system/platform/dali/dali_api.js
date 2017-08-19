@@ -140,13 +140,13 @@ defineDreem.class(function(exports){
 			console.log('DALICODE: var viewMode={\'stereoscopic-mode\':\'mono\', \'stereo-base\': 65};');
 
 			console.log('DALICODE: var options= {\'window\': window, \'view-mode\': viewMode}');
-			console.log('DALICODE: var dali = require(\'' + DaliApi.dalilib + '\')(options);');
+			console.log('DALICODE: var dali = requireDreem(\'' + DaliApi.dalilib + '\')(options);');
 		}
 
 		try {
       // Load the library and make available as DaliApi.dali
 			// console.log('LOADING', dalilib);
-			var dalimodule = defineDreem.require(DaliApi.dalilib)(options);
+			var dalimodule = defineDreem.requireDreem(DaliApi.dalilib)(options);
 			DaliApi.dali = dalimodule;
 
 			// Create a top-level 2D layer to the stage.

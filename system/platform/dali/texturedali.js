@@ -75,7 +75,7 @@ defineDreem.class('$system/base/texture', function(requireDreem, exports){
 		// to the path where dali runs.
 		var fullpath = imagedata.path;
 		if (!fullpath) {
-			console.error('Error: Use require() to load images for DALi platform');
+			console.error('Error: Use requireDreem() to load images for DALi platform');
 			return new Texture(Texture.RGBA, 0, 0);
 		}
 
@@ -167,7 +167,7 @@ defineDreem.class('$system/base/texture', function(requireDreem, exports){
 			});
 
 			console.log('DALICODE: var texture' + tex.id + ';');
-			console.log('DALICODE: var fs = require(\'fs\');');
+			console.log('DALICODE: var fs = requireDreem(\'fs\');');
 			console.log('DALICODE: var texturedata' + tex.id + ' = fs.readFileSync(\'font_' + tex.id + '.bin\');');
 
 			console.log('DALICODE: var image_options' + tex.id + ' = {width: ' + w + ', height: ' + h + ', pixelFormat : ' + pixel_type + '}');

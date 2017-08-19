@@ -36,10 +36,10 @@
 		$docs:"$root/docs",
 		$test:"$root/test",
       main:["$system/base/math", "$examples/buttons.js"],
-      atMain:function(require, modules){
+      atMain:function(requireDreem, modules){
         define.endLoader()
 		 require(modules[0])
-		 var Composition = require(modules[1])
+		 var Composition = requireDreem(modules[1])
 		 var serverattrs = {}
 		 var renderTarget;
         define.rootComposition = new Composition(define.rootComposition, undefined, serverattrs, renderTarget)

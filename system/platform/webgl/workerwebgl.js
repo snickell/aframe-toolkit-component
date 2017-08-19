@@ -136,7 +136,7 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 		tail += 'defineDreem.packagedClass("/myworker.js",["$system/base/worker",_myworker]);\n'
 		// lets start with requiring /myworker
 
-		tail += 'var _worker = defineDreem.require(\'/myworker\')();\n'
+		tail += 'var _worker = defineDreem.requireDreem(\'/myworker\')();\n'
 		tail += '_worker.postMessage = function(msg,transfer){self.postMessage({message:msg,workerid:_worker.workerid},transfer)};\n'
 		tail += _worker_return.toString() + ';\n'
 		

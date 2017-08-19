@@ -1,4 +1,4 @@
-defineDreem.class("$server/service", function (require) {
+defineDreem.class("$server/service", function (requireDreem) {
 	// The iot class makes it very easy to connect to a wide variety of devices including
 	// SmartThings, Philips Hue and many more.
 	//

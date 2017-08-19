@@ -152,8 +152,8 @@ defineDreem.class(function(requireDreem){
 			'      main:["$system/base/math", "' + boot + '"],\n'+
 			'      atMain:function(requireDreem, modules){\n'+
 			'        defineDreem.endLoader()\n'+
-			'		 require(modules[0])\n'+
-			'		 var Composition = require(modules[1])\n'+
+			'		 requireDreem(modules[0])\n'+
+			'		 var Composition = requireDreem(modules[1])\n'+
 			'		 var serverattrs = ' + JSON.stringify(preloadattrs) + '\n'+
 			'		 var renderTarget;' + '\n'+
 			'        defineDreem.rootComposition = new Composition(defineDreem.rootComposition, undefined, serverattrs, renderTarget)\n'+

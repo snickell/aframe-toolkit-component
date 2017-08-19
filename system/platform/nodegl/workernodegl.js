@@ -71,7 +71,7 @@ defineDreem.class('$system/platform/webgl/workerwebgl', function(requireDreem, e
 		for(var key in deps){
 			tail += deps[key]
 		}
-	//	tail += 'var _worker = defineDreem.require(\'/myworker\')();\n'
+	//	tail += 'var _worker = defineDreem.requireDreem(\'/myworker\')();\n'
 		tail += ';(' + worker_boot.toString() + ')();\n'
 		// start all workers
 		this._workers = this._startWorkers(head, tail, 1)

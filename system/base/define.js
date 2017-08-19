@@ -249,7 +249,7 @@ console.log("loading Define");
 
 
 	defineDreem.localRequire = function(base_path, from_file){
-		function require(dep_path, ext){
+		function requireDreem(dep_path, ext){
       
       console.warn("disabled requireDreem(", dep_path, ext, ")");
       return;
@@ -313,11 +313,11 @@ console.log("loading Define");
 			return new defineDreem.Promise(function(resolve, reject){
 				if(defineDreem.factory[dep_path]){
 					// if its already asynchronously loading..
-					var module = require(path, ext)
+					var module = requireDreem(path, ext)
 					return resolve(module)
 				}
 				defineDreem.loadAsync(dep_path, from_file, ext).then(function(){
-					var module = require(path, ext)
+					var module = requireDreem(path, ext)
 					resolve(module)
 				}, reject)
 			})
@@ -366,10 +366,10 @@ console.log("loading Define");
 			})
 		}
 
-		return require
+		return requireDreem
 	}
 
-	defineDreem.require = defineDreem.localRequire('','root')
+	defineDreem.requireDreem = defineDreem.localRequire('','root')
 
 	defineDreem.findRequiresInFactory = function(factory, req){
 		var search = factory.toString()
@@ -487,7 +487,7 @@ console.log("loading Define");
 	}
 
 
-	defineDreem.applyBody = function(body, Constructor, baseclass, require){
+	defineDreem.applyBody = function(body, Constructor, baseclass, requireDreem){
 		if(typeof body == 'object' && body){
 			for(var key in body) Constructor.prototype[key] = body[key]
 			return
@@ -505,8 +505,8 @@ console.log("loading Define");
 				if(builtin === 1) args[i] = Constructor
 				else if(builtin === 2) args[i] = Constructor.module
 				else if(builtin === 3){
-					if(!require) throw new Error('You cant get require on the class body as argument here')
-					args[i] = require
+					if(!requireDreem) throw new Error('You cant get require on the class body as argument here')
+					args[i] = requireDreem
 				}
 				else if(builtin === 4) args[i] = Constructor.prototype
 				else if(builtin === 5) args[i] = baseclass? baseclass.prototype: undefined
@@ -514,7 +514,7 @@ console.log("loading Define");
 			}
 			else{
 
-				args[i] = require(path)
+				args[i] = requireDreem(path)
 				args[i].nested_module = Constructor.module
 			}
 		})
@@ -525,7 +525,7 @@ console.log("loading Define");
 
 	defineDreem.EnvironmentStub = function(dep){ this.dep = dep }
 
-	defineDreem.makeClass = function(baseclass, body, require, module, nested_module, outer_this, in_name){
+	defineDreem.makeClass = function(baseclass, body, requireDreem, module, nested_module, outer_this, in_name){
 
 		function MyConstructor(){
 			// if called without new, just do a new
@@ -588,7 +588,7 @@ console.log("loading Define");
 
 		Object.defineProperty(Constructor, 'extend', {value:function(body, outer_this, in_name){
 			//if(this.prototype.constructor === defineDreem.StubbedClass) return defineDreem.StubbedClass
-			return defineDreem.makeClass(this, body, require, undefined, this.nested_module, outer_this, in_name)
+			return defineDreem.makeClass(this, body, requireDreem, undefined, this.nested_module, outer_this, in_name)
 		}})
 
 		Object.defineProperty(Constructor, 'overlay', {value:function(body){
@@ -618,7 +618,7 @@ console.log("loading Define");
 
 				Object.defineProperty(Constructor, 'module', {value:module})
 
-				defineDreem.applyBody(body, Constructor, baseclass, require)
+				defineDreem.applyBody(body, Constructor, baseclass, requireDreem)
 			}
 			else if(nested_module){
 				Object.defineProperty(Constructor, 'module', {value:nested_module})
@@ -712,11 +712,11 @@ console.log("loading Define");
 			body = arguments[0]
 		}
 
-		function moduleFactory(require, exports, module){
+		function moduleFactory(requireDreem, exports, module){
 			var base
-			if(typeof base_class === 'string') base = require(base_class)
+			if(typeof base_class === 'string') base = requireDreem(base_class)
 			else if (base_class) base = base_class
-			defineDreem.makeClass(base, body, require, module, undefined, outer_this)
+			defineDreem.makeClass(base, body, requireDreem, module, undefined, outer_this)
 		}
 
 		// make an argmap
@@ -1001,7 +1001,7 @@ console.log("loading Define");
 
 
 	function define_packaged(){
-		defineDreem.require = defineDreem.localRequire('')
+		defineDreem.requireDreem = defineDreem.localRequire('')
 	}
 
 
