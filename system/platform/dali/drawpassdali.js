@@ -423,7 +423,7 @@ export default defineDreem.class(function(requireDreem, baseclass){
 		return hastime
 	}
 
-	var DebugRect = export default defineDreem.class(Shader, function(){
+	var DebugRect = defineDreem.class(Shader, function(){
 		this.view = {totalmatrix:mat4(), viewmatrix:mat4(), layout:{width:0, height:0}}
 
 		this.mesh = vec2.array()

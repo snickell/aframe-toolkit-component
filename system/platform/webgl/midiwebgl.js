@@ -17,7 +17,7 @@ export default defineDreem.class('$system/base/midi', function (require, exports
 		pitchbend:Config({type:Event})
 	}
 	
-	this.Input = export default defineDreem.class(function midiInput($system$base$node){
+	this.Input = defineDreem.class(function midiInput($system$base$node){
 		
 		this.atMidiData = function(data){
 			var ch = data[0] & 16
@@ -34,7 +34,7 @@ export default defineDreem.class('$system/base/midi', function (require, exports
 		this.attributes = exports.midiAttributes
 	})
 
-	this.Output = export default defineDreem.class(function midiOutput($system$base$node){
+	this.Output = defineDreem.class(function midiOutput($system$base$node){
 		this.atConstructor = function(send){
 			this.send = send
 		}

@@ -456,7 +456,7 @@ export default defineDreem.class(function(requireDreem){
 		}
 	})
 
-	var Style = export default defineDreem.class(function(){
+	var Style = defineDreem.class(function(){
 
 		this.composeStyle = function(){
 			// lets find the highest matching level

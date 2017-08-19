@@ -322,7 +322,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 		}
 
 		// the geometry generation worker
-		var worker = export default defineDreem.class('$system/rpc/worker', function(requireDreem) {
+		var worker = defineDreem.class('$system/rpc/worker', function(requireDreem) {
 			this.BufferGen = requireDreem('$widgets/map/mapbuffers')()
 
 			this.build = function(str, r) {
@@ -522,7 +522,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 	var alltiles = 0
 
 	// All tiles use tilebasemixin
-	var tilebasemixin = export default defineDreem.class(Object, function() {
+	var tilebasemixin = defineDreem.class(Object, function() {
 
 		this.drawtarget = 'color'
 

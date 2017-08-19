@@ -112,7 +112,7 @@ export default defineDreem.class('$system/base/node', function(requireDreem, exp
 		return proxy
 	}
 
-	var RpcChildSet = export default defineDreem.class(function RpcChildSet(){
+	var RpcChildSet = defineDreem.class(function RpcChildSet(){
 		this.methodRpc = function(rpcid, message){
 			return this.parent.methodRpc(this.name + '.' + rpcid, message)
 		}

@@ -1884,7 +1884,7 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 
 	// When passes > 0, create inner classes with names pass0..9 to implement the shaders
 	// for each pass.
-	this.RenderPass = export default defineDreem.class(this.Shader, function(){
+	this.RenderPass = defineDreem.class(this.Shader, function(){
 		// create placeholder passes for the compiler
 		this.framebuffer = this.pass0 = this.pass1 = this.pass2 = this.pass3 =
 			this.pass4 = this.pass5 = this.pass6 = this.pass7 = this.pass8 =

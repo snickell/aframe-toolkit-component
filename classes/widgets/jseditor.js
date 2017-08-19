@@ -130,7 +130,7 @@ export default defineDreem.class('./jsviewer', function(requireDreem, baseclass,
 	}
 
 	// alright lets make a worker that parses and reserializes
-	var worker = export default defineDreem.class('$system/rpc/worker', function(requireDreem){
+	var worker = defineDreem.class('$system/rpc/worker', function(requireDreem){
 
 		var Parser = requireDreem('$system/parse/onejsparser')
 		var JSFormatter = requireDreem('$system/parse/jsformatter')
