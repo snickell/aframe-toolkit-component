@@ -241,10 +241,16 @@ import lookupInImportLibrary from 'library';
 
 	//  require implementation
 
+  function objectIsEmpty(obj) {
+    for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+    return true;
+  }
 
 	defineDreem.localRequire = function(base_path, from_file){
     let requireDreem = function (dep_path, ext){
-		console.error("SETH FIXME: requireDreem(", dep_path, ext, "), rewritten to use imports from library (match the dep_path here to the module name in ./library.js) instead of the current load-from-network approach (!)");
+		console.error("defineDream(", dep_path, "): SETH FIXME: fix requireDreem() to properly load modules from the new library.js import system");
 		
 			// skip nodejs style includes
 			var abs_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(dep_path))
@@ -253,7 +259,10 @@ import lookupInImportLibrary from 'library';
       var moduleFromLibrary = lookupInImportLibrary(abs_path);
       
       if (moduleFromLibrary) {
-        console.log("found for ", abs_path, ": ", moduleFromLibrary);
+        console.log("\tfound for ", abs_path, ": ", moduleFromLibrary);
+        if (objectIsEmpty(moduleFromLibrary)) {
+          console.warn("\tgot an empty module back for ", abs_path, " probably means we don't have a proper export default in the module yet??? Need to figure out how to rig this into all files, ugh.");
+        }
         return moduleFromLibrary;
       } else {
         console.error("couldn't find moduleFromLibrary for ", abs_path, base_path);
@@ -1022,7 +1031,6 @@ import lookupInImportLibrary from 'library';
 
 
 	function define_browser(){ // browser implementation
-
 		// if define was already defined use it as a config store
 		// storage structures
 		defineDreem.cputhreads = navigator.hardwareConcurrency || 2
@@ -1040,7 +1048,7 @@ import lookupInImportLibrary from 'library';
 		defineDreem.loadAsync = function(files, from_file, inext){
 
 			function loadResource(url, from_file, recurblock, module_deps){
-
+        console.log("loadResource(", url, ")");
 				var ext = inext === undefined ? defineDreem.fileExt(url): inext;
 				var abs_url, fac_url
 
@@ -1073,7 +1081,9 @@ import lookupInImportLibrary from 'library';
 				else if(ext === 'jpg' || ext === 'jpeg' || ext === 'gif' || ext === 'png'){
 					prom = loadImage(fac_url, abs_url, from_file)
 				}
-				else  prom = loadXHR(fac_url, abs_url, from_file, ext)
+				else  {
+          prom = loadXHR(fac_url, abs_url, from_file, ext)
+        }
 				defineDreem.download_queue[abs_url] = prom
 				return prom
 			}
@@ -1125,6 +1135,14 @@ import lookupInImportLibrary from 'library';
 
 			// insert by script tag
 			function loadScript(facurl, url, from_file){
+        console.error("\tSETH FIXME: need to patchup loadScript() to use lookupInImportLibrary() instead of loading from network");
+        
+        return new defineDreem.Promise(function (resolve, reject) {
+          var moduleFromLibrary = lookupInImportLibrary(facurl);
+          console.log("loadScript(), found ", moduleFromLibrary, " for ", facurl);
+          resolve(moduleFromLibrary);
+        });
+        
 				return new defineDreem.Promise(function(resolve, reject){
 
 					var script = document.createElement('script')
