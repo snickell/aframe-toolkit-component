@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Standalone version of the dreemgl framework",
   "scripts": {
-    "start": "webpack-dev-server -d",
+    "start": "webpack-dev-server -d --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
@@ -22,5 +22,9 @@
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
+    "ansi-html": "^0.0.7",
+    "html-entities": "^1.2.1",
+    "loglevel": "^1.4.1",
+    "sockjs-client": "^1.1.4"
   }
 }
