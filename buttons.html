@@ -37,19 +37,17 @@
 		$test:"$root/test",
       main:["$system/base/math", "$examples/buttons.js"],
       atMain:function(requireDreem, modules){
-        console.log(requireDreem);
         defineDreem.endLoader()
-		 requireDreem(modules[0])
-		 var Composition = requireDreem(modules[1])
-		 var serverattrs = {}
-		 var renderTarget;
+        requireDreem(modules[0])
+        var Composition = requireDreem(modules[1])
+        var serverattrs = {}
+        var renderTarget;
         defineDreem.rootComposition = new Composition(defineDreem.rootComposition, undefined, serverattrs, renderTarget)
         console.log("atEndOfMain", defineDreem.rootComposition, require);
         
       },
 	   atEnd:function(){
-       console.log("atEnd");
-       //defineDreem.startLoader() // FIXME SETH: do we really want to disable this???
+       defineDreem.startLoader()
       }
     }
   </script>

@@ -41,11 +41,7 @@
 //   the modulesystem + classes are fused)
 
 
-  console.log("Ordering? ====?");
-
 import library from '../../library';
-
-console.log("loading Define");
 
 (function define_module(){
 
@@ -252,10 +248,8 @@ console.log("loading Define");
 
 	defineDreem.localRequire = function(base_path, from_file){
     let requireDreem = function (dep_path, ext){
-      
-      console.warn("disabled requireDreem(", dep_path, ext, ")");
-      return;
-      
+		console.error("SETH FIXME: requireDreem(", dep_path, ext, "), needs to be rewritten to use imports from library (match the dep_path here to the module name in ./library.js) instead of the current load-from-network approach (!)");
+		
 			// skip nodejs style includes
 			var abs_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(dep_path))
 			if(!ext && !defineDreem.fileExt(abs_path)) abs_path = abs_path + '.js'
@@ -660,7 +654,6 @@ console.log("loading Define");
 	// defineDreem.class(this, 'prop', 'base', function(){})  4
 
 	defineDreem.class = function(){
-    console.log("defineDreem.class(", ...arguments, ")");
 		// lets make a class
 		var base_class
 		var body
@@ -2944,7 +2937,6 @@ console.log("loading Define");
   return defineDreem;
 })()
 
-console.log("done loading: ", defineDreem);
 // use the switchable promise
 
 if(defineDreem.atEnd) defineDreem.atEnd()
