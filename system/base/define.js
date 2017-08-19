@@ -65,8 +65,8 @@ console.log("loading Define");
 		if(defineDreem.define) defineDreem.defineDreem(factory)
 	}
 
-	if(typeof window !== 'undefined') window.define = define, defineDreem.$environment = 'browser'
-	else if(typeof self !== 'undefined') self.define = define, defineDreem.$environment = 'worker'
+	if(typeof window !== 'undefined') window.defineDreem = defineDreem, defineDreem.$environment = 'browser'
+	else if(typeof self !== 'undefined') self.defineDreem = defineDreem, defineDreem.$environment = 'worker'
 	else if (typeof global !== 'undefined'){
 		Object.defineProperty(global, "define", {
 		    value: define,
@@ -75,7 +75,7 @@ console.log("loading Define");
 		defineDreem.$environment = 'nodejs'
 	}
 	else defineDreem.$environment = 'v8'
-
+    
 	// default config variables
 	defineDreem.inner = define_module
 
@@ -184,7 +184,7 @@ console.log("loading Define");
 
 	defineDreem.expandVariables = function(str){
 		return defineDreem.cleanPath(str.replace(/(\$[a-zA-Z0-9]+[a-zA-Z0-9]*)/g, function(all, lut){
-			if(!(lut in define)){
+			if(!(lut in defineDreem)){
 				throw new Error("Cannot find " + lut + " used in require")
 			}
 			return defineDreem.expandVariables(define[lut])
@@ -249,7 +249,7 @@ console.log("loading Define");
 
 
 	defineDreem.localRequire = function(base_path, from_file){
-		function requireDreem(dep_path, ext){
+    let requireDreem = function (dep_path, ext){
       
       console.warn("disabled requireDreem(", dep_path, ext, ")");
       return;
@@ -2936,8 +2936,13 @@ console.log("loading Define");
 	else if(defineDreem.$environment === 'nodejs') define_nodejs()
 	else if(defineDreem.$environment === 'browser') define_browser()
 	else if(defineDreem.$environment === 'worker') define_worker()
+    
+  return defineDreem;
 })()
 
+console.log("done loading: ", defineDreem);
 // use the switchable promise
 
 if(defineDreem.atEnd) defineDreem.atEnd()
+  
+export default defineDreem;
