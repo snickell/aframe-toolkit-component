@@ -458,9 +458,10 @@ export default function lookupInImportLibrary(path) {
   // We do this here so we have late-binding properties on our imports
   // if we did this immediately, our libraries would all be undefined
   // becuase they wouldn't have loaded yet (circular import issues with es6)
-  if (!pathToModule) createPathToModule();
+  createPathToModule();
   
   if (path.startsWith("/")) path = path.slice(1);
   if (path.endsWith(".js")) path = path.slice(0,-3);
   return pathToModule[path];
 }
+
