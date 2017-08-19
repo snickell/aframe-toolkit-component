@@ -42,6 +42,8 @@
 
 import library from '../../library';
 
+console.log("loading Define");
+
 (function define_module(){
 
 	var config_define
