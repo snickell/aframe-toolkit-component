@@ -41,7 +41,7 @@
 //   the modulesystem + classes are fused)
 
 
-import library from '../../library';
+import lookupInImportLibrary from 'library';
 
 (function define_module(){
 
@@ -52,6 +52,7 @@ import library from '../../library';
 
 	// the main define function
 	function defineDreem(factory, pkg){
+    console.log("defineDream()", factory, pkg)
 		if(pkg !== undefined){ // precompiled version
 			defineDreem.factory[pkg] = factory
 			return
@@ -242,18 +243,23 @@ import library from '../../library';
 	//  require implementation
 
 
-
-
-
-
 	defineDreem.localRequire = function(base_path, from_file){
     let requireDreem = function (dep_path, ext){
-		console.error("SETH FIXME: requireDreem(", dep_path, ext, "), needs to be rewritten to use imports from library (match the dep_path here to the module name in ./library.js) instead of the current load-from-network approach (!)");
+		console.error("SETH FIXME: requireDreem(", dep_path, ext, "), rewritten to use imports from library (match the dep_path here to the module name in ./library.js) instead of the current load-from-network approach (!)");
 		
 			// skip nodejs style includes
 			var abs_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(dep_path))
 			if(!ext && !defineDreem.fileExt(abs_path)) abs_path = abs_path + '.js'
 
+      var moduleFromLibrary = lookupInImportLibrary(abs_path);
+      
+      if (moduleFromLibrary) {
+        console.log("found for ", abs_path, ": ", moduleFromLibrary);
+        return moduleFromLibrary;
+      } else {
+        console.error("couldn't find moduleFromLibrary for ", abs_path, base_path);
+      }
+        
 			// lets look it up
 			var module = defineDreem.module[abs_path]
 			if(module) return module.exports
