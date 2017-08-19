@@ -278,7 +278,7 @@ defineDreem.class('$ui/label', function (require, $ui$, view, label) {
 
 	// defineDreem.class(this, 'eventrects', this.Shader, function(){
 	//
-	// 	var vertstruct = define.struct({
+	// 	var vertstruct = defineDreem.struct({
 	// 		pos: vec2,
 	// 		uv: vec2,
 	// 		id: float

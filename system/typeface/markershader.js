@@ -47,7 +47,7 @@ defineDreem.class('$system/platform/$platform/shader$platform', function(require
 		return vec4(view.markercolor.rgb, alpha)
 	}
 
-	this.vertexstruct = define.struct({
+	this.vertexstruct = defineDreem.struct({
 		pos:vec2,
 		rect:vec4,
 		other:vec4,

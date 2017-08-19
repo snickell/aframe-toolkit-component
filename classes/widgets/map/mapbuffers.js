@@ -129,7 +129,7 @@ defineDreem.class(function(requireDreem, $server$, service){
 		console.log(mapstylestring);
 	}
 
-	var BuildingVertexStruct = this.BuildingVertexStruct = define.struct({
+	var BuildingVertexStruct = this.BuildingVertexStruct = defineDreem.struct({
 		pos:vec3,
 		color1:vec4,
 		id: float,
@@ -137,7 +137,7 @@ defineDreem.class(function(requireDreem, $server$, service){
 		height: float
 	})
 
-	var RoadVertexStruct = this.RoadVertexStruct = define.struct({
+	var RoadVertexStruct = this.RoadVertexStruct = defineDreem.struct({
 		pos:vec4,
 		geom:vec4,//sidevec:vec2
 		//geom:vec3,
@@ -147,7 +147,7 @@ defineDreem.class(function(requireDreem, $server$, service){
 		//linewidth:float,
 	})
 
-	var LandVertexStruct = this.LandVertexStruct =	define.struct({
+	var LandVertexStruct = this.LandVertexStruct =	defineDreem.struct({
 			pos:vec4,
 			color1:vec4,
 		//color1:vec4,

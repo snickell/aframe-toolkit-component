@@ -269,7 +269,7 @@ defineDreem.class(function(requireDreem, exports){
 
 	this.pickScreen = function(x, y){
 		// promise based pickray rendering
-		return new define.Promise(function(resolve, reject){
+		return new defineDreem.Promise(function(resolve, reject){
 			this.pick_resolve.push(resolve)
 			this.pick_x = x
 			this.pick_y = y

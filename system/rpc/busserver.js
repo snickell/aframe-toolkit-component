@@ -46,7 +46,7 @@ defineDreem.class(function(requireDreem, exports){
 					binrpc_incoming[id] = undefined
 				}
 				var jsonmsg = JSON.parse(message)
-				jsonmsg = define.structFromJSON(jsonmsg, binary_xhr)
+				jsonmsg = defineDreem.structFromJSON(jsonmsg, binary_xhr)
 				binary_xhr.length = 0
 				jsonmsg.origin = origin
 				this.atMessage(jsonmsg, sock)
@@ -56,7 +56,7 @@ defineDreem.class(function(requireDreem, exports){
 
 			sock.sendJSON = function(msg){
 				var binary = []
-				var newmsg = define.makeJSONSafe(msg, binary)
+				var newmsg = defineDreem.makeJSONSafe(msg, binary)
 				for(var i = 0; i < binary.length; i++){
 					var data = binary[i].data
 

@@ -52,7 +52,7 @@ defineDreem.class('$system/base/texture', function(exports, require){
 		// With headless, the references should either be absolute, or relative
 		// to the path where headless runs.
 		var fullpath = imagedata.path;
-		if (imagedata.path[0] !== '/') fullpath = define.$example + fullpath;
+		if (imagedata.path[0] !== '/') fullpath = defineDreem.$example + fullpath;
 
 		
 		var img = new headless.ResourceImage({url: fullpath});

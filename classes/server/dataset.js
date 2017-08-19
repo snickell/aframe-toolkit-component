@@ -58,7 +58,7 @@ defineDreem.class('$system/base/node', function(requireDreem, $ui$, label){
 	// convert a string in to a meaningful javascript object for this dataset. The default is JSON, but you could use this function to accept any format of choice.
 	this.parse = function(stringdata){
 		var data = JSON.parse(stringdata)
-		data = define.structFromJSON(data);
+		data = defineDreem.structFromJSON(data);
 		return data;
 	}
 

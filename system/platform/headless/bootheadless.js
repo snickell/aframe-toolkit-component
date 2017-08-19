@@ -49,7 +49,7 @@ defineDreem.class(function(requireDreem){
 		this.duration = parseInt(args['-duration']) || 0;
 
 		if (this.verbose)
-			console.log('Loading environment', define.$environment);
+			console.log('Loading environment', defineDreem.$environment);
 
 		this.args = args
 		this.compname = compname
@@ -70,18 +70,18 @@ defineDreem.class(function(requireDreem){
 
 
 			//this.readSystemClasses('$classes', this.system_classes = {})
-			//define.system_classes = this.system_classes;
+			//defineDreem.system_classes = this.system_classes;
 
 		this.components = {}
 
 		this.paths = ""
-		for(var key in define.paths){
+		for(var key in defineDreem.paths){
 			if(this.paths) this.paths += ',\n\t\t'
 			this.paths += '$'+key+':"$root/'+key+'"'
 		}
 
 		// lets compile and run the dreem composition
-		define.atRequire = function(filename){
+		defineDreem.atRequire = function(filename){
 			this.slow_watcher.watch(filename)
 		}.bind(this)
 		//
@@ -106,7 +106,7 @@ defineDreem.class(function(requireDreem){
 		this.HeadlessApi = requireDreem('./headless_api');
 		this.HeadlessApi.initialize({width: this.width, height: this.height, name: this.name, duration: this.duration, verbose: this.verbose, dumpstate: this.dumpstate});
 
-		var Composition = requireDreem(define.expandVariables(this.filename))
+		var Composition = requireDreem(defineDreem.expandVariables(this.filename))
 		this.composition = new Composition(this.busserver, this.session)
 	}
 
@@ -120,13 +120,13 @@ defineDreem.class(function(requireDreem){
 		var dir = '$root/'
 		var jsname = dir + this.compname+'.js'
 		try{
-			if(fs.existsSync(define.expandVariables(jsname))){
+			if(fs.existsSync(defineDreem.expandVariables(jsname))){
 				this.filename = jsname
 				return this.loadComposition()
 			}
 			else{
 				var jsname = dir + this.compname + '/index.js'
-				if(fs.existsSync(define.expandVariables(jsname))){
+				if(fs.existsSync(defineDreem.expandVariables(jsname))){
 					this.filename = jsname
 					return this.loadComposition()
 				}

@@ -79,7 +79,7 @@ defineDreem.class('$system/base/texture', function(requireDreem, exports){
 			return new Texture(Texture.RGBA, 0, 0);
 		}
 
-		if (imagedata.path[0] !== '/') fullpath = define.$example + fullpath;
+		if (imagedata.path[0] !== '/') fullpath = defineDreem.$example + fullpath;
 
 		if (fullpath.indexOf('http') < 0) {
 			// Local assets
@@ -87,7 +87,7 @@ defineDreem.class('$system/base/texture', function(requireDreem, exports){
 		}
 
 		// Remote assets are loaded into the cache
-		var localpath = define.mapToCacheDir(fullpath);
+		var localpath = defineDreem.mapToCacheDir(fullpath);
 		try {
 			if (fs.statSync(localpath).isFile()) {
 				// File is already in the cache
@@ -98,7 +98,7 @@ defineDreem.class('$system/base/texture', function(requireDreem, exports){
 		}
 
 		// Load the image into the cache.
-		define.httpGetCached(fullpath).then(function(result){
+		defineDreem.httpGetCached(fullpath).then(function(result){
 			var img = new dali.ResourceImage({url: result.path});
 			var tex = new Texture(Texture.RGBA, img.getWidth(), img.getHeight());
 			tex.image = img;

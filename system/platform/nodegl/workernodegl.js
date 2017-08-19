@@ -15,11 +15,11 @@ defineDreem.class('$system/platform/webgl/workerwebgl', function(requireDreem, e
 	this._startWorkers = function(head, tail, count){
 
 		if(!count) count = 1
-		var source = head + '\n\n\n;// Worker includes \nglobal.define = {packaged:true,$platform:"nodegl"};(' + define.inner.toString() + ')();\n'
-		source += '(' + define.getModule('$system/base/math.js').factory.toString() + ')();\n'
+		var source = head + '\n\n\n;// Worker includes \nglobal.define = {packaged:true,$platform:"nodegl"};(' + defineDreem.inner.toString() + ')();\n'
+		source += '(' + defineDreem.getModule('$system/base/math.js').factory.toString() + ')();\n'
 		var paths = ''
-		for(var key in define.paths){
-			paths += 'define.$'+key + ' = "'+define['$'+key]+'";\n'
+		for(var key in defineDreem.paths){
+			paths += 'defineDreem.$'+key + ' = "'+define['$'+key]+'";\n'
 		}
 		//console.log(paths)
 		source += paths
@@ -27,7 +27,7 @@ defineDreem.class('$system/platform/webgl/workerwebgl', function(requireDreem, e
 
 		var shasum = crypto.createHash('sha1').update(source).digest('hex');
 
-		var path = define.mapToCacheDir('/'+shasum)
+		var path = defineDreem.mapToCacheDir('/'+shasum)
 
 		fs.writeFileSync(path, source)
 
@@ -57,21 +57,21 @@ defineDreem.class('$system/platform/webgl/workerwebgl', function(requireDreem, e
 	this._atConstructor = function(cores){
 		if(cores === undefined) cores = 1
 		else if(cores < 1){
-			if(define.cputhreads === 2) cores = 1
-			else cores = define.cputhreads - 2
+			if(defineDreem.cputhreads === 2) cores = 1
+			else cores = defineDreem.cputhreads - 2
 		}
 		//var sockets = requireDreem('$system/server/nodewebsocket').module.factory
 		//console.log(sockets)
-		var deps = this._collectDeps(this.constructor.module.factory, [define.expandVariables('$system/server/nodewebsocket'),define.expandVariables("$system/base/worker")])
+		var deps = this._collectDeps(this.constructor.module.factory, [defineDreem.expandVariables('$system/server/nodewebsocket'),defineDreem.expandVariables("$system/base/worker")])
 		var head = 'var _myworker = ' + this.constructor.body.toString() + ';\n'
 		var tail = ''
 
-		tail += 'define.packagedClass("/myworker.js",["$system/base/worker",_myworker]);\n'
+		tail += 'defineDreem.packagedClass("/myworker.js",["$system/base/worker",_myworker]);\n'
 		//tail += '_worker.postMessage = function(msg,transfer){self.postMessage({message:msg,workerid:_worker.workerid},transfer)};\n'
 		for(var key in deps){
 			tail += deps[key]
 		}
-	//	tail += 'var _worker = define.require(\'/myworker\')();\n'
+	//	tail += 'var _worker = defineDreem.require(\'/myworker\')();\n'
 		tail += ';(' + worker_boot.toString() + ')();\n'
 		// start all workers
 		this._workers = this._startWorkers(head, tail, 1)
@@ -80,8 +80,8 @@ defineDreem.class('$system/platform/webgl/workerwebgl', function(requireDreem, e
 
 		function worker_boot(){
 			var net = requireDreem('net')
-			var worker = define.requireDreem('/myworker')()
-			var NodeWebsocket = define.requireDreem("$system/server/nodewebsocket")
+			var worker = defineDreem.requireDreem('/myworker')()
+			var NodeWebsocket = defineDreem.requireDreem("$system/server/nodewebsocket")
 			var io = new net.Socket({fd:3})
 			var sock = worker._socket = new NodeWebsocket(io)
 			sock.makeJSONSocket()

@@ -67,7 +67,7 @@ defineDreem.class(function(requireDreem, exports){
 		}
 
 		var resolve, reject
-		var prom = new define.Promise(function(_resolve, _reject){resolve = _resolve, reject = _reject})
+		var prom = new defineDreem.Promise(function(_resolve, _reject){resolve = _resolve, reject = _reject})
 		prom.resolve = resolve
 		prom.reject = reject
 		prom.uid = uid

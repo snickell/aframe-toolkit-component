@@ -29,7 +29,7 @@ defineDreem(function(){
 			return colors.strstart + str + colors.strend
 		}
 		if(typeof arg === 'function'){
-			if(arg.module) return colors.class + define.fileName(arg.module.filename)
+			if(arg.module) return colors.class + defineDreem.fileName(arg.module.filename)
 			return colors.function
 		}
 		if(Array.isArray(arg)){
@@ -69,7 +69,7 @@ defineDreem(function(){
 			else{
 				var constructor = Object.getPrototypeOf(arg).constructor
 				var module = constructor && constructor.module
-				if(module) return colors.instance + colors.insstart + define.fileName(module.filename) + colors.insend
+				if(module) return colors.instance + colors.insstart + defineDreem.fileName(module.filename) + colors.insend
 				if(constructor){
 					var name = constructor.toString().match(/function\s+([^\()]*?)\(/)
 					if(name) return colors.instance + colors.insstart + name[1] + colors.insend

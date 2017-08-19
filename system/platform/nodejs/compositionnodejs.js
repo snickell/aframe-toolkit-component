@@ -49,7 +49,7 @@ defineDreem.class('$system/base/compositionbase', function(requireDreem, exports
 
 	this.handleRpcMethod = function(msg){
 		// lets make a promise
-		return new define.Promise(function(resolve, reject){
+		return new defineDreem.Promise(function(resolve, reject){
 			var parts = msg.rpcid.split('.')
 			//! TODO fix this up to be multi role capable
 			var part = parts[0];
@@ -110,7 +110,7 @@ defineDreem.class('$system/base/compositionbase', function(requireDreem, exports
 					})
 				}
 				else{
-					//if(!define.isSafeJSON(ret)){
+					//if(!defineDreem.isSafeJSON(ret)){
 					//	rmsg.error = 'Result not json safe'
 					//	rmsg.ret = undefined
 					//	console.log("Rpc result is not json safe "+msg.rpcid+"."+msg.method)
@@ -247,7 +247,7 @@ defineDreem.class('$system/base/compositionbase', function(requireDreem, exports
 			child.rpc = this.rpc
 			child.composition = this;
 			if(child instanceof screen) continue
-			if(!child.environment || child.environment === define.$environment){
+			if(!child.environment || child.environment === defineDreem.$environment){
 				var init = []
 				child.connectWires(init)
 				for(var j = 0; j < init.length;j++) init[j]()

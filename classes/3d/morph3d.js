@@ -28,7 +28,7 @@ defineDreem.class(function(requireDreem, $ui$, view){
 
 		this.depth_test = 'src_depth < dst_depth'
 
-		this.vertexstruct = define.struct({
+		this.vertexstruct = defineDreem.struct({
 			pos: vec3,
 			norm: vec3,
 			uv: vec2

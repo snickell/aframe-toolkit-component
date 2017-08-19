@@ -18,7 +18,7 @@ defineDreem.class('./shaderwebgl', function(requireDreem, exports){
 		return 'white'
 	}
 
-	this.debuggeom = define.struct({
+	this.debuggeom = defineDreem.struct({
 		pos:vec2,
 		debug:float
 	}).extend(function(){

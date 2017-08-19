@@ -334,7 +334,7 @@ defineDreem.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, 
 		defineDreem.class(this, 'bgfill', this.Shader, function(){
 			this.draworder = 1;
 
-			this.vertexstruct =  define.struct({
+			this.vertexstruct =  defineDreem.struct({
 				p:float,
 				side: float
 			})
@@ -381,7 +381,7 @@ defineDreem.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, 
 
 		defineDreem.class(this, 'fgfill', this.Shader, function(){
 			this.draworder = 2;
-			this.vertexstruct = define.struct({
+			this.vertexstruct = defineDreem.struct({
 				p:vec2,
 			})
 
@@ -467,7 +467,7 @@ defineDreem.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, 
 		defineDreem.class(this, 'fgfill', this.Shader, function(){
 			this.draworder = 5
 
-			this.vertexstruct = define.struct({
+			this.vertexstruct = defineDreem.struct({
 				p:vec2,
 			})
 
@@ -519,7 +519,7 @@ defineDreem.class(function(requireDreem, $ui$, view, label, scrollbar, textbox, 
 
 		defineDreem.class(this, 'bgfill', this.Shader, function(){
 			this.draworder = 1
-			this.vertexstruct = define.struct({
+			this.vertexstruct = defineDreem.struct({
 				p:float,
 				hsvoff: vec3,
 				center: float

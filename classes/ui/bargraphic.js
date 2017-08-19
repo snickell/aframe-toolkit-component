@@ -22,7 +22,7 @@ defineDreem.class('$ui/view', function(requireDreem, view){
 	this.hardrect = {
 		// Use a custom shader to display colored bars to match the data. The size
 		// of the bars are adjusted to match the width of the view.
-		mesh: define.struct({
+		mesh: defineDreem.struct({
 			pos:vec2,
 			col:vec4
 		}).array(),

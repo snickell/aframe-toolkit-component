@@ -1329,7 +1329,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	// Returns a promise that resolves when the animation completes. This allows animations
 	// to be chained together, or other behaviors to occur when an animation ends.
 	this.animate = function(attribute, track){
-		return new define.Promise(function(resolve, reject){
+		return new defineDreem.Promise(function(resolve, reject){
 			this.startAnimation(attribute, undefined, track, resolve)
 		}.bind(this))
 	}
@@ -1624,7 +1624,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 		this.dont_scroll_as_viewport = true
 		this.updateorder = 0
 		this.draworder = 0
-		this.vertexstruct = define.struct({
+		this.vertexstruct = defineDreem.struct({
 			pos: vec2,
 			angle: float,
 			radmult: vec4,
@@ -1724,7 +1724,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 	defineDreem.class(this, 'shadowrect', this.Shader, function(){
 		this.updateorder = 0
 
-		this.vertexstruct = define.struct({
+		this.vertexstruct = defineDreem.struct({
 			pos: vec2,
 			angle: float,
 			radmult: vec4,
@@ -1939,7 +1939,7 @@ defineDreem.class('$system/base/node', function(requireDreem){
 		this.dont_scroll_as_viewport = true
 		this.draworder = 1
 		this.updateorder = 1
-		this.vertexstruct = define.struct({
+		this.vertexstruct = defineDreem.struct({
 			pos: vec2,
 			angle: float,
 			radmult: vec4,

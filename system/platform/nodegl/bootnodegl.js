@@ -8,11 +8,11 @@ defineDreem.class(function(requireDreem, exports){
 
 	this.atConstructor = function(args){
 		// allright lets fire up 
-		define.$platform = 'nodegl'
+		defineDreem.$platform = 'nodegl'
 
 		var Image = requireDreem('node-webgl/lib/image') 
 
-		define.loadImage = function(name){
+		defineDreem.loadImage = function(name){
 			var img = new Image()
 			img.src = name
 			return img

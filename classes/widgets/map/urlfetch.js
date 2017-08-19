@@ -24,15 +24,15 @@ defineDreem.class(function(requireDreem, $server$, service){
 		console.log("[Map] Session started");
 	}
 
-	this.cachemap = define.classPath(this) + "../../../cache/map/"
+	this.cachemap = defineDreem.classPath(this) + "../../../cache/map/"
 
 	this.grabmap = function(x,y,z){
 		var nodehttp = requireDreem('$system/server/nodehttp');
 		var fs = requireDreem('fs');
 		try{
-			fs.mkdirSync(define.expandVariables(this.cachemap))
+			fs.mkdirSync(defineDreem.expandVariables(this.cachemap))
 		}catch(e){}
-		var cachedname = define.expandVariables(this.cachemap + x +"_"+y+"_" + z+".json");
+		var cachedname = defineDreem.expandVariables(this.cachemap + x +"_"+y+"_" + z+".json");
 		
 		//var dogeneratebuffer = fs.existsSync(cachedbuffername)?false:true;
 
@@ -51,7 +51,7 @@ defineDreem.class(function(requireDreem, $server$, service){
 
 		console.log("[Map] Downloading from mapzen:",x,y,z,"..." );
 		var fileurl = "http://vector.mapzen.com/osm/all/"+z+"/"+x+"/"+y+".topojson?api_key=vector-tiles-Qpvj7U4"
-		var P = define.deferPromise()
+		var P = defineDreem.deferPromise()
 
 		nodehttp.get(fileurl).then(function(data){
 

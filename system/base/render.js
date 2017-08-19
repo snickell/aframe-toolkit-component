@@ -109,11 +109,11 @@ defineDreem.class(function(exports){
 				//console.log(object)
 	 		}
 
-	 		define.atConstructor =  new_version.atStyleConstructor.bind(new_version)
+	 		defineDreem.atConstructor =  new_version.atStyleConstructor.bind(new_version)
 
 	 		new_version.children = new_version.render()
 
-	 		define.atConstructor = undefined
+	 		defineDreem.atConstructor = undefined
 			new_version.atAttributeGet = undefined
 		}
 		else{

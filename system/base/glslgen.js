@@ -152,7 +152,7 @@ defineDreem.class('$system/parse/onejsserialize', function(requireDreem, exports
 		// lets resolve ourself
 		var name = node.name
 
-		var def_t = define.typemap.types[name]
+		var def_t = defineDreem.typemap.types[name]
 		if(def_t){
 			node.infer = {fn_t:'constructor', ret:def_t}
 			return name

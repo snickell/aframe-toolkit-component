@@ -44,14 +44,14 @@ defineDreem.class(function(requireDreem){
 				return
 			}
 			var jsonmsg = JSON.parse(message)
-			jsonmsg = define.structFromJSON(jsonmsg, binary_buf)
+			jsonmsg = defineDreem.structFromJSON(jsonmsg, binary_buf)
 			binary_buf.length = 0
 			this.atJSONMessage(jsonmsg)
 		}
 
 		this.sendJSON = function(msg){
 			var binary = []
-			var newmsg = define.makeJSONSafe(msg, binary)
+			var newmsg = defineDreem.makeJSONSafe(msg, binary)
 			for(var i = 0; i < binary.length; i++){
 				var bin = binary[i]
 				this.send(bin.data.buffer)//data.buffer)
@@ -207,7 +207,7 @@ defineDreem.class(function(requireDreem){
 			return
 		}
 		//if(typeof data !== 'string' && !(data instanceof Buffer)){
-		//	var msg = define.
+		//	var msg = defineDreem.
 		//	data = JSON.stringify(data)
 		//}
 		if(!this.socket) return

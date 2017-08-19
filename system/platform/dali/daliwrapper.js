@@ -48,7 +48,7 @@ defineDreem.class(function(requireDreem, exports){
 		//TODO Use a fixed location to locate dali code
 
 		//TODO FIX absolute path and use of require_builtin
-		this.dali = define.requireDreem('/home/dali/teem/src/dreemgl/Release/dali')(this.options);
+		this.dali = defineDreem.requireDreem('/home/dali/teem/src/dreemgl/Release/dali')(this.options);
 
 
 	    // Application

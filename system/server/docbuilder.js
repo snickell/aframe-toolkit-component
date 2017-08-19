@@ -45,7 +45,7 @@ defineDreem.class(function(requireDreem){
 
         function fetch(path) {
             console.log('Fetch Path:', path)
-            var expandedPath = define.expandVariables('$' + path);
+            var expandedPath = defineDreem.expandVariables('$' + path);
             var module = requireDreem(expandedPath)
             var class_doc = this.parseDoc(module)
 			class_doc.sourcePath = path;
@@ -109,9 +109,9 @@ defineDreem.class(function(requireDreem){
             return value
         })
 
-        for (var key in define.paths){
+        for (var key in defineDreem.paths){
             if(ignoreset.indexOf(key) !== -1) continue
-            var ret = readRecurDir(define.expandVariables(define['$'+key]), '', ignoreset)
+            var ret = readRecurDir(defineDreem.expandVariables(define['$'+key]), '', ignoreset)
             ret.name = key
             root.children.push(ret)
         }
@@ -119,7 +119,7 @@ defineDreem.class(function(requireDreem){
     }
 
     this.writeToPath = function(topath, data) {
-        var fullpath = define.expandVariables('$root/docs/.classdoc/'+topath);
+        var fullpath = defineDreem.expandVariables('$root/docs/.classdoc/'+topath);
 
         function ensureDirectoryExistence(filePath) {
             var dirname = path.dirname(filePath);
@@ -181,7 +181,7 @@ defineDreem.class(function(requireDreem){
 			if (class_doc.examples && class_doc.examples.length) {
 				// console.log("\n\n\nclass_doc>>>>", class_doc.base_class_chain)
 				var ext = ""
-				if (define.$disableserver === true) {
+				if (defineDreem.$disableserver === true) {
 					ext = ".html"
 				}
 				var url = '/apps/docs/example' + ext + '#path=$' + class_doc.sourcePath;

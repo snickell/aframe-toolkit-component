@@ -170,7 +170,7 @@ defineDreem.class(function(requireDreem, $ui$, view){
 		};
 	}
 
-	if (define.$platform === 'dali')
+	if (defineDreem.$platform === 'dali')
 		this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
 	else
 		this.font = requireDreem('$resources/fonts/opensans_regular_ascii.glf')

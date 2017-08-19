@@ -162,8 +162,8 @@ defineDreem(function(requireDreem){
 		var tagbypath = {};
 		for (var i = 0; i < tagnames.length; i++) {
 			var tagname = tagnames[i];
-			for (var key in define.paths) {
-				var filepath = define.expandVariables('$' + key) + '/' + tagname + '.js';
+			for (var key in defineDreem.paths) {
+				var filepath = defineDreem.expandVariables('$' + key) + '/' + tagname + '.js';
 				// look for tagname file in expanded path
 				if (fs.existsSync(filepath)) {
 					// add to the list of tags at that path

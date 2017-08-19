@@ -21,7 +21,7 @@ defineDreem(function(requireDreem, exports){
 		if(!fc) fc = file_color[filename] = file_colorid++ 
 		//eturn fn
 		// lets check if we need to process our prototype
-		var shortname = define.fileName(filename)
+		var shortname = defineDreem.fileName(filename)
 		if(typeof fn == 'function'){
 			if(fn.__tracewrapped__){
 				throw new Error('dbltrace!')
@@ -70,7 +70,7 @@ defineDreem(function(requireDreem, exports){
  					
 					var stack = new Error().stack.split('\n')
 					var from = stack[2]
-					if(from.indexOf('define.js') !== -1) from = stack[3]
+					if(from.indexOf('defineDreem.js') !== -1) from = stack[3]
 					var fromfile = from.match(/\/[A-Za-z0-9\.]+\:\d+/)
 					if(fromfile){
 						var ff = fromfile[0].slice(1)

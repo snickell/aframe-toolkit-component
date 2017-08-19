@@ -669,7 +669,7 @@ defineDreem.class(function(requireDreem, exports){
 	this.atExtend = function(){
 
 		var shader = this
-		if(define.$platform === 'nodejs') return
+		if(defineDreem.$platform === 'nodejs') return
 		// forwar	d the view reference
 		if(this.constructor.outer){
 			this.view = this.constructor.outer

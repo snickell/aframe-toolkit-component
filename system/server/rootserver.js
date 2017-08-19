@@ -33,7 +33,7 @@ defineDreem.class(function(requireDreem){
 		var port = this.args['-port'] || process.env.PORT || 2000
 		var iface = this.args['-iface'] || process.env.IP || '127.0.0.1'
 
-		this.cache_gzip = define.makeCacheDir('gzip')
+		this.cache_gzip = defineDreem.makeCacheDir('gzip')
 
 		this.server = http.createServer(this.request.bind(this))
 		this.server.listen(port, iface)
@@ -88,8 +88,8 @@ defineDreem.class(function(requireDreem){
 		this.watcher.atChange = function(ifile){
 			// ok lets get the original path
 			var file = ifile.replace(/\\/g,"/")
-			for(var key in define.paths){
-				var match = define.expandVariables(define['$'+key])
+			for(var key in defineDreem.paths){
+				var match = defineDreem.expandVariables(define['$'+key])
 				if(file.indexOf(match) === 0){
 					var sliced = file.slice(match.length)
 					if (sliced[0] !== '/') {
@@ -99,7 +99,7 @@ defineDreem.class(function(requireDreem){
 					break
 				}
 			}
-			//file = file.slice(define.expandVariables(define.$root).length).replace(/\\/g, "/")
+			//file = file.slice(defineDreem.expandVariables(defineDreem.$root).length).replace(/\\/g, "/")
 			// ok lets rip off our
 			this.broadcast({
 				type:'filechange',
@@ -129,14 +129,14 @@ defineDreem.class(function(requireDreem){
 	this.default_composition = null
 
 	this.getComposition = function(file){
-		// lets find the composition either in define.COMPOSITIONS
+		// lets find the composition either in defineDreem.COMPOSITIONS
 		if(!this.compositions[file]) this.compositions[file] = new CompositionServer(this.args, file, this)
 		return this.compositions[file]
 	}
 
 	this.upgrade = function(req, sock, head){
 
-		if(!define.$unsafeorigin && this.addresses.indexOf(req.headers.origin) === -1){
+		if(!defineDreem.$unsafeorigin && this.addresses.indexOf(req.headers.origin) === -1){
 			console.log("WRONG ORIGIN SOCKET CONNECTION RECEIVED"+ req.headers.origin+ ' -> '+this.address)
 			return false
 		}
@@ -154,21 +154,21 @@ defineDreem.class(function(requireDreem){
 	this.mapPath = function(input){
 		var reqparts = input.split(/\//)
 		// lets do the filename lookup
-		var mypath = define.paths[reqparts[1]]
+		var mypath = defineDreem.paths[reqparts[1]]
 		if(!mypath) return false
 
 		// combine it
-		var file = path.join(define.expandVariables(mypath), reqparts.slice(2).join('/'))
+		var file = path.join(defineDreem.expandVariables(mypath), reqparts.slice(2).join('/'))
 		return file
 	}
 
 	this.searchPath = function(basedir, match){
 		// lets recur our path
-		var dir = fs.readdirSync(define.expandVariables(basedir))
+		var dir = fs.readdirSync(defineDreem.expandVariables(basedir))
 		for(var i = 0; i < dir.length; i++){
 			var subitem = basedir + '/' + dir[i]
 			if(subitem.toLowerCase().indexOf(match) !== -1) return subitem
-			var stat = fs.statSync(define.expandVariables(subitem))
+			var stat = fs.statSync(defineDreem.expandVariables(subitem))
 			if(stat.isDirectory()){
 				var file = this.searchPath(subitem, match)
 				if(file) return file
@@ -263,11 +263,11 @@ defineDreem.class(function(requireDreem){
 		// ok if we are a /single fetch
 		var file = decodeURIComponent(this.mapPath(reqquery[0]))
 
-		var urlext = define.fileExt(reqquery[0])
+		var urlext = defineDreem.fileExt(reqquery[0])
 		// write .dre to .dre.js files
 		if (urlext === 'dre') {
 			var dreurl = reqquery[0];
-			var filepath = define.expandVariables('$root' + dreurl)
+			var filepath = defineDreem.expandVariables('$root' + dreurl)
 			var dre = fs.readFileSync(filepath);
 			var js = XMLConverter(dre)
 			// TODO: warn for overwrites to changed file, e.g. check hash of file versus old version
@@ -279,11 +279,11 @@ defineDreem.class(function(requireDreem){
 			// what are we looking for
 			// a directory named x or file or anything
 			// we will just 302 to it
-			for(var key in define.paths){
-				var mypath = define.paths[key]
+			for(var key in defineDreem.paths){
+				var mypath = defineDreem.paths[key]
 				var fwdfile = this.searchPath(mypath, reqquery[0].slice(1))
 				if(fwdfile){
-					var urlpath = '/'+ key + '/' +define.fileBase(fwdfile.slice(mypath.length))
+					var urlpath = '/'+ key + '/' +defineDreem.fileBase(fwdfile.slice(mypath.length))
 					res.writeHead(307, {location:urlpath})
 					res.end()
 					return
@@ -294,7 +294,7 @@ defineDreem.class(function(requireDreem){
 			return
 		}
 
-		var fileext = define.fileExt(file)
+		var fileext = defineDreem.fileExt(file)
 
 		if(!fileext || fileext === 'dre'){
 			var composition = this.getComposition('$'+decodeURIComponent(reqquery[0].slice(1)))

@@ -28,7 +28,7 @@
 // you see in dreemGL, which fuses classes with modules. And this may have some
 // compatibility repercussions for some modules that assume 'define' works a certain way
 // If you need to require nodejs modules using the require provided by define,
-// use require('module') dont use './' or '/' these are interpreted as define.js modules
+// use require('module') dont use './' or '/' these are interpreted as defineDreem.js modules
 // The browser require will ignore require('module') so if you stick to a clean
 // classdef it can safely load up 'nodejs' classes to inspect their interfaces for RPC
 // All these choices are to support the design goals of dreemGL some of which are:
@@ -39,6 +39,9 @@
 // - do not transcompile anything and run in browser and node with same files
 // - optimized live editability and reloading of all class hierarchy parts (thats the reason
 //   the modulesystem + classes are fused)
+
+
+  console.log("Ordering? ====?");
 
 import library from '../../library';
 
@@ -54,40 +57,40 @@ console.log("loading Define");
 	// the main define function
 	function defineDreem(factory, pkg){
 		if(pkg !== undefined){ // precompiled version
-			define.factory[pkg] = factory
+			defineDreem.factory[pkg] = factory
 			return
 		}
-		define.last_factory = factory // store for the script tag
+		defineDreem.last_factory = factory // store for the script tag
 		// continue calling
-		if(define.define) define.defineDreem(factory)
+		if(defineDreem.define) defineDreem.defineDreem(factory)
 	}
 
-	if(typeof window !== 'undefined') window.define = define, define.$environment = 'browser'
-	else if(typeof self !== 'undefined') self.define = define, define.$environment = 'worker'
+	if(typeof window !== 'undefined') window.define = define, defineDreem.$environment = 'browser'
+	else if(typeof self !== 'undefined') self.define = define, defineDreem.$environment = 'worker'
 	else if (typeof global !== 'undefined'){
 		Object.defineProperty(global, "define", {
 		    value: define,
 		    writable: false
 		})
-		define.$environment = 'nodejs'
+		defineDreem.$environment = 'nodejs'
 	}
-	else define.$environment = 'v8'
+	else defineDreem.$environment = 'v8'
 
 	// default config variables
-	define.inner = define_module
+	defineDreem.inner = define_module
 
-	define.$root = ''
-	define.$system = '$root/system'
+	defineDreem.$root = ''
+	defineDreem.$system = '$root/system'
 
-	define.local_classes = {}
-	define.local_require_stack = []
-	define.ignore_reload = {}
+	defineDreem.local_classes = {}
+	defineDreem.local_require_stack = []
+	defineDreem.ignore_reload = {}
 
-	define.partial_reload = true
-	define.reload_id = 0
+	defineDreem.partial_reload = true
+	defineDreem.reload_id = 0
 
 	// turns on debug naming of classes (very useful)
-	define.debug = true
+	defineDreem.debug = true
 
 	// copy configuration onto define
 	if(typeof config_define == 'object') for(var key in config_define){
@@ -96,8 +99,8 @@ console.log("loading Define");
 
 
 	// storage structures
-	define.module = {}
-	define.factory = {}
+	defineDreem.module = {}
+	defineDreem.factory = {}
 
 
 
@@ -116,59 +119,59 @@ console.log("loading Define");
 
 
 
-	define.fileName = function(file){
+	defineDreem.fileName = function(file){
 		file = file.replace(/\\/g,'/')
-		var file = file.slice(define.filePath(file).length)
+		var file = file.slice(defineDreem.filePath(file).length)
 		if(file.charAt(0) == '/') return file.slice(1)
 		return file
 	}
 
-	define.filePath = function(file){
+	defineDreem.filePath = function(file){
 		if(!file) return ''
 		file = file.replace(/\.\//g, '')
 		var m = file.match(/([\s\S]*)\/[^\/]*$/)
 		return m ? m[1] : ''
 	}
 
-	define.fileExt = function(file){
+	defineDreem.fileExt = function(file){
 		// parse from the last . to end
 		var m = file.match(/\.([^.\/]+)($|\?)/)
 		if(!m) return ''
 		return m[1].toLowerCase()
 	}
 
-	define.fileBase = function(file){
-		var fn = define.fileName(file)
+	defineDreem.fileBase = function(file){
+		var fn = defineDreem.fileName(file)
 		var idx = fn.lastIndexOf('.')
 		if(idx !== -1) return fn.slice(0, idx)
 		return fn
 	}
 
-	define.cleanPath = function(path){
+	defineDreem.cleanPath = function(path){
 		return path.replace(/^\/+/,'/').replace(/([^:])\/+/g,'$1/')
 	}
 
-	define.joinPath = function(base, relative, rx){
+	defineDreem.joinPath = function(base, relative, rx){
 		if(relative.charAt(0) != '.'){ // relative is already absolute
 			if(relative.charAt(0) == '/' || relative.indexOf(':') != -1){
 				return relative
 			}
 			var path = base + '/' + relative
-			return define.cleanPath(path)
+			return defineDreem.cleanPath(path)
 		}
 		base = base.split(rx || /\//)
 		relative = relative.replace(/\.\.\//g,function(){ base.pop(); return ''}).replace(/\.\//g, '')
-		return define.cleanPath(base.join('/') + '/' + relative)
+		return defineDreem.cleanPath(base.join('/') + '/' + relative)
 	}
 
 	// constrain the path to any $symbol/ directory
-	define.safePath = function(name){
+	defineDreem.safePath = function(name){
 		name = name.replace(/\\/g,'/')
 		var id = name.indexOf('..')
 		if(id !== -1){
 			var base = name.slice(0,id)
 			var rel= name.slice(id)
-			var path = define.joinPath(base, rel)
+			var path = defineDreem.joinPath(base, rel)
 			if(path.indexOf('..') !== -1) return undefined
 			if(path.indexOf('./') !== -1) return undefined
 			if(path.charAt(0)!=='$') return undefined
@@ -179,16 +182,16 @@ console.log("loading Define");
 		return name
 	}
 
-	define.expandVariables = function(str){
-		return define.cleanPath(str.replace(/(\$[a-zA-Z0-9]+[a-zA-Z0-9]*)/g, function(all, lut){
+	defineDreem.expandVariables = function(str){
+		return defineDreem.cleanPath(str.replace(/(\$[a-zA-Z0-9]+[a-zA-Z0-9]*)/g, function(all, lut){
 			if(!(lut in define)){
 				throw new Error("Cannot find " + lut + " used in require")
 			}
-			return define.expandVariables(define[lut])
+			return defineDreem.expandVariables(define[lut])
 		}))
 	}
 
-	define.lookupFileType = function(type){
+	defineDreem.lookupFileType = function(type){
 		type = type.toLowerCase()
 
 		if(type === 'json')	return 'json'
@@ -197,12 +200,12 @@ console.log("loading Define");
 		return 'arraybuffer'
 	}
 
-	define.processFileType = function(type, blob){
-		if(type === 'glf') return define.parseGLF(blob)
+	defineDreem.processFileType = function(type, blob){
+		if(type === 'glf') return defineDreem.parseGLF(blob)
 		return blob
 	}
 /*
-	define.global = function(object){
+	defineDreem.global = function(object){
 		var glob = typeof process !== 'undefined'? global: typeof window !=='undefined'? window: self
 		for(var key in object){
 			glob[key] = object[key]
@@ -210,23 +213,23 @@ console.log("loading Define");
 	}
 */
 	// returns a class dir you can use, has / appended already
-	define.classPath = function(cls){
+	defineDreem.classPath = function(cls){
 		if(cls.prototype) cls = cls.prototype
 		var mod = cls.constructor.module
 		var fn = mod.filename.replace(/\\/g,'/')
-		for(var key in define.paths){
-			var path = define.expandVariables(define['$'+key])
+		for(var key in defineDreem.paths){
+			var path = defineDreem.expandVariables(define['$'+key])
 			if(fn.indexOf(path) === 0){
 				// Return the class path as a symbol base
 				var ext = fn.slice(path.length)
-				return define.filePath('$'+key+(ext.charAt(0)!=='/'?'/':'')+ext) + '/'
+				return defineDreem.filePath('$'+key+(ext.charAt(0)!=='/'?'/':'')+ext) + '/'
 			}
 		}
 	}
 
-	define.deferPromise = function(){
+	defineDreem.deferPromise = function(){
 		var res, rej
-		var prom = new define.Promise(function(ires, irej){
+		var prom = new defineDreem.Promise(function(ires, irej){
 			res = ires, rej = irej
 		})
 		prom.resolve = res
@@ -245,22 +248,22 @@ console.log("loading Define");
 
 
 
-	define.localRequire = function(base_path, from_file){
+	defineDreem.localRequire = function(base_path, from_file){
 		function require(dep_path, ext){
       
       console.warn("disabled requireDreem(", dep_path, ext, ")");
       return;
       
 			// skip nodejs style includes
-			var abs_path = define.joinPath(base_path, define.expandVariables(dep_path))
-			if(!ext && !define.fileExt(abs_path)) abs_path = abs_path + '.js'
+			var abs_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(dep_path))
+			if(!ext && !defineDreem.fileExt(abs_path)) abs_path = abs_path + '.js'
 
 			// lets look it up
-			var module = define.module[abs_path]
+			var module = defineDreem.module[abs_path]
 			if(module) return module.exports
 
 			// otherwise lets initialize the module
-			var factory = define.factory[abs_path]
+			var factory = defineDreem.factory[abs_path]
 
 			if(!factory && dep_path.indexOf('$') === -1 && dep_path.charAt(0) !== '.'){
 				//console.log(abs_path)
@@ -272,48 +275,48 @@ console.log("loading Define");
 
 
 			module = {exports:{}, factory:factory, id:abs_path, filename:abs_path}
-			define.module[abs_path] = module
+			defineDreem.module[abs_path] = module
 			if(factory === null) return null // its not an AMD module, but accept that
 			if(!factory) throw new Error("Cannot find factory for module (file not found): " + dep_path + " > " + abs_path)
 
 			// call the factory
 			if(typeof factory == 'function'){
-				var localreq = define.localRequire(define.filePath(abs_path), abs_path)
+				var localreq = defineDreem.localRequire(defineDreem.filePath(abs_path), abs_path)
 
 				localreq.module = module
 
-				define.local_require_stack.push(localreq)
+				defineDreem.local_require_stack.push(localreq)
 				try{
 					var ret = factory.call(module.exports, localreq, module.exports, module)
 				}
 				finally{
-					define.local_require_stack.pop()
+					defineDreem.local_require_stack.pop()
 				}
 				if(ret !== undefined) module.exports = ret
 			}
 			else module.exports = factory
 			// post process hook
-			if(define.atModule) define.atModule(module)
+			if(defineDreem.atModule) defineDreem.atModule(module)
 
 			return module.exports
 		}
 
 		requireDreem.loaded = function(path, ext){
-			var dep_path = define.joinPath(base_path, define.expandVariables(path))
-			if(define.factory[dep_path]){
+			var dep_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(path))
+			if(defineDreem.factory[dep_path]){
 				return true
 			}
 		}
 
 		requireDreem.async = function(path, ext){
-			var dep_path = define.joinPath(base_path, define.expandVariables(path))
-			return new define.Promise(function(resolve, reject){
-				if(define.factory[dep_path]){
+			var dep_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(path))
+			return new defineDreem.Promise(function(resolve, reject){
+				if(defineDreem.factory[dep_path]){
 					// if its already asynchronously loading..
 					var module = require(path, ext)
 					return resolve(module)
 				}
-				define.loadAsync(dep_path, from_file, ext).then(function(){
+				defineDreem.loadAsync(dep_path, from_file, ext).then(function(){
 					var module = require(path, ext)
 					resolve(module)
 				}, reject)
@@ -322,29 +325,29 @@ console.log("loading Define");
 
 		requireDreem.reloadAsync = function(path){
 
-			return new define.Promise(function(resolve, reject){
+			return new defineDreem.Promise(function(resolve, reject){
 
-				define.reload_id++
+				defineDreem.reload_id++
 
 				// lets wipe the old module
-				var old_module = define.module[path]
-				var old_factory = define.factory[path]
+				var old_module = defineDreem.module[path]
+				var old_factory = defineDreem.factory[path]
 
-				define.module[path] = define.factory[path] = undefined
+				defineDreem.module[path] = defineDreem.factory[path] = undefined
 
 				// lets require it async
-				define.requireDreem.async(path).then(function(new_class){
+				defineDreem.requireDreem.async(path).then(function(new_class){
 					// fetch all modules dependent on this class, and all dependent on those
 					// and cause them to reinitialize
 					function wipe_module(name){
-						//console.log("Reloading "+define.fileName(name))
-						for(var key in define.factory){
-							var fac = define.factory[key]
+						//console.log("Reloading "+defineDreem.fileName(name))
+						for(var key in defineDreem.factory){
+							var fac = defineDreem.factory[key]
 							if(!fac) continue
 							var deps = fac.deps
-							if(key !== name && define.module[key] && deps && deps.indexOf(name) !== -1){
+							if(key !== name && defineDreem.module[key] && deps && deps.indexOf(name) !== -1){
 								// remove module
-								define.module[key] = undefined
+								defineDreem.module[key] = undefined
 								// try to wipe all modules that depend our this one
 								wipe_module(key)
 							}
@@ -352,11 +355,11 @@ console.log("loading Define");
 					}
 					wipe_module(path)
 
-					resolve(define.module[path])
+					resolve(defineDreem.module[path])
 				}).catch(function(error){
 
-					define.module[path] = old_module
-					define.factory[path] = old_factory
+					defineDreem.module[path] = old_module
+					defineDreem.factory[path] = old_factory
 
 					reject(error)
 				})
@@ -366,9 +369,9 @@ console.log("loading Define");
 		return require
 	}
 
-	define.require = define.localRequire('','root')
+	defineDreem.require = defineDreem.localRequire('','root')
 
-	define.findRequiresInFactory = function(factory, req){
+	defineDreem.findRequiresInFactory = function(factory, req){
 		var search = factory.toString()
 
 		if(factory.body) search += '\n' + factory.body.toString()
@@ -397,7 +400,7 @@ console.log("loading Define");
 	}
 
 
-	define.buildClassArgs = function(fn){
+	defineDreem.buildClassArgs = function(fn){
 		// Ideally these regexps are better, not vastly slower but maybe proper specwise matching for stuff, its a bit rough now
 		// This is otherwise known as a 'really bad idea'. However this makes the modules work easily, with a relatively small collision risk.
 		var str = fn.toString()
@@ -444,15 +447,15 @@ console.log("loading Define");
 
 
 
-	define.builtinClassArgs = {
+	defineDreem.builtinClassArgs = {
 		exports:1, module:2, require:3, constructor:1, baseclass:5, outer:6
 	}
 
-	define.walkClassArgs = function(map, callback){
+	defineDreem.walkClassArgs = function(map, callback){
 		var path = './'
 		for(var i = 0; i < map.length; i++){
 			var arg = map[i]
-			var builtin = define.builtinClassArgs[arg]
+			var builtin = defineDreem.builtinClassArgs[arg]
 			if(builtin){
 				callback(builtin, undefined, i)
 				continue
@@ -484,7 +487,7 @@ console.log("loading Define");
 	}
 
 
-	define.applyBody = function(body, Constructor, baseclass, require){
+	defineDreem.applyBody = function(body, Constructor, baseclass, require){
 		if(typeof body == 'object' && body){
 			for(var key in body) Constructor.prototype[key] = body[key]
 			return
@@ -493,7 +496,7 @@ console.log("loading Define");
 
 		// named arguments for the class body
 		var classargs = body.classargs
-		if(!classargs) classargs = body.classargs = define.buildClassArgs(body)
+		if(!classargs) classargs = body.classargs = defineDreem.buildClassArgs(body)
 
 		// allright lets go figure out our body arguments.
 		var args = []
@@ -520,16 +523,16 @@ console.log("loading Define");
 		return body.apply(Constructor.prototype, args)
 	}
 
-	define.EnvironmentStub = function(dep){ this.dep = dep }
+	defineDreem.EnvironmentStub = function(dep){ this.dep = dep }
 
-	define.makeClass = function(baseclass, body, require, module, nested_module, outer_this, in_name){
+	defineDreem.makeClass = function(baseclass, body, require, module, nested_module, outer_this, in_name){
 
 		function MyConstructor(){
 			// if called without new, just do a new
 			var obj = this
 
 			if(!(obj instanceof MyConstructor)){
-				var constructor = define.atConstructor? define.atConstructor(MyConstructor, arguments[0]): MyConstructor
+				var constructor = defineDreem.atConstructor? defineDreem.atConstructor(MyConstructor, arguments[0]): MyConstructor
 				obj = Object.create(constructor.prototype)
 				Object.defineProperty(obj, 'constructor', {value:constructor})
 			}
@@ -549,7 +552,7 @@ console.log("loading Define");
 			return obj
 		}
 
-		if(define.debug){
+		if(defineDreem.debug){
 			var fnname
 			if(in_name){
 				fnname = in_name
@@ -558,12 +561,12 @@ console.log("loading Define");
 				fnname = (body.classname || body.name)
 			}
 			else if(module){
-				 fnname = define.fileBase(module.filename).replace(/\.|\-|\s/g,'_')//.replace(/\.js/g,'').replace(/\./g,'_').replace(/\//g,'_')
+				 fnname = defineDreem.fileBase(module.filename).replace(/\.|\-|\s/g,'_')//.replace(/\.js/g,'').replace(/\./g,'_').replace(/\//g,'_')
 			}
 			else{
 				// lets make an fnname based on our callstack
 				var origin = new Error().stack.split(/\n/)[3].match(/\/([a-zA-Z0-9\.]+)\:(\d+)\:\d+\)/)
-				if(!origin || origin[1] === 'define.js'){
+				if(!origin || origin[1] === 'defineDreem.js'){
 					fnname = 'extend'
 					if(baseclass && baseclass.prototype.constructor) fnname += '_' + baseclass.prototype.constructor.name
 				}
@@ -584,12 +587,12 @@ console.log("loading Define");
 		}
 
 		Object.defineProperty(Constructor, 'extend', {value:function(body, outer_this, in_name){
-			//if(this.prototype.constructor === define.StubbedClass) return define.StubbedClass
-			return define.makeClass(this, body, require, undefined, this.nested_module, outer_this, in_name)
+			//if(this.prototype.constructor === defineDreem.StubbedClass) return defineDreem.StubbedClass
+			return defineDreem.makeClass(this, body, require, undefined, this.nested_module, outer_this, in_name)
 		}})
 
 		Object.defineProperty(Constructor, 'overlay', {value:function(body){
-			return define.applyBody(body, this, baseclass)
+			return defineDreem.applyBody(body, this, baseclass)
 		}})
 
 		Object.defineProperty(Constructor, 'mixin', {value:function(body){
@@ -615,14 +618,14 @@ console.log("loading Define");
 
 				Object.defineProperty(Constructor, 'module', {value:module})
 
-				define.applyBody(body, Constructor, baseclass, require)
+				defineDreem.applyBody(body, Constructor, baseclass, require)
 			}
 			else if(nested_module){
 				Object.defineProperty(Constructor, 'module', {value:nested_module})
-				define.applyBody(body, Constructor, baseclass)
+				defineDreem.applyBody(body, Constructor, baseclass)
 			}
 			else {
-				define.applyBody(body, Constructor, baseclass)
+				defineDreem.applyBody(body, Constructor, baseclass)
 			}
 
 			if(Constructor.prototype.atExtend) Constructor.prototype.atExtend()
@@ -638,22 +641,22 @@ console.log("loading Define");
 		return Constructor
 	}
 
-	define.mixin = function(body, body2){
+	defineDreem.mixin = function(body, body2){
 		if(typeof body2 === 'function') body = body2
 		body.mixin = true
-		return define.class.apply(define, arguments)
+		return defineDreem.class.apply(define, arguments)
 	}
 
-	define.packagedClass = function(packaged, args){
+	defineDreem.packagedClass = function(packaged, args){
 		args[args.length - 1].packaged = packaged
-		define.class.apply(define, args)
+		defineDreem.class.apply(define, args)
 	}
 
 	// defineDreem.class('base', function(){})                2
 	// defineDreem.class(function(){})                        1
 	// defineDreem.class(this, 'prop', 'base', function(){})  4
 
-	define.class = function(){
+	defineDreem.class = function(){
 		// lets make a class
 		var base_class
 		var body
@@ -713,28 +716,28 @@ console.log("loading Define");
 			var base
 			if(typeof base_class === 'string') base = require(base_class)
 			else if (base_class) base = base_class
-			define.makeClass(base, body, require, module, undefined, outer_this)
+			defineDreem.makeClass(base, body, require, module, undefined, outer_this)
 		}
 
 		// make an argmap
-		body.classargs = define.buildClassArgs(body)
+		body.classargs = defineDreem.buildClassArgs(body)
 		// lets parse the named argument pattern for the body
 		moduleFactory.body = body
 		moduleFactory.deps = []
 
 		// put the baseclass on the deps
 		if(base_class && typeof base_class === 'string'){
-			moduleFactory.baseclass = define.expandVariables(base_class)
-			moduleFactory.deps.push(define.expandVariables(base_class))
+			moduleFactory.baseclass = defineDreem.expandVariables(base_class)
+			moduleFactory.deps.push(defineDreem.expandVariables(base_class))
 			moduleFactory.depstring = 'requireDreem("' + base_class + '")'
 		}
 
 		// add automatic requires
 		if(body.classargs){
-			define.walkClassArgs(body.classargs, function(builtin, requirepath){
+			defineDreem.walkClassArgs(body.classargs, function(builtin, requirepath){
 				if(builtin) return
 				if(!moduleFactory.depstring) moduleFactory.depstring = ''
-				moduleFactory.deps.push(define.expandVariables(requirepath))
+				moduleFactory.deps.push(defineDreem.expandVariables(requirepath))
 				moduleFactory.depstring += 'requireDreem("' + requirepath + '")'
 				if(!base_class) base_class = requirepath
 			})
@@ -742,8 +745,8 @@ console.log("loading Define");
 
 		// if we have a local_require_stack we are a define inside a class or module body
 		// so then treat it as a local class
-		if(define.local_require_stack.length){
-			var outer_require = define.local_require_stack[define.local_require_stack.length - 1]
+		if(defineDreem.local_require_stack.length){
+			var outer_require = defineDreem.local_require_stack[defineDreem.local_require_stack.length - 1]
 			var outer_module = outer_requireDreem.module
 			var module = {exports:{}, filename:outer_module.filename, factory:moduleFactory, outer:outer_module}
 			moduleFactory(outer_require, module.exports, module)
@@ -786,7 +789,7 @@ console.log("loading Define");
 
 
 
-	define.debugPromiseLib = function(exports){
+	defineDreem.debugPromiseLib = function(exports){
 		// Use polyfill for setImmediate for performance gains
 		var asap = Promise.immediateFn || (typeof setImmediate === 'function' && setImmediate) ||
 			function(fn) { setTimeout(fn, 1); }
@@ -956,7 +959,7 @@ console.log("loading Define");
 		return Promise
 	}
 	// check if we are in debug mode
-	define.Promise = define.debugPromiseLib()
+	defineDreem.Promise = defineDreem.debugPromiseLib()
 
 
 
@@ -965,16 +968,16 @@ console.log("loading Define");
 
 
 
-	define.startLoader = function(){
-
-	}
-
-	define.endLoader = function(){
+	defineDreem.startLoader = function(){
 
 	}
 
-	define.getReloadID = function(){
-		var num = define.reload_id
+	defineDreem.endLoader = function(){
+
+	}
+
+	defineDreem.getReloadID = function(){
+		var num = defineDreem.reload_id
 		var s = ''
 		while(num%26){
 			s += String.fromCharCode(num%26 +97)
@@ -998,7 +1001,7 @@ console.log("loading Define");
 
 
 	function define_packaged(){
-		define.require = define.localRequire('')
+		defineDreem.require = defineDreem.localRequire('')
 	}
 
 
@@ -1020,45 +1023,45 @@ console.log("loading Define");
 
 		// if define was already defined use it as a config store
 		// storage structures
-		define.cputhreads = navigator.hardwareConcurrency || 2
-		define.download_queue = {}
-		define.script_tags = {}
+		defineDreem.cputhreads = navigator.hardwareConcurrency || 2
+		defineDreem.download_queue = {}
+		defineDreem.script_tags = {}
 		// the require function passed into the factory is local
-		var app_root = define.filePath(window.location.href)
+		var app_root = defineDreem.filePath(window.location.href)
 
-		define.getModule = function(name){
-			var expanded = define.expandVariables(name)
-			return define.module[expanded]
+		defineDreem.getModule = function(name){
+			var expanded = defineDreem.expandVariables(name)
+			return defineDreem.module[expanded]
 		}
 
 		// loadAsync is the resource loader
-		define.loadAsync = function(files, from_file, inext){
+		defineDreem.loadAsync = function(files, from_file, inext){
 
 			function loadResource(url, from_file, recurblock, module_deps){
 
-				var ext = inext === undefined ? define.fileExt(url): inext;
+				var ext = inext === undefined ? defineDreem.fileExt(url): inext;
 				var abs_url, fac_url
 
 				if(url.indexOf('http:') === 0 || url.indexOf('https:') === 0){ // we are fetching a url..
 					fac_url = url
-					abs_url = define.$root + '/proxy?' + encodeURIComponent(url)
+					abs_url = defineDreem.$root + '/proxy?' + encodeURIComponent(url)
 				}
 				else{
-					abs_url = define.expandVariables(url)
+					abs_url = defineDreem.expandVariables(url)
 					if(!ext) ext = 'js', abs_url += '.'  + ext
 					fac_url = abs_url
 				}
 
-				if(define.reload_id) abs_url += '?' + define.getReloadID()
+				if(defineDreem.reload_id) abs_url += '?' + defineDreem.getReloadID()
 
 				if(module_deps && module_deps.indexOf(fac_url) === -1) module_deps.push(fac_url)
 
-				if(define.factory[fac_url]) return new define.Promise(function(resolve){resolve()})
+				if(defineDreem.factory[fac_url]) return new defineDreem.Promise(function(resolve){resolve()})
 
-				var prom = define.download_queue[abs_url]
+				var prom = defineDreem.download_queue[abs_url]
 
 				if(prom){
-					if(recurblock) return new define.Promise(function(resolve){resolve()})
+					if(recurblock) return new defineDreem.Promise(function(resolve){resolve()})
 					return prom
 				}
 
@@ -1069,12 +1072,12 @@ console.log("loading Define");
 					prom = loadImage(fac_url, abs_url, from_file)
 				}
 				else  prom = loadXHR(fac_url, abs_url, from_file, ext)
-				define.download_queue[abs_url] = prom
+				defineDreem.download_queue[abs_url] = prom
 				return prom
 			}
 
 			function loadImage(facurl, url, from_file){
-				return new define.Promise(function(resolve, reject){
+				return new defineDreem.Promise(function(resolve, reject){
 					var img = new Image()
 					img.src = url
 					img.onerror = function(){
@@ -1082,17 +1085,17 @@ console.log("loading Define");
 						reject(err)
 					}
 					img.onload = function(){
-						define.factory[facurl] = img
+						defineDreem.factory[facurl] = img
 						resolve(img)
 					}
 				})
 			}
 
 			function loadXHR(facurl, url, from_file, type){
-				return new define.Promise(function(resolve, reject){
+				return new defineDreem.Promise(function(resolve, reject){
 					var req = new XMLHttpRequest()
 					// todo, make type do other things
-					req.responseType = define.lookupFileType(type)
+					req.responseType = defineDreem.lookupFileType(type)
 
 					req.open("GET", url, true)
 					req.onerror = function(){
@@ -1107,8 +1110,8 @@ console.log("loading Define");
 								console.error(err)
 								return reject(err)
 							}
-							var blob = define.processFileType(type, req.response)
-							define.factory[facurl] = blob
+							var blob = defineDreem.processFileType(type, req.response)
+							defineDreem.factory[facurl] = blob
 
 							// do a post process on the file type
 							resolve(blob)
@@ -1120,18 +1123,18 @@ console.log("loading Define");
 
 			// insert by script tag
 			function loadScript(facurl, url, from_file){
-				return new define.Promise(function(resolve, reject){
+				return new defineDreem.Promise(function(resolve, reject){
 
 					var script = document.createElement('script')
-					var base_path = define.filePath(url)
+					var base_path = defineDreem.filePath(url)
 
-					define.script_tags[location.origin + url] = script
+					defineDreem.script_tags[location.origin + url] = script
 
 					script.type = 'text/javascript'
 
-					//define.script_tags[url] = script
+					//defineDreem.script_tags[url] = script
 					window.onerror = function(error, url, line){
-						var script = define.script_tags[url]
+						var script = defineDreem.script_tags[url]
 						if(script) script.onerror(error, url, line)
 					}
 
@@ -1140,25 +1143,25 @@ console.log("loading Define");
 						//console.log("ONLOAD!", Object.keys(this))
 						if(this.rejected) return
 						// pull out the last factor
-						var factory = define.last_factory
+						var factory = defineDreem.last_factory
 
-						define.factory[facurl] = factory
+						defineDreem.factory[facurl] = factory
 
 
 						if(!factory) return reject("Factory is null for "+url+" from file "+from_file + " : " + facurl)
 
 						var module_deps = factory.deps = []
 
-						define.last_factory = undefined
+						defineDreem.last_factory = undefined
 
 						// parse the function for other requires
-						Promise.all(define.findRequiresInFactory(factory).map(function(path){
+						Promise.all(defineDreem.findRequiresInFactory(factory).map(function(path){
 							// ignore nodejs style module requires
 							if(path.indexOf('$') === -1 && path.charAt(0) !== '.'){
 								return null
 							}
 
-							var dep_path = define.joinPath(base_path, define.expandVariables(path))
+							var dep_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(path))
 
 							return loadResource(dep_path, url, true, module_deps)
 						})).then(function(){
@@ -1176,7 +1179,7 @@ console.log("loading Define");
 						this.rejected = true
 						if(reject) reject({error:error, exception:exception, path:path, line:line})
 						else{
-							define.showException({error:error, exception:exception, path:path, line:line})
+							defineDreem.showException({error:error, exception:exception, path:path, line:line})
 						}
 					}
 					script.onload = onLoad
@@ -1184,7 +1187,7 @@ console.log("loading Define");
 						console.log(script.readyState)
 						if(script.readyState == 'loaded' || script.readyState == 'complete') onLoad()
 					}
-					define.in_body_exec = false
+					defineDreem.in_body_exec = false
 
 					script.src = url
 
@@ -1203,17 +1206,17 @@ console.log("loading Define");
 		// make it available globally
 		window.define = define
 
-		define.hideException = function(){
-			if(define.exception_div){
-				define.exception_div.parentNode.removeChild(define.exception_div)
-				define.exception_div = undefined
+		defineDreem.hideException = function(){
+			if(defineDreem.exception_div){
+				defineDreem.exception_div.parentNode.removeChild(defineDreem.exception_div)
+				defineDreem.exception_div = undefined
 			}
 		}
 
-		define.showException = function(exc){
+		defineDreem.showException = function(exc){
 			if(Object.keys(exc).length === 0) exc = {error:exc.stack, exception:exc.toString(), path:"", line:""}
 			// lets append the div
-			var div = define.exception_div = document.createElement('div')
+			var div = defineDreem.exception_div = document.createElement('div')
 			div.style.cssText ='position:absolute;left:10;top:10;padding:30px;background-color:white;border-radius:10px;border:2px dotted #ffc0c0;color:#202020;margin:20px;margin-left:20px;font-size:14pt;font-family:arial, helvetica;'
 
 			div.innerHTML = "<b>DreemGL has encountered a problem!</b><br/>"+exc.error+"<br/><div>"+exc.exception+"<br/><br/><div style='color:black'><a href='view-source:"+exc.path+"#"+exc.line+"'>in "+exc.path+" on line "+exc.line+"</a></div>"
@@ -1221,21 +1224,21 @@ console.log("loading Define");
 		}
 
 		// boot up using the MAIN property
-		if(define.main){
-			define.loadAsync(define.main, 'main').then(function(){
-				if(define.atMain) setTimeout(function(){
-					define.atMain(define.require, define.main)
+		if(defineDreem.main){
+			defineDreem.loadAsync(defineDreem.main, 'main').then(function(){
+				if(defineDreem.atMain) setTimeout(function(){
+					defineDreem.atMain(defineDreem.require, defineDreem.main)
 				},0)
 			}, function(exc){
-				if(define.atException) define.atException(exc)
+				if(defineDreem.atException) defineDreem.atException(exc)
 				else{
-					define.showException(exc)
+					defineDreem.showException(exc)
 				}
 			})
 		}
 
 		var backoff = 1
-		define.autoreloadConnect = function(){
+		defineDreem.autoreloadConnect = function(){
 			return; // SETH: don't reconnect, we don't want RPC
 			if(this.reload_socket){
 				this.reload_socket.onclose = undefined
@@ -1256,20 +1259,20 @@ console.log("loading Define");
 
 			this.reload_socket.onclose = function(){
 				if((backoff*=2) > 1000) backoff = 1000
-				setTimeout(function(){ define.autoreloadConnect() }, backoff)
+				setTimeout(function(){ defineDreem.autoreloadConnect() }, backoff)
 			}
 
 			this.reload_socket.onmessage = function(event){
 				var msg = JSON.parse(event.data)
 				if (msg.type === 'filechange'){
-					if(define.ignore_reload && define.ignore_reload[msg.file]) return console.log("Ignoring file change on "+msg.file)
-					var old_module = define.module[msg.file]
-					define.hideException()
-					if(define.partial_reload && old_module && typeof old_module.exports === 'function'){
-						define.requireDreem.reloadAsync(msg.file).then(function(){
-							if(define.atMain) define.atMain(define.require, define.main)
+					if(defineDreem.ignore_reload && defineDreem.ignore_reload[msg.file]) return console.log("Ignoring file change on "+msg.file)
+					var old_module = defineDreem.module[msg.file]
+					defineDreem.hideException()
+					if(defineDreem.partial_reload && old_module && typeof old_module.exports === 'function'){
+						defineDreem.requireDreem.reloadAsync(msg.file).then(function(){
+							if(defineDreem.atMain) defineDreem.atMain(defineDreem.require, defineDreem.main)
 						}).catch(function(exception){
-							define.showException(exception)
+							defineDreem.showException(exception)
 						})
 					}
 					else {//if (old_module){
@@ -1290,7 +1293,7 @@ console.log("loading Define");
 				}
 			}
 		}
-		define.autoreloadConnect()
+		defineDreem.autoreloadConnect()
 	}
 
 
@@ -1314,16 +1317,16 @@ console.log("loading Define");
 	function define_nodejs(){ // nodeJS implementation
 		module.exports = global.define = define
 
-		define.$root = define.filePath(process.mainModule.filename.replace(/\\/g,'/'))
+		defineDreem.$root = defineDreem.filePath(process.mainModule.filename.replace(/\\/g,'/'))
 
 		var http = requireDreem("http")
 		var url = requireDreem("url")
 		var fs = requireDreem("fs")
 		var path = requireDreem("path")
 
-		var root = define.expandVariables(define.$root)
+		var root = defineDreem.expandVariables(defineDreem.$root)
 
-		define.makeCacheDir = function(name){
+		defineDreem.makeCacheDir = function(name){
 			var cache_dir = path.join(root+'/cache')
 			if(!fs.existsSync(cache_dir)) fs.mkdirSync(cache_dir)
 
@@ -1332,29 +1335,29 @@ console.log("loading Define");
 			return cache_node
 		}
 
-		var cache_path_root = define.makeCacheDir('node')
+		var cache_path_root = defineDreem.makeCacheDir('node')
 
-		define.mapToCacheDir = function(name){
-			return cache_path_root + url.parse(define.expandVariables(name)).path
+		defineDreem.mapToCacheDir = function(name){
+			return cache_path_root + url.parse(defineDreem.expandVariables(name)).path
 		}
 
-		define.getModule = function(name){
-			var expanded = define.expandVariables(name)
+		defineDreem.getModule = function(name){
+			var expanded = defineDreem.expandVariables(name)
 			if(expanded.indexOf('://')!==-1){
-				expanded = define.mapToCacheDir(expanded)
+				expanded = defineDreem.mapToCacheDir(expanded)
 			}
-			var module = define.module[expanded]
+			var module = defineDreem.module[expanded]
 			return module
 		}
 
 		// fetch it async!
-		define.httpGetCached = function(httpurl){
-			return new define.Promise(function(resolve, reject){
+		defineDreem.httpGetCached = function(httpurl){
+			return new defineDreem.Promise(function(resolve, reject){
 				var myurl = url.parse(httpurl)
 				// ok turn this url into a cachepath
 
 				// lets make some dirs
-				var path = define.filePath(myurl.path)
+				var path = defineDreem.filePath(myurl.path)
 				var dirs = path.split('/')
 				var total = cache_path_root + '/'
 				for(var i = 0; i < dirs.length; i++){
@@ -1386,7 +1389,7 @@ console.log("loading Define");
 							return resolve({path:cache_path, type:res.headers['content-type']})
 						}
 						else reject({path:myurl.path,code:res.statusCode})
-						if(res.headers['content-type'] === 'text/json' && define.fileExt(cache_path) === '') cache_path += '.json'
+						if(res.headers['content-type'] === 'text/json' && defineDreem.fileExt(cache_path) === '') cache_path += '.json'
 						// lets write it to disk
 						var str = fs.createWriteStream(cache_path)
 						res.pipe(str)
@@ -1424,58 +1427,58 @@ console.log("loading Define");
 			return ret
 		}
 
-		define.download_queue = {}
+		defineDreem.download_queue = {}
 
-		define.define = function(factory) {
+		defineDreem.define = function(factory) {
 
 			if(factory instanceof Array) throw new Error("injects-style not supported")
 
 			var module = modules[modules.length - 1] || requireDreem.main
 			//console.log(original_paths)
 			// store module and factory just like in the other envs
-			define.module[module.filename] = module
-			define.factory[module.filename] = factory
+			defineDreem.module[module.filename] = module
+			defineDreem.factory[module.filename] = factory
 
 			function loadModuleAsync(modurl, includefrom){
 				modurl = modurl.replace(/\\/g , '/' );
 				var parsedmodurl = url.parse(modurl)
-				var base_path = define.filePath(modurl)
+				var base_path = defineDreem.filePath(modurl)
 
 				// block reentry
-				if(define.download_queue[modurl]){
-					return new define.Promise(function(resolve, reject){
+				if(defineDreem.download_queue[modurl]){
+					return new defineDreem.Promise(function(resolve, reject){
 
 						resolve( cache_path_root + url.parse(modurl).path )
 					})
-					//return define.download_queue[modurl]//
+					//return defineDreem.download_queue[modurl]//
 				}
 
 				// we need to fetch the url, then look at its dependencies, fetch those
-				return define.download_queue[modurl] = new define.Promise(function(resolve, reject){
+				return defineDreem.download_queue[modurl] = new defineDreem.Promise(function(resolve, reject){
 					// lets make sure we dont already have the module in our system
-					define.httpGetCached(modurl).then(function(result){
+					defineDreem.httpGetCached(modurl).then(function(result){
 
 						// the root
-						if(result.type === 'text/json' && define.fileExt(parsedmodurl.path) === ''){
+						if(result.type === 'text/json' && defineDreem.fileExt(parsedmodurl.path) === ''){
 							var data = JSON.parse(fs.readFileSync(result.path).toString())
 							// alright we get a boot file
 							// set our root properly
-							var mathmodule = define.getModule('$system/base/math.js')
+							var mathmodule = defineDreem.getModule('$system/base/math.js')
 
 							// lets re-assign math
-							define.paths = data.paths
+							defineDreem.paths = data.paths
 							for(var key in data.paths){
 								define['$'+key] = '$root/'+key
 							}
 
-							define.paths.root =
-							define.$root = 'http://'+parsedmodurl.hostname+':'+parsedmodurl.port+'/'
-							var math2 = define.mapToCacheDir('$system/base/math.js')
-							define.module[math2] = mathmodule
+							defineDreem.paths.root =
+							defineDreem.$root = 'http://'+parsedmodurl.hostname+':'+parsedmodurl.port+'/'
+							var math2 = defineDreem.mapToCacheDir('$system/base/math.js')
+							defineDreem.module[math2] = mathmodule
 
 
 							// alright now, lets load up the root
-							loadModuleAsync(define.expandVariables(data.boot), modurl).then(function(result){
+							loadModuleAsync(defineDreem.expandVariables(data.boot), modurl).then(function(result){
 								// ok so,
 								resolve(result)
 							})
@@ -1483,7 +1486,7 @@ console.log("loading Define");
 						}
 						if(result.type.indexOf('javascript') !== -1){
 							// lets load up the module, without initializing it
-							define.process_factory = true
+							defineDreem.process_factory = true
 
 							// open the fucker
 							try{
@@ -1495,14 +1498,14 @@ console.log("loading Define");
 							catch(e){
 								console.log(e.stack)
 							}
-							var factory = define.process_factory
-							define.process_factory = false
-							// alright we have a define.process_factory call we can now use.
+							var factory = defineDreem.process_factory
+							defineDreem.process_factory = false
+							// alright we have a defineDreem.process_factory call we can now use.
 							if(factory === true){
 								return resolve(result.path)
 							}
 
-							Promise.all(define.findRequiresInFactory(factory).map(function(path){
+							Promise.all(defineDreem.findRequiresInFactory(factory).map(function(path){
 
 								// ignore nodejs style module requires
 								var dep_path
@@ -1512,9 +1515,9 @@ console.log("loading Define");
 								else if(path.indexOf('$') === -1 && path.charAt(0) !== '.'){
 									return null
 								}
-								else dep_path = define.joinPath(base_path, define.expandVariables(path))
+								else dep_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(path))
 
-								var ext = define.fileExt(dep_path)
+								var ext = defineDreem.fileExt(dep_path)
 								if(!ext) dep_path += '.js'
 
 								return loadModuleAsync(dep_path, modurl)
@@ -1542,7 +1545,7 @@ console.log("loading Define");
 				var name = iname
 				if(arguments.length != 1) throw new Error("Unsupported require style")
 				try{
-					name = define.expandVariables(name)
+					name = defineDreem.expandVariables(name)
 				}
 				catch(e){
 					console.log("Cannot find "+e+" in module "+module.filename)
@@ -1550,7 +1553,7 @@ console.log("loading Define");
 				}
 
 				if(name.indexOf('://') !== -1){
-					name = define.mapToCacheDir(name)
+					name = defineDreem.mapToCacheDir(name)
 				}
 
 				var full_name = name;
@@ -1563,16 +1566,16 @@ console.log("loading Define");
 				}
 				if (full_name instanceof Array) full_name = full_name[0]
 
-				if(define.atRequire && ((full_name.charAt(0) == '/') || (full_name.indexOf('\\') >= 0)) ){
-					define.atRequire(full_name)
+				if(defineDreem.atRequire && ((full_name.charAt(0) == '/') || (full_name.indexOf('\\') >= 0)) ){
+					defineDreem.atRequire(full_name)
 				}
 
 				// we cant require non js files
-				var ext = define.fileExt(full_name)
+				var ext = defineDreem.fileExt(full_name)
 				if(ext !== '' && ext !== 'js'){
 					if(ext === 'jpg' || ext === 'jpeg' || ext === 'gif' || ext === 'png'){
 						// Construct a Texture.Image object given its path
-						if(define.loadImage) return define.loadImage(full_name)
+						if(defineDreem.loadImage) return defineDreem.loadImage(full_name)
 						return undefined
 					}
 					else{
@@ -1583,14 +1586,14 @@ console.log("loading Define");
 						for (var i = 0; i < buffer.length; ++i) {
 						    view[i] = buffer[i]
 						}
-						return define.processFileType(ext, ab)
+						return defineDreem.processFileType(ext, ab)
 						//console.log(full_name)
 					}
 					return undefined
 				}
 
-				var old_stack = define.local_require_stack
-				define.local_require_stack = []
+				var old_stack = defineDreem.local_require_stack
+				defineDreem.local_require_stack = []
 
 				try{
 					var ret = require(full_name)
@@ -1599,7 +1602,7 @@ console.log("loading Define");
 
 				//	console.log(e.stack)
 				finally{
-					define.local_require_stack = old_stack
+					defineDreem.local_require_stack = old_stack
 				}
 				return ret
 			}
@@ -1611,8 +1614,8 @@ console.log("loading Define");
 			noderequirewrapper.module = module
 
 			noderequirewrapper.loaded = function(path, ext){
-				var dep_path = define.joinPath(cache_path_root, define.expandVariables(path))
-				if(define.factory[dep_path]){
+				var dep_path = defineDreem.joinPath(cache_path_root, defineDreem.expandVariables(path))
+				if(defineDreem.factory[dep_path]){
 					return true
 				}
 			}
@@ -1621,67 +1624,67 @@ console.log("loading Define");
 				// For dali (and probably nodejs) relative paths must be made
 				// absolute to where the example is located. Retrieval
 				// method is different if running from a remote server
-				var remote = (define.$example.indexOf('://') !== -1);
+				var remote = (defineDreem.$example.indexOf('://') !== -1);
 
-				if (define.$platform == 'dali') {
+				if (defineDreem.$platform == 'dali') {
 					// Remote, relative
 					if (remote && modname.indexOf('./') == 0) {
-						modname = define.$example + modname.substring(2)
-						return define.httpGetCached(modname);
+						modname = defineDreem.$example + modname.substring(2)
+						return defineDreem.httpGetCached(modname);
 					}
 
 					// Remote, absolute
 					if (remote && modname.indexOf('/') == 0) {
-						var p = define.$example.indexOf('/', 8);
-						modname = define.$example.substring(0, p) + modname;
-						return define.httpGetCached(modname);
+						var p = defineDreem.$example.indexOf('/', 8);
+						modname = defineDreem.$example.substring(0, p) + modname;
+						return defineDreem.httpGetCached(modname);
 					}
 
 					// Local, relative
 					if (modname.indexOf('./') == 0) {
-						modname = '$root/' + define.$example + modname.substring(2)
-						modname = define.expandVariables(modname);
+						modname = '$root/' + defineDreem.$example + modname.substring(2)
+						modname = defineDreem.expandVariables(modname);
 
-						return new define.Promise(function(resolve, reject) {
-							return resolve(define.loadImage(modname));
+						return new defineDreem.Promise(function(resolve, reject) {
+							return resolve(defineDreem.loadImage(modname));
 						});
 					}
 
 					// Local, absolute
 					if (modname.indexOf('/') == 0) {
 						modname = '$root' + modname
-						modname = define.expandVariables(modname);
+						modname = defineDreem.expandVariables(modname);
 
-						return new define.Promise(function(resolve, reject) {
-							return resolve(define.loadImage(modname));
+						return new defineDreem.Promise(function(resolve, reject) {
+							return resolve(defineDreem.loadImage(modname));
 						});
 					}
 
 					if (remote && modname.indexOf('://') === -1)
-						modname = define.$example + '/' + modname
+						modname = defineDreem.$example + '/' + modname
 
-					modname = define.expandVariables(modname)
+					modname = defineDreem.expandVariables(modname)
 				}
 
-				if (define.$platform == 'dali' && modname.indexOf('./') == 0)
-					modname = '$root' + '/' + define.$example + '/' + modname;
+				if (defineDreem.$platform == 'dali' && modname.indexOf('./') == 0)
+					modname = '$root' + '/' + defineDreem.$example + '/' + modname;
 
 				if(typeof modname !== 'string') throw new Error("module name in requireDreem.async not a string")
-				modname = define.expandVariables(modname)
+				modname = defineDreem.expandVariables(modname)
 
 				// Query if module is in local file system (DALI)
 				var fs = requireDreem("fs")
 				try {
 					stats = fs.lstatSync(modname)
 					var data = fs.readFileSync(modname)
-					return new define.Promise(function(resolve, reject){
+					return new defineDreem.Promise(function(resolve, reject){
 						resolve(data)
 					})
 				}
 				catch(e) {
 				}
 
-				return new define.Promise(function(resolve, reject){
+				return new defineDreem.Promise(function(resolve, reject){
 					loadModuleAsync(modname, "root").then(function(path){
 						resolve(noderequirewrapper(path))
 					}).catch(function(e){
@@ -1695,29 +1698,29 @@ console.log("loading Define");
 			if (typeof factory !== "function") return module.exports = factory
 
 			// we are being used for requireDreem.async
-			if(define.process_factory){
-				define.process_factory = factory
+			if(defineDreem.process_factory){
+				defineDreem.process_factory = factory
 				return
 			}
 
-			define.local_require_stack.push(noderequirewrapper)
+			defineDreem.local_require_stack.push(noderequirewrapper)
 			try{
 				var ret = factory.call(module.exports, noderequirewrapper, module.exports, module)
 			}
 			finally{
-				define.local_require_stack.pop()
+				defineDreem.local_require_stack.pop()
 			}
 
 			if(ret !== undefined) module.exports = ret
 
-			if(define.atModule) define.atModule(module)
+			if(defineDreem.atModule) defineDreem.atModule(module)
 		}
 
-		global.define.require = require
-		global.define.module = {}
-		global.define.factory = {}
+		global.defineDreem.require = require
+		global.defineDreem.module = {}
+		global.defineDreem.factory = {}
 		// fetch a new require for the main module and return that
-		define.defineDreem(function(requireDreem){
+		defineDreem.defineDreem(function(requireDreem){
 			module.exports = require
 		})
 	}
@@ -1738,7 +1741,7 @@ console.log("loading Define");
 	function define_worker(){
 		self.define = define
 
-		define.define = function(body){
+		defineDreem.define = function(body){
 		}
 	}
 
@@ -1756,7 +1759,7 @@ console.log("loading Define");
 
 
 
-	define.prim = {
+	defineDreem.prim = {
 		int8:function int8(value){
 			if(value && value.isArray) return value
 			return parseInt(value)
@@ -1799,7 +1802,7 @@ console.log("loading Define");
 		}
 	}
 
-	define.struct = function(def, id){
+	defineDreem.struct = function(def, id){
 
 		function getStructArrayType(type){
 			var def = type.def
@@ -1828,7 +1831,7 @@ console.log("loading Define");
 		var mysize = getStructSize(def)
 		var Struct
 		if(def.prim){
-			Struct = define.prim[id]
+			Struct = defineDreem.prim[id]
 			Struct.bytes = def.bytes
 			Struct.primitive = true
 		}
@@ -1885,11 +1888,11 @@ console.log("loading Define");
 				for(var i = 0; i < len; i++){
 					var item = arguments[i]
 					if(typeof item == 'number') out[outoff++] = item
-					else outoff = define.arraySplat(out, outoff, item, 0, 1)
+					else outoff = defineDreem.arraySplat(out, outoff, item, 0, 1)
 				}
 				return out
 			}
-			if(define.debug && id){ // give the thing a name we can read
+			if(defineDreem.debug && id){ // give the thing a name we can read
 				var fnname = id
 				var code = 'return '+MyStruct.toString().replace(/MyStruct/g,fnname)
 				Struct = new Function('myarray','mysize', code)(myarray, mysize)
@@ -1981,7 +1984,7 @@ console.log("loading Define");
 				}
 			}
 			if(i == l){
-				var swiz = define.typemap.swizzle[myprim.def.type]
+				var swiz = defineDreem.typemap.swizzle[myprim.def.type]
 				if(!swiz) return
 				return swiz[l]
 			}
@@ -2020,7 +2023,7 @@ console.log("loading Define");
 					for(var i = 0; i < init_array.length; i++) obj.array[i] = init_array[i]
 					obj.length = length
 				}
-				else length = parseInt(define.arraySplat(this.array, 0, init_array, 0, 1) / mysize)
+				else length = parseInt(defineDreem.arraySplat(this.array, 0, init_array, 0, 1) / mysize)
 			}
 			return obj
 		}
@@ -2032,12 +2035,12 @@ console.log("loading Define");
 			return array
 		}
 
-		Struct.array_type  = Object.create(define.struct.array_type)
+		Struct.array_type  = Object.create(defineDreem.struct.array_type)
 		Struct.chunked_type = Object.create(Struct.array_type)
 		// copy over chunked functions
-		for(var keys = Object.keys(define.struct.chunked_type), i = 0; i < keys.length; i++){
+		for(var keys = Object.keys(defineDreem.struct.chunked_type), i = 0; i < keys.length; i++){
 			var key = keys[i]
-			Struct.chunked_type[key] = define.struct.chunked_type[key]
+			Struct.chunked_type[key] = defineDreem.struct.chunked_type[key]
 		}
 
 		Struct.extend = function(body){
@@ -2064,44 +2067,44 @@ console.log("loading Define");
 		return Struct
 	}
 
-	define.arraySplat = function(out, ioutoff, inp, inpoff, depth){
+	defineDreem.arraySplat = function(out, ioutoff, inp, inpoff, depth){
 		var outoff = ioutoff
 		for(var i = inpoff, len = inp.length; i < len; i++){
 			var item = inp[i]
 			if(typeof item == 'number') out[outoff++] = item
 			else if(typeof item === 'string'){
-				define.arraySplat(out, outoff, vec4(item), 0, depth++)
+				defineDreem.arraySplat(out, outoff, vec4(item), 0, depth++)
 			}
-			else if(typeof item === 'object') outoff = define.arraySplat(out, outoff, item, 0, depth++)
+			else if(typeof item === 'object') outoff = defineDreem.arraySplat(out, outoff, item, 0, depth++)
 		}
 		return outoff
 	}
 
 
-	define.structFromJSON = function(node, binary){
+	defineDreem.structFromJSON = function(node, binary){
 		if (typeof(node) === "object" && node){
 			if  (node.____struct){
-				var lookup  = define.typemap.types[node.____struct] ;
+				var lookup  = defineDreem.typemap.types[node.____struct] ;
 				return lookup.apply(null, node.data);
 			}
 			else if(node.____binary !== undefined){
-				return new define.typedArrayTypes[node.type](binary[node.____binary])
+				return new defineDreem.typedArrayTypes[node.type](binary[node.____binary])
 			}
 			else{
 				if(Array.isArray(node)){
 					for(var i = 0; i < node.length; i++){
-						node[i] = define.structFromJSON(node[i], binary)
+						node[i] = defineDreem.structFromJSON(node[i], binary)
 					}
 				}
 				else for(var key in node){
-					node[key] = define.structFromJSON(node[key], binary)
+					node[key] = defineDreem.structFromJSON(node[key], binary)
 				}
 			}
 		}
 		return node;
 	}
 
-	define.typedArrayTypes = {
+	defineDreem.typedArrayTypes = {
 		Float32Array:Float32Array,
 		Float64Array:Float64Array,
 		Int32Array:Int32Array,
@@ -2112,7 +2115,7 @@ console.log("loading Define");
 		Uint16Array:Uint16Array,
 	}
 
-	define.makeJSONSafe = function(obj, binary, stack){
+	defineDreem.makeJSONSafe = function(obj, binary, stack){
 		if(obj === undefined || obj === null) return obj
 		if(typeof obj === 'function') return null
 		if(typeof obj !== 'object') return obj
@@ -2124,7 +2127,7 @@ console.log("loading Define");
 			for(var i = 0; i < obj.length; i++){
 				var prop = obj[i]
 				if(stack.indexOf(prop) === -1){
-					out[i] = define.makeJSONSafe(prop, binary, stack)
+					out[i] = defineDreem.makeJSONSafe(prop, binary, stack)
 				}
 				else {
 					out[i] = null
@@ -2151,7 +2154,7 @@ console.log("loading Define");
 			var prop = obj[key]
 			if(typeof prop == 'object'){
 				if(stack.indexOf(prop) === -1){
-					out[key] = define.makeJSONSafe(prop, binary, stack)
+					out[key] = defineDreem.makeJSONSafe(prop, binary, stack)
 				}
 				else {
 					out[key] = null
@@ -2165,7 +2168,7 @@ console.log("loading Define");
 	}
 
 
-	define.isSafeJSON = function(obj, stack){
+	defineDreem.isSafeJSON = function(obj, stack){
 		if(obj === undefined || obj === null) return true
 		if(typeof obj === 'function') return false
 		if(typeof obj !== 'object') return true
@@ -2174,7 +2177,7 @@ console.log("loading Define");
 
 		if(Array.isArray(obj)){
 			for(var i = 0; i < obj.length; i++){
-				if(!define.isSafeJSON(obj[i])) return false
+				if(!defineDreem.isSafeJSON(obj[i])) return false
 			}
 			stack.pop()
 			return true
@@ -2188,7 +2191,7 @@ console.log("loading Define");
 			var prop = obj[key]
 			if(typeof prop == 'object'){
 				if(stack.indexOf(prop) != -1) return false // circular
-				if(!define.isSafeJSON(prop, stack)) return false
+				if(!defineDreem.isSafeJSON(prop, stack)) return false
 			}
 			else if(typeof prop == 'function') return false
 			// probably json safe then
@@ -2198,7 +2201,7 @@ console.log("loading Define");
 	}
 
 
-	define.struct.array_type = {}
+	defineDreem.struct.array_type = {}
 	function structArray(self){
 
 		// lets return the struct at index
@@ -2229,7 +2232,7 @@ console.log("loading Define");
 			var len = arguments.length - 1, base = index * this.slots
 			this.clean = false
 			if(len === this.slots) for(var i = 0; i < len; i++) this.array[base + i] = arguments[i + 1]
-			else define.arraySplat(this.array, base, arguments, 1)
+			else defineDreem.arraySplat(this.array, base, arguments, 1)
 			return this
 		}
 
@@ -2240,7 +2243,7 @@ console.log("loading Define");
 			var base = (this.length -1) * this.slots
 			var len = arguments.length
 			if(len === this.slots) for(var i = 0; i < len;i++) this.array[base + i] = arguments[i]
-			else define.arraySplat(this.array, base, arguments, 0)
+			else defineDreem.arraySplat(this.array, base, arguments, 0)
 		}
 
 		// triangle strip
@@ -2346,14 +2349,14 @@ console.log("loading Define");
 	}
 
 	// we inherit from array
-	structArray(define.struct.array_type)
-	define.struct.chunked_type = Object.create(define.struct.array_type)
+	structArray(defineDreem.struct.array_type)
+	defineDreem.struct.chunked_type = Object.create(defineDreem.struct.array_type)
 	function structChunked(self){
 		self.isChunked = true
 		return self
 	}
 
-	structChunked(define.struct.chunked_type)
+	structChunked(defineDreem.struct.chunked_type)
 
 
 
@@ -2373,7 +2376,7 @@ console.log("loading Define");
 
 
 
-	define.parseGLF = function(blob){
+	defineDreem.parseGLF = function(blob){
 		// arg. we need to forward ref vec2 and ivec2
 		// how do we do this.
 
@@ -2543,31 +2546,31 @@ console.log("loading Define");
 		// primitive types
 		exports.string = String
 		exports.boolean =
-		exports.bool = define.struct({prim:true, type:'bool', bytes:4, array:Int32Array},'bool')
+		exports.bool = defineDreem.struct({prim:true, type:'bool', bytes:4, array:Int32Array},'bool')
 		exports.float =
-		exports.float32 = define.struct({prim:true, type:'float32',bytes:4, array:Float32Array},'float32')
+		exports.float32 = defineDreem.struct({prim:true, type:'float32',bytes:4, array:Float32Array},'float32')
 		exports.double =
-		exports.float64 = define.struct({prim:true, type:'float64', bytes:8, array:Float64Array},'float64')
-		exports.int8 = define.struct({prim:true, type:'int8', bytes:1, array:Int8Array},'int8')
-		exports.uint8 = define.struct({prim:true, type:'uint8', bytes:1, array:Uint8Array},'uint8')
-		exports.half = define.struct({prim:true, type:'half', bytes:2, array:Int16Array},'half')
+		exports.float64 = defineDreem.struct({prim:true, type:'float64', bytes:8, array:Float64Array},'float64')
+		exports.int8 = defineDreem.struct({prim:true, type:'int8', bytes:1, array:Int8Array},'int8')
+		exports.uint8 = defineDreem.struct({prim:true, type:'uint8', bytes:1, array:Uint8Array},'uint8')
+		exports.half = defineDreem.struct({prim:true, type:'half', bytes:2, array:Int16Array},'half')
 		exports.short =
-		exports.int16 = define.struct({prim:true, type:'int16', bytes:2, array:Int16Array},'int16')
-		exports.uint16 = define.struct({prim:true, type:'uint16', bytes:1, array:Uint16Array},'uint16')
+		exports.int16 = defineDreem.struct({prim:true, type:'int16', bytes:2, array:Int16Array},'int16')
+		exports.uint16 = defineDreem.struct({prim:true, type:'uint16', bytes:1, array:Uint16Array},'uint16')
 		exports.long =
 		exports.int =
-		exports.int32 = define.struct({prim:true, type:'int32', bytes:4, array:Int32Array},'int32')
-		exports.uint32 = define.struct({prim:true, type:'uint32', bytes:4, array:Uint32Array},'uint32')
+		exports.int32 = defineDreem.struct({prim:true, type:'int32', bytes:4, array:Int32Array},'int32')
+		exports.uint32 = defineDreem.struct({prim:true, type:'uint32', bytes:4, array:Uint32Array},'uint32')
 
 		// Int vectors
-		exports.ivec2 = define.struct({
+		exports.ivec2 = defineDreem.struct({
 			r:'x',g:'y',
 			s:'x',t:'y',
 			x:exports.int32,
 			y:exports.int32
 		}, 'ivec2')
 
-		exports.ivec3 = define.struct({
+		exports.ivec3 = defineDreem.struct({
 			r:'x',g:'y',b:'z',
 			s:'x',t:'y',p:'z',
 			x:exports.int32,
@@ -2575,7 +2578,7 @@ console.log("loading Define");
 			z:exports.int32
 		}, 'ivec3')
 
-		exports.ivec4 = define.struct({
+		exports.ivec4 = defineDreem.struct({
 			r:'x',g:'y',b:'z',a:'w',
 			s:'x',t:'y',p:'z',q:'w',
 			x:exports.int32,
@@ -2585,18 +2588,18 @@ console.log("loading Define");
 		}, 'ivec4')
 
 		// Bool vectors
-		exports.bvec2 = define.struct({
+		exports.bvec2 = defineDreem.struct({
 			x:exports.boolean,
 			y:exports.boolean
 		}, 'bvec2')
 
-		exports.bvec3 = define.struct({
+		exports.bvec3 = defineDreem.struct({
 			x:exports.boolean,
 			y:exports.boolean,
 			z:exports.boolean
 		}, 'bvec3')
 
-		exports.bvec4 = define.struct({
+		exports.bvec4 = defineDreem.struct({
 			x:exports.boolean,
 			y:exports.boolean,
 			z:exports.boolean,
@@ -2604,7 +2607,7 @@ console.log("loading Define");
 		}, 'bvec4')
 
 		// vec2 type
-		exports.vec2 = define.struct({
+		exports.vec2 = defineDreem.struct({
 			r:'x',g:'y',
 			s:'x',t:'y',
 			x:exports.float32,
@@ -2612,32 +2615,32 @@ console.log("loading Define");
 		}, 'vec2')
 
 		// vec3 API
-		exports.vec3 = define.struct({
+		exports.vec3 = defineDreem.struct({
 			r:'x',g:'y',b:'z',
 			s:'x',t:'y',p:'z',
 			x:exports.float32, y:exports.float32, z:exports.float32
 		}, 'vec3')
 
 		// vec4 API
-		exports.vec4 = define.struct({
+		exports.vec4 = defineDreem.struct({
 			r:'x',g:'y',b:'z',a:'w',
 			s:'x',t:'y',p:'z',q:'w',
 			x:exports.float32, y:exports.float32, z:exports.float32, w:exports.float32
 		}, 'vec4')
 
-		exports.mat2 = define.struct({
+		exports.mat2 = defineDreem.struct({
 			a:exports.float32, b:exports.float32, c:exports.float32, d:exports.float32
 		}, 'mat2')
 
 		// mat3
-		exports.mat3 = define.struct({
+		exports.mat3 = defineDreem.struct({
 			a:exports.float32, b:exports.float32, c:exports.float32,
 			d:exports.float32, e:exports.float32, f:exports.float32,
 			g:exports.float32, h:exports.float32, i:exports.float32
 		}, 'mat3')
 
 		// mat4
-		exports.mat4 = define.struct({
+		exports.mat4 = defineDreem.struct({
 			a:exports.float32, b:exports.float32, c:exports.float32, d:exports.float32,
 			e:exports.float32, f:exports.float32, g:exports.float32, h:exports.float32,
 			i:exports.float32, j:exports.float32, k:exports.float32, l:exports.float32,
@@ -2645,7 +2648,7 @@ console.log("loading Define");
 		}, 'mat4')
 
 
-		exports.quat = define.struct({
+		exports.quat = defineDreem.struct({
 			x:exports.float32,
 			y:exports.float32,
 			z:exports.float32,
@@ -2841,19 +2844,19 @@ console.log("loading Define");
 	defineGlobals(typeof process !== 'undefined'? global: typeof window !== 'undefined'? window: self)
 
 	// store the types on define
-	define.typeToString = function(type){
+	defineDreem.typeToString = function(type){
 		if(type === String) return 'String'
 		if(type === Object) return 'Object'
 		return type.id
 	}
 
-	define.stringToType = function(str){
+	defineDreem.stringToType = function(str){
 		if(str === 'String') return String
 		if(str === 'Object') return Object
-		return define.typemap.types[str]
+		return defineDreem.typemap.types[str]
 	}
 
-	define.typemap = {
+	defineDreem.typemap = {
 		types:{
 			int:int,
 			int32:int32,
@@ -2929,12 +2932,12 @@ console.log("loading Define");
 	//defineArrayProp(Float32Array.prototype, {r:0, g:1, b:2, a:3}, [exports.vec2, exports.vec3, exports.vec4])
 	defineArrayProp(Int32Array.prototype, {x:0, y:1, z:2, w:3}, [ivec2, ivec3, ivec4])
 	//defineArrayProp(Int32Array.prototype, {r:0, g:1, b:2, a:3}, [exports.ivec2, exports.ivec3, exports.ivec4])
-	if(define.packaged) define_packaged()
-	else if(define.$environment === 'nodejs') define_nodejs()
-	else if(define.$environment === 'browser') define_browser()
-	else if(define.$environment === 'worker') define_worker()
+	if(defineDreem.packaged) define_packaged()
+	else if(defineDreem.$environment === 'nodejs') define_nodejs()
+	else if(defineDreem.$environment === 'browser') define_browser()
+	else if(defineDreem.$environment === 'worker') define_worker()
 })()
 
 // use the switchable promise
 
-if(define.atEnd) define.atEnd()
+if(defineDreem.atEnd) defineDreem.atEnd()

@@ -195,7 +195,7 @@ defineDreem.class('./compositionbase', function(requireDreem, baseclass){
 					}
 				}
 				if(!obj) return console.log("Invalid rpc attribute "+ msg.rpcid)
-				var value =  define.structFromJSON(msg.value)
+				var value =  defineDreem.structFromJSON(msg.value)
 				var attrset = obj.atAttributeSet
 				obj.atAttributeSet = undefined
 				obj[msg.attribute] = value
@@ -212,7 +212,7 @@ defineDreem.class('./compositionbase', function(requireDreem, baseclass){
 				if(ret && typeof ret === 'object' && ret.then){ // promise
 					ret.then(function(result){
 						var rmsg = {type:'return', uid:uid, value:result}
-						if(!define.isSafeJSON(result)){
+						if(!defineDreem.isSafeJSON(result)){
 							console.log("Rpc return value not json safe" + msg.method)
 							rmsg.error = 'Return value not json safe'
 							rmsg.value = undefined
@@ -222,7 +222,7 @@ defineDreem.class('./compositionbase', function(requireDreem, baseclass){
 				}
 				else{
 					var rmsg = {type:'return', uid:uid, value:ret}
-					if(!define.isSafeJSON(ret)){
+					if(!defineDreem.isSafeJSON(ret)){
 						console.log("Rpc return value not json safe" + msg.method)
 						rmsg.error = 'Return value not json safe'
 						rmsg.value = undefined

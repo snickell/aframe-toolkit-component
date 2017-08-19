@@ -33,7 +33,7 @@ defineDreem.class(function(requireDreem, exports){
 		var names = []
 		for(var k in this.files){
 			names.push(k)
-			stats.push(fs.statPromise(define.expandVariables(k)))
+			stats.push(fs.statPromise(defineDreem.expandVariables(k)))
 		}
 		Promise.all(stats).then(function(results){
 			setTimeout(this.poll, this.timeout)

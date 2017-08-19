@@ -9,7 +9,7 @@
 
 defineDreem.class(function(requireDreem){
 
-	console.log('Loading bootdali', define.$environment);
+	console.log('Loading bootdali', defineDreem.$environment);
 
 	// composition_client references WebSocket
 	//WebSocket = requireDreem('$system/base/nodewebsocket')
@@ -34,10 +34,10 @@ defineDreem.class(function(requireDreem){
 		compname, //String: name of the composition
 		rootserver){ //TeemServer: teem server object
 
-		define.$platform = 'dali'
+		defineDreem.$platform = 'dali'
 
-		// Called from define.noderequirewrapper to load a texture
-		define.loadImage = function(name){
+		// Called from defineDreem.noderequirewrapper to load a texture
+		defineDreem.loadImage = function(name){
 			//console.log('loadImage', name);
 			return Texture.fromImage({path:name});
 		}
@@ -98,13 +98,13 @@ defineDreem.class(function(requireDreem){
 		this.components = {}
 
 		this.paths = ""
-		for(var key in define.paths){
+		for(var key in defineDreem.paths){
 			if(this.paths) this.paths += ',\n\t\t'
 			this.paths += '$'+key+':"$root/'+key+'"'
 		}
 
 		// lets compile and run the dreem composition
-		define.atRequire = function(filename){
+		defineDreem.atRequire = function(filename){
 			this.slow_watcher.watch(filename)
 		}.bind(this)
 		//
@@ -139,7 +139,7 @@ defineDreem.class(function(requireDreem){
 		}
 		else {
 			// Local assets
-			var Composition = requireDreem(define.expandVariables(this.filename))
+			var Composition = requireDreem(defineDreem.expandVariables(this.filename))
 			this.composition = new Composition(this.busserver, this.session)
 		}
 	}
@@ -166,13 +166,13 @@ defineDreem.class(function(requireDreem){
 			var dir = '$root/'
 			var jsname = dir + this.compname+'.js'
 			try {
-				if(fs.existsSync(define.expandVariables(jsname))){
+				if(fs.existsSync(defineDreem.expandVariables(jsname))){
 					this.filename = jsname
 					return this.loadComposition()
 				}
 				else{
 					var jsname = dir + this.compname + '/index.js'
-					if(fs.existsSync(define.expandVariables(jsname))){
+					if(fs.existsSync(defineDreem.expandVariables(jsname))){
 						this.filename = jsname
 						return this.loadComposition()
 					}

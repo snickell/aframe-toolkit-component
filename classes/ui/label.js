@@ -138,7 +138,7 @@ defineDreem.class(function(requireDreem, $ui$, view){
 
 	this.font = function(event){
 		// DALi needs a baked font
-		if (!this.font.baked  && define.$platform === 'dali')
+		if (!this.font.baked  && defineDreem.$platform === 'dali')
 			this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
 
 		this.selectShader()
@@ -168,7 +168,7 @@ defineDreem.class(function(requireDreem, $ui$, view){
 
 	}
 
-	if (define.$platform === 'dali')
+	if (defineDreem.$platform === 'dali')
 		this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
 	else
 		this.font = requireDreem('$resources/fonts/opensans_regular_256.glf')

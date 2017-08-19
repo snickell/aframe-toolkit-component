@@ -64,7 +64,7 @@ defineDreem.class(function(requireDreem, exports){
 				// if its huuuge and value has escaped json, dont parse it
 				var data = event.data
 				if(data.charAt(0) === '$'){
-					binary_xhr.push(new define.Promise(function(resolve, reject){
+					binary_xhr.push(new defineDreem.Promise(function(resolve, reject){
 						// lets XHR download it
 						var xhr = new XMLHttpRequest()
 						xhr.open('GET', '/binrpc?'+data.slice(1), true);
@@ -83,18 +83,18 @@ defineDreem.class(function(requireDreem, exports){
 
 				var msg = JSON.parse(data)
 				if(bin_xhr.length){
-					define.Promise.all(bin_xhr).then(function(results){
+					defineDreem.Promise.all(bin_xhr).then(function(results){
 						var out = []
 						for(var i = 0; i < results.length; i++){
 							out[i] = results[i].response
 						}
-						msg = define.structFromJSON(msg, out)
+						msg = defineDreem.structFromJSON(msg, out)
 						this.atMessage(msg, this)
 					}.bind(this))
 				}
 				else{
 					// lets retrieve the missing binary blobs via XHR
-					msg = define.structFromJSON(msg)
+					msg = defineDreem.structFromJSON(msg)
 					console.log("this.socket.onmessage", msg);
 					
 					this.atMessage(msg, this)
@@ -105,7 +105,7 @@ defineDreem.class(function(requireDreem, exports){
 
 			this.send = function(msg){
 				var binary = []
-				var newmsg = define.makeJSONSafe(msg, binary)
+				var newmsg = defineDreem.makeJSONSafe(msg, binary)
 				var allbin = []
 
 				for(var i = 0; i < binary.length; i++){
@@ -113,7 +113,7 @@ defineDreem.class(function(requireDreem, exports){
 					var blobmsg = new Blob([data.buffer], {type: 'application/octet-binary'})
 
 					var rpcrandom = rndhex4()+rndhex4()+rndhex4()+rndhex4()+rndhex4()+rndhex4()+rndhex4()+rndhex4()
-					allbin.push(new define.Promise(function(resolve, reject){
+					allbin.push(new defineDreem.Promise(function(resolve, reject){
 						var xhr = new XMLHttpRequest()
 						xhr.open('POST', '/binrpc?'+rpcrandom, true);
 						xhr.onload = function(e) {
@@ -131,7 +131,7 @@ defineDreem.class(function(requireDreem, exports){
 
 				if(this.queue) this.queue.push(jsonmsg)
 				else {
-					define.Promise.all(allbin).then(function(){
+					defineDreem.Promise.all(allbin).then(function(){
 						this.socket.send(jsonmsg)
 					}.bind(this))
 				}
@@ -148,13 +148,13 @@ defineDreem.class(function(requireDreem, exports){
 					return
 				}
 				// lets retrieve the missing binary blobs via XHR
-				var msg = define.structFromJSON(JSON.parse(data), binary_buf)
+				var msg = defineDreem.structFromJSON(JSON.parse(data), binary_buf)
 				this.atMessage(msg, this)
 			}.bind(this)
 
 			this.send = function(msg){
 				var binary = []
-				var newmsg = define.makeJSONSafe(msg, binary)
+				var newmsg = defineDreem.makeJSONSafe(msg, binary)
 
 				for(var i = 0; i < binary.length; i++){
 					var data = binary[i].data

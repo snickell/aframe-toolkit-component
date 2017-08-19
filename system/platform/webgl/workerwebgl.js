@@ -12,10 +12,10 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 
 	this._startWorkers = function(head, tail, count){
 		if(!count) count = 1
-		var source = head + '\n\n\n;// Worker includes \nself.define = {packaged:true,$platform:"webgl"};(' + define.inner.toString() + ')();\n'
-		source += '(' + define.getModule('$system/base/math.js').factory.toString() + ')();\n'
-		for(var key in define.paths){
-			source += 'define.$'+key + ' = "'+define['$'+key]+'";\n'
+		var source = head + '\n\n\n;// Worker includes \nself.define = {packaged:true,$platform:"webgl"};(' + defineDreem.inner.toString() + ')();\n'
+		source += '(' + defineDreem.getModule('$system/base/math.js').factory.toString() + ')();\n'
+		for(var key in defineDreem.paths){
+			source += 'defineDreem.$'+key + ' = "'+define['$'+key]+'";\n'
 		}
 		source += tail
 		var blob = new Blob([source], { type: "text/javascript" })
@@ -37,9 +37,9 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 		var outdeps = {}
 
 		function collectBodyDeps(body){
-			var intreq = define.findRequiresInFactory(body)
+			var intreq = defineDreem.findRequiresInFactory(body)
 			for(var j = 0 ; j < intreq.length; j++){
-				intreq[j] = define.expandVariables(intreq[j])
+				intreq[j] = defineDreem.expandVariables(intreq[j])
 			}
 			if(intreq.length) collectDeps(intreq)
 		}
@@ -49,8 +49,8 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 			for(var i = 0; i < deps.length; i++){
 				var dep = deps[i]
 				if(outdeps[dep] || outdeps[dep+'.js']) continue
-				var module = define.getModule(dep)//module[dep]
-				if(!module) module = define.getModule(dep+'.js'), dep += '.js'
+				var module = defineDreem.getModule(dep)//module[dep]
+				if(!module) module = defineDreem.getModule(dep+'.js'), dep += '.js'
 				if(!module || !module.factory || typeof module.factory !== 'function') continue
 
 				// alright so lets recur on deps
@@ -65,7 +65,7 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 
 				// and now add our module
 				if(module.factory.body){
-					var str = 'define.packagedClass("'+dep+'",['
+					var str = 'defineDreem.packagedClass("'+dep+'",['
 					if(module.factory.baseclass) str +=  '"'+module.factory.baseclass+'",'
 					str += module.factory.body.toString() + ']);\n'
 					outdeps[dep] = str
@@ -105,7 +105,7 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 						//!TODO add typed array transfer feature
 					}
 					var worker = this._workers[tgtid]
-					if(!worker) return new define.Promise(function(resolve){resolve()})
+					if(!worker) return new defineDreem.Promise(function(resolve){resolve()})
 
 					var prom = this._allocPromise()
 					msg.uid = prom.uid
@@ -120,8 +120,8 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 	this._atConstructor = function(cores){
 		if(cores === undefined) cores = 1
 		else if(cores < 1){
-			if(define.cputhreads === 2) cores = 1
-			else cores = define.cputhreads - 2
+			if(defineDreem.cputhreads === 2) cores = 1
+			else cores = defineDreem.cputhreads - 2
 		}
 		
 		var deps = this._collectDeps(this.constructor.module.factory)
@@ -133,10 +133,10 @@ defineDreem.class('$system/base/worker', function(requireDreem, exports){
 			tail += deps[key]
 		}
 
-		tail += 'define.packagedClass("/myworker.js",["$system/base/worker",_myworker]);\n'
+		tail += 'defineDreem.packagedClass("/myworker.js",["$system/base/worker",_myworker]);\n'
 		// lets start with requiring /myworker
 
-		tail += 'var _worker = define.require(\'/myworker\')();\n'
+		tail += 'var _worker = defineDreem.require(\'/myworker\')();\n'
 		tail += '_worker.postMessage = function(msg,transfer){self.postMessage({message:msg,workerid:_worker.workerid},transfer)};\n'
 		tail += _worker_return.toString() + ';\n'
 		

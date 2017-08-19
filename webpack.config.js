@@ -5,8 +5,7 @@ const path = require("path");
 
 module.exports = {
     entry: {
-        "dreemgl": "./library.js"
-        
+        "dreemgl": "./dreemgl.js"        
     },
     output: {
         path: path.resolve(__dirname, ""),
@@ -44,5 +43,12 @@ module.exports = {
         contentImage: path.join(__dirname, 'icons/vr-48.png'),
         alwaysNotify: true
       }),
-    ],    
+    ],
+    resolve: {
+      modules: [
+        path.resolve('./classes'),
+        path.resolve('./'),        
+        path.resolve('./node_modules')
+      ]
+    },    
 };

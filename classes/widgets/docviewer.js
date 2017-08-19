@@ -57,7 +57,7 @@ defineDreem.class(function(requireDreem, $ui$, view, foldcontainer, label, butto
 
 				if (this.item.defvalue !== undefined){
 					if (this.item.type === "vec4"){
-						var type  = define.typemap.types[this.item.type] ;
+						var type  = defineDreem.typemap.types[this.item.type] ;
 						var defvalue = type(this.item.defvalue);
 						var labeltext = (Math.round(defvalue[0]*100)/100) + ", " +
 						(Math.round(defvalue[1]*100)/100) + ", " +

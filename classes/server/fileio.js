@@ -7,7 +7,7 @@
 defineDreem.class(function(requireDreem, service){
 	// The fileio class provides an easy RPC mechanism to load/create/save/enumerate files and directories. The fileio instance should live on the server part of the composition.
 	// do not ever put this in a web-facing composition as it has no security features
-	var $localbound = define.$localbound
+	var $localbound = defineDreem.$localbound
 	this.name = "fileio"
 
 	var nodehttp = requireDreem('$system/server/nodehttp')
@@ -17,10 +17,10 @@ defineDreem.class(function(requireDreem, service){
 	// wait for a file to change - then resolve the promise. Returns a promise.
 	// <name> The file to read. File paths can use $-shortcuts to refer to various folders
 	this.filechange = function(name){
-		name = define.safePath(name)
+		name = defineDreem.safePath(name)
 		if(!name) return null
-		var filepath = path.join(define.expandVariables(define.$root), name)
-		return new define.Promise(function(resolve){
+		var filepath = path.join(defineDreem.expandVariables(defineDreem.$root), name)
+		return new defineDreem.Promise(function(resolve){
 			// lets wait for a  filechange, then resolve it
 			var stat = JSON.stringify(fs.statSync(filepath))
 			var myitv = setInterval(function mytimeout(){
@@ -37,10 +37,10 @@ defineDreem.class(function(requireDreem, service){
 	// <name> The file to read. File paths can use $-shortcuts to refer to various folders
 	this.readfile = function(name){
 		// only support reading tagged names
-		name = define.safePath(name)
+		name = defineDreem.safePath(name)
 		if(!name) return null
 		try{
-			return fs.readFileSync(define.expandVariables(name)).toString()
+			return fs.readFileSync(defineDreem.expandVariables(name)).toString()
 		}
 		catch(e){
 			return null
@@ -51,14 +51,14 @@ defineDreem.class(function(requireDreem, service){
 	// <name> The file to read. File paths can use $-shortcuts to refer to various folders
 	// <data> The data to write
 	this.writefile = function(name, data){
-		if(!define.$writefile){
+		if(!defineDreem.$writefile){
 			console.log("writefile api disabled, use -writefile to turn it on. Writefile api is always limited to localhost origins.")
 			return null
 		}
-		name = define.safePath(name)
+		name = defineDreem.safePath(name)
 		if(!name) return null
 		try{
-			var fullname = define.expandVariables(name);
+			var fullname = defineDreem.expandVariables(name);
 			console.log("writing file:",fullname);
 			return fs.writeFileSync(fullname, data)
 		}
@@ -69,11 +69,11 @@ defineDreem.class(function(requireDreem, service){
 	// reads a directory and returns its contents
 	// <name> the name of the directory to read
 	this.readdir = function(name){
-		name = define.safePath(name)
+		name = defineDreem.safePath(name)
 		if(!name) return null
 		// lets read the directory and return it
 		try{
-			var dir = fs.readdirSync(path.join(define.expandVariables(define.$root), name))
+			var dir = fs.readdirSync(path.join(defineDreem.expandVariables(defineDreem.$root), name))
 			return dir
 		}
 		catch(e){

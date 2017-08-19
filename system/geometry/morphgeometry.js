@@ -9,13 +9,13 @@ defineDreem(function(requireDreem, exports){
 
 	var VTX_COUNT = 512
 
-	var vertexstruct = define.struct({
+	var vertexstruct = defineDreem.struct({
 		pos: vec3,
 		norm: vec3,
 		uv: vec2
 	})
 
-	var morphvertexstruct = define.struct({
+	var morphvertexstruct = defineDreem.struct({
 		pos: vec3,
 		norm: vec3,
 		uv: vec2,

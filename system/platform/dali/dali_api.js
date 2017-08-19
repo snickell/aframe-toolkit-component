@@ -146,7 +146,7 @@ defineDreem.class(function(exports){
 		try {
       // Load the library and make available as DaliApi.dali
 			// console.log('LOADING', dalilib);
-			var dalimodule = define.require(DaliApi.dalilib)(options);
+			var dalimodule = defineDreem.require(DaliApi.dalilib)(options);
 			DaliApi.dali = dalimodule;
 
 			// Create a top-level 2D layer to the stage.

@@ -40,7 +40,7 @@ defineDreem.class(function(requireDreem){
 		this.paths = ""
 		this.pathset = '{'
 
-		for(var key in define.paths){
+		for(var key in defineDreem.paths){
 			if(this.paths) this.paths += ',\n\t\t', this.pathset += ','
 			this.paths += '$'+key+':"$root/'+key+'"'
 			this.pathset += '"'+key+'":1'
@@ -49,7 +49,7 @@ defineDreem.class(function(requireDreem){
 
 
 		// lets compile and run the dreem composition
-		define.atRequire = function(filename){
+		defineDreem.atRequire = function(filename){
 			this.slow_watcher.watch(filename)
 		}.bind(this)
 		//
@@ -69,7 +69,7 @@ defineDreem.class(function(requireDreem){
 	this.loadComposition = function(){
 		console.log("Reloading composition "+this.filename)
 		requireDreem.clearCache()
-		var Composition = requireDreem(define.expandVariables(this.filename))
+		var Composition = requireDreem(defineDreem.expandVariables(this.filename))
 		this.composition = new Composition(this.busserver, this.session, this.composition)
 	}
 
@@ -79,17 +79,17 @@ defineDreem.class(function(requireDreem){
 		// lets fill
 		requireDreem.clearCache()
 
-		this.title = define.fileName(this.compname)
+		this.title = defineDreem.fileName(this.compname)
 		// lets see if our composition is a dir or a jsfile
 		var jsname = this.compname+'.js'
 		try{
-			if(fs.existsSync(define.expandVariables(jsname))){
+			if(fs.existsSync(defineDreem.expandVariables(jsname))){
 				this.filename = jsname
 				return this.loadComposition()
 			}
 			else{
 				var jsname = this.compname + '/index.js'
-				if(fs.existsSync(define.expandVariables(jsname))){
+				if(fs.existsSync(defineDreem.expandVariables(jsname))){
 					this.filename = jsname
 					return this.loadComposition()
 				}
@@ -151,19 +151,19 @@ defineDreem.class(function(requireDreem){
 			'     '+paths+',\n'+
 			'      main:["$system/base/math", "' + boot + '"],\n'+
 			'      atMain:function(requireDreem, modules){\n'+
-			'        define.endLoader()\n'+
+			'        defineDreem.endLoader()\n'+
 			'		 require(modules[0])\n'+
 			'		 var Composition = require(modules[1])\n'+
 			'		 var serverattrs = ' + JSON.stringify(preloadattrs) + '\n'+
 			'		 var renderTarget;' + '\n'+
-			'        define.rootComposition = new Composition(define.rootComposition, undefined, serverattrs, renderTarget)\n'+
+			'        defineDreem.rootComposition = new Composition(defineDreem.rootComposition, undefined, serverattrs, renderTarget)\n'+
 			'      },\n'+
 			'	   atEnd:function(){\n'+
-			'         define.startLoader()\n'+
+			'         defineDreem.startLoader()\n'+
 			'      }\n'+
 			'    }\n'+
 			'  </script>\n'+
-			'  <script type="text/javascript" src="/system/base/define.js"></script>\n'+
+			'  <script type="text/javascript" src="/system/base/defineDreem.js"></script>\n'+
 			additionalHeader +
 			' </head>\n'+
 			' <body class="unselectable">\n'+
@@ -179,7 +179,7 @@ defineDreem.class(function(requireDreem){
 		if(req.method == 'POST'){
 			// lets do an RPC call
 
-			if(!define.$unsafeorigin && this.rootserver.addresses.indexOf(req.headers.origin) === -1){
+			if(!defineDreem.$unsafeorigin && this.rootserver.addresses.indexOf(req.headers.origin) === -1){
 				console.log("WRONG ORIGIN POST API RECEIVED" + req.headers.origin)
 				res.end()
 				return false
@@ -225,12 +225,12 @@ defineDreem.class(function(requireDreem){
 
 					filename = compdir + "/" + filename.replace(/[^A-Za-z0-9_.-]/g,'');
 
-					if (!define.$writefile){
+					if (!defineDreem.$writefile){
 						console.log("writefile api disabled, use -writefile to turn it on. Writefile api is always limited to localhost origins.")
 						res.writeHead(501);
 					} else {
 						try{
-							var fullname = define.expandVariables(filename);
+							var fullname = defineDreem.expandVariables(filename);
 							fs.writeFile(fullname, filedata);
 							console.log("[UPLOAD] Wrote", filedata.length, "bytes to", fullname);
 							res.writeHead(200);
@@ -276,7 +276,7 @@ defineDreem.class(function(requireDreem){
 		// nodejs root
 		if(req.headers['client-type'] === 'nodejs'){
 			res.writeHead(200, {"Content-type":"text/json"})
-			res.write(JSON.stringify({title:this.title, boot:this.filename, paths:define.paths }))
+			res.write(JSON.stringify({title:this.title, boot:this.filename, paths:defineDreem.paths }))
 			res.end()
 			return
 		}

@@ -47,7 +47,7 @@ defineDreem.class('$system/platform/$platform/shader$platform', function(require
 	}
 
 	// lets define a custom struct and subclass the array
-	this.textgeom = define.struct({
+	this.textgeom = defineDreem.struct({
 		pos:vec4, // x y z w unicode in w
 		tex:vec2,
 		tag:vec4,
@@ -714,13 +714,13 @@ defineDreem.class('$system/platform/$platform/shader$platform', function(require
 		return dist
 	}
 
-	this.glyphy_arc_t = define.struct({
+	this.glyphy_arc_t = defineDreem.struct({
 		p0:vec2,
 		p1:vec2,
 		d:float
 	}, 'glyphy_arc_t')
 
-	this.glyphy_arc_endpoint_t = define.struct({
+	this.glyphy_arc_endpoint_t = defineDreem.struct({
 		/* Second arc endpoint */
 		p:vec2,
 		/* Infinity if this endpoint does not form an arc with the previous
@@ -729,7 +729,7 @@ defineDreem.class('$system/platform/$platform/shader$platform', function(require
 		d:float
 	}, 'glyphy_arc_endpoint_t')
 
-	this.glyphy_arc_list_t = define.struct({
+	this.glyphy_arc_list_t = defineDreem.struct({
 		/* Number of endpoints in the list.
 		 * Will be zero if we're far away inside or outside, in which case side is set.
 		 * Will be -1 if this arc-list encodes a single line, in which case line_* are set. */
@@ -1042,7 +1042,7 @@ defineDreem.class('$system/platform/$platform/shader$platform', function(require
 		baseclass.atExtend.call(this)
 	}
 
-	this.font_style_t = define.struct({
+	this.font_style_t = defineDreem.struct({
 		pos:vec3,
 		fgcolor: vec4,
 		outlinecolor: vec4,
