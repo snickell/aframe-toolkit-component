@@ -13,7 +13,7 @@ if(typeof process !== 'undefined' && require && require.main === module){
 	var head = fs.readFileSync(module.filename).toString().match(/^[\S\s]*\/\/ generated/)[0]
 	// the template for the generated bottom part
 	var template = function(){
-		export default defineDreem.class(function(exports){
+		defineDreem.class(function(exports){
 			BODY
 			this.Object = function(obj){
 				if(arguments.length > 1) return this._Object.apply(this, arguments)

@@ -71,7 +71,7 @@ export default defineDreem.class('$system/base/worker', function(requireDreem, e
 					outdeps[dep] = str
 				}
 				else{
-					outdeps[dep] = 'export default defineDreem(' + module.factory.toString() + ',"'+dep+'");\n'
+					outdeps[dep] = 'defineDreem(' + module.factory.toString() + ',"'+dep+'");\n'
 				}
 			}
 		}
