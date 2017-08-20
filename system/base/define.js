@@ -2468,7 +2468,7 @@
 		// parsing a wired function as string
 		exports.wire = function wire(fn){
 			if (typeof(fn) !== 'function') {
-				src = "return " + fn.toString()
+				var src = "return " + fn.toString()
 				fn = new Function('find','rpc', src)
 			}
 			fn.is_wired = true;

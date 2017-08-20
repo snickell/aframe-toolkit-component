@@ -229,6 +229,7 @@ import typefaceshader from 'system/typeface/typefaceshader';
 import buttons from 'examples/buttons';
 import checkboxes from 'examples/checkboxes';
 import sliders from 'examples/sliders';
+import drawers from 'examples/drawers';
 
 function createPathToModule() {
   pathToModule = {};
@@ -237,6 +238,7 @@ function createPathToModule() {
   pathToModule['examples/buttons'] = buttons;
   pathToModule['examples/checkboxes'] = checkboxes;
   pathToModule['examples/sliders'] = sliders;
+  pathToModule['examples/drawers'] = drawers;
   
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;
