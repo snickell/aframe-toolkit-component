@@ -1,4 +1,4 @@
-export default defineDreem.class.class("$server/composition",function($iot$, iot, $$, controller){
+export default defineDreem.class("$server/composition",function($iot$, iot, $$, controller){
 
   this.render=function(){
     return [

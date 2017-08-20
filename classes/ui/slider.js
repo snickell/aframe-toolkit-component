@@ -188,7 +188,7 @@ export default defineDreem.class("$ui/view", function($ui$, view, icon) {
 	this.onrangevalue = function(ev,v,o) {
 		var range = this._range;
 		var distance = range[1] - range[0];
-		value = (v - range[0]) / distance;
+		var value = (v - range[0]) / distance;
 		if (this._value !== value) {
 			this.value = value
 		}

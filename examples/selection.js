@@ -5,9 +5,9 @@
  See the License for the specific language governing permissions and limitations under the License.*/
 
 //Pure JS based composition
-export default defineDreem.class.class(function($server$, composition, $ui$, screen, cadgrid, view, icon, label){
+export default defineDreem.class(function($server$, composition, $ui$, screen, cadgrid, view, icon, label){
 
-	export default defineDreem.class.class(this, "selectorrect", view, function(){
+	export default defineDreem.class(this, "selectorrect", view, function(){
 		this.name = 'selectorrect'
 		this.bordercolorfn = function(pos){
 			var check = (int(mod(0.05 * (gl_FragCoord.x + gl_FragCoord.y + time * 40.),2.)) == 1)? 1.0: 0.0

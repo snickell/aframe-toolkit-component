@@ -1,4 +1,4 @@
-export default defineDreem.class.class("$server/composition",function(requireDreem,$ui$,icon,button,checkbox,label,view,screen,cadgrid,$widgets$,toolkit){
+export default defineDreem.class("$server/composition",function(requireDreem,$ui$,icon,button,checkbox,label,view,screen,cadgrid,$widgets$,toolkit){
   this.render=function(){
     return [
       screen(

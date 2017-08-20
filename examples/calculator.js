@@ -4,13 +4,13 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$server/composition', function (require,  $server$, fileio,$ui$, noisegrid, numberbox, button, menubar, label, screen, view, foldcontainer, speakergrid,checkbox, icon, $widgets$, colorpicker,  jsviewer, radiogroup, $3d$, ballrotate){
+export default defineDreem.class('$server/composition', function (requireDreem,  $server$, fileio,$ui$, noisegrid, numberbox, button, menubar, label, screen, view, foldcontainer, speakergrid,checkbox, icon, $widgets$, colorpicker,  jsviewer, radiogroup, $3d$, ballrotate){
 
 	this.calculate = function(){
 
 	}
 
-	define.class(this, "calculator", "$ui/noisegrid", function(){
+	export default defineDreem.class(this, "calculator", "$ui/noisegrid", function(){
 		this.borderradius = 4;
 		this.attributes = {
 			results: []
@@ -21,7 +21,7 @@ define.class('$server/composition', function (require,  $server$, fileio,$ui$, n
 		this.dropshadowradius = 30
 		
 		this.alignself="center";
-		this.flex = undefined;
+		this.flex = unexport default defineDreem.classd;
 		this.flexdirection = "column";
 		this.width =600;
 		this.expression = "";

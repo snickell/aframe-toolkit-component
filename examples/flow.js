@@ -1,4 +1,4 @@
-export default defineDreem.class.class("$server/composition",function($server$,service,$ui$,screen,$flow$displays$,debug,outputs,$flow$services$,debugd){
+export default defineDreem.class("$server/composition",function($server$,service,$ui$,screen,$flow$displays$,debug,outputs,$flow$services$,debugd){
 
   this.render=function(){
     return [

@@ -5,7 +5,7 @@
  See the License for the specific language governing permissions and limitations under the License.*/
 
 
-export default defineDreem.class.class("$server/composition", function($ui$, screen, $3d$, morph3d, circle, roundedrect) {
+export default defineDreem.class("$server/composition", function($ui$, screen, $3d$, morph3d, circle, roundedrect) {
 	this.render = function() {
 		return [
 			screen(

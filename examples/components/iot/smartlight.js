@@ -1,4 +1,4 @@
-export default defineDreem.class.class("$ui/view", function ($ui$, view, label, button, $widgets$, colorpicker) {
+export default defineDreem.class("$ui/view", function ($ui$, view, label, button, $widgets$, colorpicker) {
 
 	function componentToHex(c) {
 		c = Math.floor(c);

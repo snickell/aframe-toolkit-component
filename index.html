@@ -18,6 +18,7 @@
     body {background-color:white;margin:0;padding:0;height:100%;overflow:hidden;}
   </style>  <script type="text/javascript">
     var example = location.hash.slice(1);
+    var exampleRequire = `$examples/${example}.js`;
     
     window.defineDreem = {
 	   $platform:"webgl",
@@ -37,7 +38,7 @@
 		$apps:"$root/apps",
 		$docs:"$root/docs",
 		$test:"$root/test",
-      main:["$system/base/math", `$examples/${example}.js`],
+      main:["$system/base/math", exampleRequire],
       atMain:function(requireDreem, modules){
         setTimeout(function () {
           defineDreem.endLoader()

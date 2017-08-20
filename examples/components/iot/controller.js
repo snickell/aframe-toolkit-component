@@ -1,4 +1,4 @@
-export default defineDreem.class.class("$ui/screen", function ($ui$, icon, slider, button, checkbox, label, screen, view, cadgrid,
+export default defineDreem.class("$ui/screen", function ($ui$, icon, slider, button, checkbox, label, screen, view, cadgrid,
 									 $$, smartlight, thing) {
 	this.attributes = {
 		things: Config({type:Array, flow:"in"})

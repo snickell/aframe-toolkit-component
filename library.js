@@ -225,15 +225,19 @@ import cursorshader from 'system/typeface/cursorshader';
 import fontsdfgen from 'system/typeface/fontsdfgen';
 import markershader from 'system/typeface/markershader';
 import typefaceshader from 'system/typeface/typefaceshader';
-import buttons from 'examples/buttons';
 
+import buttons from 'examples/buttons';
+import checkboxes from 'examples/checkboxes';
+import sliders from 'examples/sliders';
 
 function createPathToModule() {
   pathToModule = {};
 
   // Examples
   pathToModule['examples/buttons'] = buttons;
-
+  pathToModule['examples/checkboxes'] = checkboxes;
+  pathToModule['examples/sliders'] = sliders;
+  
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;
   pathToModule['3d/cone'] = cone;
