@@ -381,7 +381,7 @@
 			}
 			else{
 				// lets make an fnname based on our callstack
-				var origin = new Error().stack.split(/\n/)[3].match(/\/([a-zA-Z0-9\.]+)\:(\d+)\:\d+\)/)
+				var origin = new Error().stack.split(/\n/)[3].match(/\/([a-zA-Z_][a-zA-Z0-9\._]*)\:(\d+)\:\d+\)/)
 				if(!origin || origin[1] === 'defineDreem.js'){
 					fnname = 'extend'
 					if(baseclass && baseclass.prototype.constructor) fnname += '_' + baseclass.prototype.constructor.name
