@@ -6,9 +6,9 @@
 
 // The server uses foursquarelib to retrieve foursquare data.
 
-define.class(function($server$, composition, service, $ui$, screen, view, label, require){
+export default defineDreem.class.class(function($server$, composition, service, $ui$, screen, view, label, require){
 
-	define.class(this, "demo", "$ui/view", function(){
+	export default defineDreem.class.class(this, "demo", "$ui/view", function(){
 		this.flex = 1
 		this.flexdirection = 'column'
 		this.overflow = 'scroll'

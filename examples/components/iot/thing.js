@@ -1,4 +1,4 @@
-define.class("$ui/view", function ($ui$, view, label) {
+export default defineDreem.class.class("$ui/view", function ($ui$, view, label) {
 
 	this.attributes = {
 		config:Config({type:Object})

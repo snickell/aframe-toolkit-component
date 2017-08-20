@@ -4,9 +4,9 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class('$server/composition', function($ui$, screen, view) {
+export default defineDreem.class.class('$server/composition', function($ui$, screen, view) {
 
-	define.class(this, "demo", '$ui/view', function ($ui$, view, label){
+	export default defineDreem.class.class(this, "demo", '$ui/view', function ($ui$, view, label){
 
 		this.attributes = {
 			start: null,
@@ -41,7 +41,7 @@ define.class('$server/composition', function($ui$, screen, view) {
 			this.keypaste = function(event) { this.paste = event }.bind(this)
 		}
 
-		define.class(this, "pointerdetailview", view, function(){
+		export default defineDreem.class.class(this, "pointerdetailview", view, function(){
 			this.bgcolor = NaN
 			this.attributes = {
 				eventdata: Config({type: Object, value: null}),
@@ -97,7 +97,7 @@ define.class('$server/composition', function($ui$, screen, view) {
 			}
 		})
 
-		define.class(this, "keydetailview", view, function(){
+		export default defineDreem.class.class(this, "keydetailview", view, function(){
 			this.bgcolor = NaN
 			this.attributes = {
 				eventdata: Config({type: Object, value: null}),
@@ -124,7 +124,7 @@ define.class('$server/composition', function($ui$, screen, view) {
 			}
 		})
 
-		define.class(this, "multimoveview", view, function(){
+		export default defineDreem.class.class(this, "multimoveview", view, function(){
 			this.attributes = {
 				eventdata: Config({type: Object, value: null})
 			}

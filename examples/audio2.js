@@ -4,7 +4,7 @@
  software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class("$server/composition",function(require, $ui$, screen, label, button, view, bargraphic, $widgets$, audioplayer) {
+export default defineDreem.class.class("$server/composition",function(requireDreem, $ui$, screen, label, button, view, bargraphic, $widgets$, audioplayer) {
 
 		this.render = function() {
 			return [

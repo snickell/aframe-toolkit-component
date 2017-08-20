@@ -4,7 +4,7 @@
  software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class("$server/composition",function(require, $ui$, screen, view) {
+export default defineDreem.class.class("$server/composition",function(requireDreem, $ui$, screen, view) {
 	this.render = function() {
 		return [screen(
 			view({
@@ -17,7 +17,7 @@ define.class("$server/composition",function(require, $ui$, screen, view) {
 					color:function(){
 						return mix('brown',pal.pal1(mesh.depth/14+0.1*view.time),mesh.depth/12)*sin(mesh.pos.y*PI)*pow(abs(sin(mesh.pos.x*PI)),0.2)
 					},
-					mesh:define.struct({
+					mesh:export default defineDreem.class.struct({
 						pos:vec2,
 						path:float,
 						depth:float

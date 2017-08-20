@@ -4,7 +4,7 @@
  software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and limitations under the License.*/
 
-define.class("$server/composition",function(require, $ui$, screen, view) {
+export default defineDreem.class.class("$server/composition",function(requireDreem, $ui$, screen, view) {
 	this.render = function() {
 		return [screen({
 				clearcolor:'black'
@@ -36,7 +36,7 @@ define.class("$server/composition",function(require, $ui$, screen, view) {
 					},
 					// the geometry structure, position, path (a power of 2 float mask) and depth of the rect
 					// also note we are only using 'floats' for this data, videocards dont really like other types
-					mesh:define.struct({
+					mesh:export default defineDreem.class.struct({
 						pos:vec2,
 						path:float,
 						depth:float,

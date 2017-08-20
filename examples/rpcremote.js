@@ -5,7 +5,7 @@
    See the License for the specific language governing permissions and limitations under the License.*/
 
 //Pure JS based composition
-define.class('$server/composition', function(
+export default defineDreem.class.class('$server/composition', function(
 	$server$, service,
 	$ui$, screen, view,
 	$behaviors$, draggable){ this.render = function(){ return [
