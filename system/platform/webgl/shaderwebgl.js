@@ -299,7 +299,7 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 		var loc = ATTRLOC_LOC
 		gl.enableVertexAttribArray(loc)
 		ATTRLOC_ATTRIBPTR
-		ATTRLOC_END
+    ATTRLOC_END
 
 		// set up blend mode
 		if(root.alpha_blend_eq.op){
@@ -442,6 +442,7 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 				}
 				var ATTRLOC_LOC = 'shader.attrlocs.' + key +'.loc'
 
+        var ATTRLOC_ATTRIBPTR;
 				if(attrloc.name){
 					ATTRLOC_ATTRIBPTR =
 						'gl.vertexAttribPointer(loc, '+attrloc.slots+', gl.FLOAT, false, buf.stride, '+attrloc.offset+')'

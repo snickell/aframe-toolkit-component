@@ -263,7 +263,7 @@ export default defineDreem.class(function(requireDreem, exports){
 
 		var callback = function () {
 			this.doPick(resolve)
-			delete this.pick_timer
+      this.pick_timer = undefined
 		}.bind(this)
 
 		// TODO(aki): remove sync picking
