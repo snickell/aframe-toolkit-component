@@ -49,6 +49,8 @@
 
 	// the main define function
 	function defineDreem(factory, pkg){
+    // seth drew uncomment to debug includes
+    // console.log("defineDreem(", factory, pkg, ")");
 		if(pkg !== undefined){ // precompiled version
 			defineDreem.factory[pkg] = factory
 			return factory;

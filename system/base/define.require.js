@@ -33,7 +33,8 @@ window.defineDreem.localRequire = function (base_path, from_file) {
       factory = lookupInImportLibrary(abs_path);
 
   		if (factory) {
-  			console.log("\tloaded ", abs_path);
+        // seth drew uncomment for debug
+  			// console.log("\tloaded ", abs_path);
   			if (objectIsEmpty(factory)) {
   				console.warn("\tgot an empty module back for ", abs_path, " probably means we don't have a proper export default in the module yet??? Need to figure out how to rig this into all files, ugh.");
   			}
@@ -239,11 +240,41 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 	function loadScript(facurl, url, from_file) {
 
 		return new defineDreem.Promise(function (resolve, reject) {
-			var moduleFromLibrary = lookupInImportLibrary(facurl);
-			console.log(`loadScript(${facurl})`);
-			resolve(moduleFromLibrary);
-		});
+			var base_path = defineDreem.filePath(url);
+      
+			var factory = lookupInImportLibrary(facurl);
+			console.log(`doing loadScript(${facurl})`);
+      
+      
+			defineDreem.factory[facurl] = factory
 
+			if (!factory) return reject("Factory is null for " + url + " from file " + from_file + " : " + facurl)
+
+			var module_deps = factory.deps = []
+
+			defineDreem.last_factory = undefined
+
+			// parse the function for other requires
+			Promise.all(defineDreem.findRequiresInFactory(factory).map(function (path) {
+        console.log("requires: ", path);
+				// ignore nodejs style module requires
+				if (path.indexOf('$') === -1 && path.charAt(0) !== '.') {
+					return null
+				}
+
+				var dep_path = defineDreem.joinPath(base_path, defineDreem.expandVariables(path))
+
+				return loadResource(dep_path, url, true, module_deps)
+			})).then(function () {
+        console.log("resolving factory");
+				resolve(factory)
+				reject = undefined
+			},
+				function (err) {
+					reject(err)
+			});
+		});
+    /*
 		return new defineDreem.Promise(function (resolve, reject) {
 
 			var script = document.createElement('script')
@@ -258,6 +289,7 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 				var script = defineDreem.script_tags[url]
 				if (script) script.onerror(error, url, line)
 			}
+      
 
 			function onLoad() {
 				//for(var key in this)console.log(keys)
@@ -316,6 +348,7 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 
 			document.getElementsByTagName('head')[0].appendChild(script)
 		})
+    */
 	}
 
 	if (Array.isArray(files)) {
@@ -336,17 +369,17 @@ defineDreem.findRequiresInFactory = function (factory, req) {
 
 	req = req || []
 	// bail out if we redefine require
-	if (search.match(/function\s+require/) || search.match(/var\s+require/)) {
+	if (search.match(/function\s+requireDreem/) || search.match(/var\s+requireDreem/)) {
 		return req
 	}
 
-	search.replace(/\/\*[\s\S]*?\*\//g, '').replace(/([^:]|^)\/\/[^\n]*/g, '$1').replace(/require\s*\(\s*["']([^"']+)["']\s*\)/g, function (m, path) {
+	search.replace(/\/\*[\s\S]*?\*\//g, '').replace(/([^:]|^)\/\/[^\n]*/g, '$1').replace(/requireDreem\s*\(\s*["']([^"']+)["']\s*\)/g, function (m, path) {
 
 		req.push(path)
 	})
 
 	// fetch string baseclasses for nested classes and add them
-	var baserx = new RegExp(/define\.class\s*\(\s*(?:this\s*,\s*['"][$_\w]+['"]\s*,\s*)?(?:['"]([^"']+)['"]\s*,\s*)function/g)
+	var baserx = new RegExp(/defineDreem\.class\s*\(\s*(?:this\s*,\s*['"][$_\w]+['"]\s*,\s*)?(?:['"]([^"']+)['"]\s*,\s*)function/g)
 
 	let result;
 	while ((result = baserx.exec(search)) !== null) {
