@@ -243,7 +243,7 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 			var base_path = defineDreem.filePath(url);
       
 			var factory = lookupInImportLibrary(facurl);
-			console.log(`doing loadScript(${facurl})`);
+			console.log(`loadScript(${facurl})`);
       
       
 			defineDreem.factory[facurl] = factory
@@ -256,7 +256,6 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 
 			// parse the function for other requires
 			Promise.all(defineDreem.findRequiresInFactory(factory).map(function (path) {
-        console.log("requires: ", path);
 				// ignore nodejs style module requires
 				if (path.indexOf('$') === -1 && path.charAt(0) !== '.') {
 					return null
@@ -266,7 +265,6 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 
 				return loadResource(dep_path, url, true, module_deps)
 			})).then(function () {
-        console.log("resolving factory");
 				resolve(factory)
 				reject = undefined
 			},

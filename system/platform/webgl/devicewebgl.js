@@ -196,7 +196,7 @@ export default defineDreem.class(function(requireDreem, exports){
 	}
 
 	this.doPick = function(resolve){
-		this.pick_timer = 0
+		this.pick_timer = undefined
 		var x = this.pick_x, y = this.pick_y
 
 		if(!this.first_draw_done){
