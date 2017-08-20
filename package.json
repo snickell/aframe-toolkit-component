@@ -5,8 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server -d --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "watch": "webpack --watch",
+    "build": "webpack -d",
+    "watch": "webpack -d --watch",
     "yarn-install": "yarn install",
     "update-ghpages": "git push github gh-pages"
   },

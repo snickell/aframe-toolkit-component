@@ -11,7 +11,6 @@ module.exports = {
         path: path.resolve(__dirname, ""),
         filename: "dist/[name].js"
     },
-    devtool: "eval",
     module: {
       loaders: [
         {
