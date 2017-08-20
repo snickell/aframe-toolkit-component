@@ -6,7 +6,7 @@
 
 // Pointerwebgl adds mouse and touch listeners and connectes them pointer.js API.
 
-export default defineDreem.class('$system/base/pointer', function (require, exports) {
+export default defineDreem.class('$system/base/pointer', function (requireDreem, exports) {
 
 	this._cursor = 'arrow'
 	this._tooltip = 'Application'
