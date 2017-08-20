@@ -1682,7 +1682,7 @@ export default defineDreem.class("$ui/view", function(requireDreem,
 		}
 	};
 
-	defineDreem(this, "selectorrect", view, function() {
+	defineDreem.class(this, "selectorrect", view, function() {
 		this.name = "selectorrect";
 		this.drawtarget = "color";
 		this.bordercolorfn = function(pos) {
@@ -1699,7 +1699,7 @@ export default defineDreem.class("$ui/view", function(requireDreem,
 		this.tooltarget = false;
 	});
 
-	defineDreem(this, "selectedrect", view, function() {
+	defineDreem.class(this, "selectedrect", view, function() {
 		this.visible = wire('this.outer.visible');
 		this.drawtarget = "color";
 		this.attributes = {
@@ -1791,7 +1791,7 @@ export default defineDreem.class("$ui/view", function(requireDreem,
 		}
 	});
 
-	defineDreem(this, "ruler", view, function() {
+	defineDreem.class(this, "ruler", view, function() {
 		this.visible = wire('this.outer.visible');
 		this.drawtarget = "color";
 		this.bgcolor = "transparent";
@@ -1921,7 +1921,7 @@ export default defineDreem.class("$ui/view", function(requireDreem,
 		}
 	});
 
-	defineDreem(this, "handle", icon, function() {
+	defineDreem.class(this, "handle", icon, function() {
 		this.tooltarget = false;
 		this.visible = wire('this.outer.visible');
 		this.position = "absolute";
@@ -2007,7 +2007,7 @@ export default defineDreem.class("$ui/view", function(requireDreem,
 		}
 	});
 
-	defineDreem(this, "input", textbox, function() {
+	defineDreem.class(this, "input", textbox, function() {
 		this.tooltarget = false;
 		this.visible = wire('this.outer.visible');
 		this.position = "absolute";
@@ -2085,7 +2085,7 @@ export default defineDreem.class("$ui/view", function(requireDreem,
 		}
 	});
 
-	defineDreem(this, 'panel', view, function(){
+	defineDreem.class(this, 'panel', view, function(){
 		this.attributes = {
 			fontsize: Config({type:float, value:12, meta:"fontsize"}),
 			activechild: Config({type:int, value:0})

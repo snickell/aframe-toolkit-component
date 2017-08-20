@@ -7,7 +7,7 @@
 export default defineDreem.class(function(requireDreem, $ui$, view){
 // Base class for 3d geometry.
 
-	defineDreem(this, 'shape3d', this.Shader, function(){
+	defineDreem.class(this, 'shape3d', this.Shader, function(){
 		this.draworder = 0
 
 		this.depth_test = 'src_depth < dst_depth'

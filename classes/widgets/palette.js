@@ -31,7 +31,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 		drop:Config({type:Function})
 	};
 
-	defineDreem(this, "panel", view, function() {
+	defineDreem.class(this, "panel", view, function() {
 		this.bgcolor = 'transparent';
 		this.padding = vec4(20,10,20,10);
 		this.justifycontent = 'space-between';
@@ -107,7 +107,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 		}
 	});
 
-	defineDreem(this, "divider", view, function() {
+	defineDreem.class(this, "divider", view, function() {
 		this.justifycontent = "space-between";
 		this.bgcolor = "transparent";
 		this.margin = vec4(5,5,10,0);
@@ -167,12 +167,12 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 		}
 	});
 
-	defineDreem(this, "panelview", view, function() {
+	defineDreem.class(this, "panelview", view, function() {
 		this.bgcolor = "transparent";
 		this.pickalpha = -1;
 	});
 
-	defineDreem(this, "panellabel", label, function() {
+	defineDreem.class(this, "panellabel", label, function() {
 		this.bgcolor = "transparent";
 		this.pickalpha = -1;
 		this.fgcolor = "#e4e4e4";
@@ -180,7 +180,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 		this.margin = 0;
 	});
 
-	defineDreem(this, "panelicon", icon, function() {
+	defineDreem.class(this, "panelicon", icon, function() {
 		this.bgcolor = 'transparent';
 		this.pickalpha = -1;
 		this.fgcolor = '#e4e4e4';
@@ -189,7 +189,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 		this.margin = 0;
 	});
 
-	defineDreem(this, "panelitem", view, function() {
+	defineDreem.class(this, "panelitem", view, function() {
 
 		this.bgcolor = 'transparent';
 		this.flexdirection = 'column';

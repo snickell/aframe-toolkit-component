@@ -14,7 +14,7 @@ export default defineDreem.class('$ui/view', function(requireDreem){
 
 	// Each pass _must_ be named pass0..9, define based on this.passes, e.g. this.passes = 1
 	// must define pass0, 2 must define pass0 and pass1...
-	defineDreem(this, "pass0", this.RenderPass, function() {
+	defineDreem.class(this, "pass0", this.RenderPass, function() {
 		// set to true to use floating point textures on this pass
 		this.usefloat = true
 		// Turn on double-buffering since we want to feed pass0 back into itself

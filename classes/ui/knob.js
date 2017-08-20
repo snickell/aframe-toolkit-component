@@ -35,7 +35,7 @@ export default defineDreem.class(function(requireDreem,$ui$, view){
 		this.findChild("thedialbg").height = this.layout.width
 	}
 
-	defineDreem(this, "dial", function($ui$, view){
+	defineDreem.class(this, "dial", function($ui$, view){
 
 		this.innerradius = 20
 		this.outerradius = 26

@@ -73,7 +73,7 @@ export default defineDreem.class('$ui/view', function(requireDreem, $ui$, view, 
 
 	}
 
-	defineDreem(this, "rowcol", "$ui/view", function() {
+	defineDreem.class(this, "rowcol", "$ui/view", function() {
 	})
 
 	var table = this.constructor;

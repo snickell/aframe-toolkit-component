@@ -221,7 +221,7 @@ export default defineDreem.class("$ui/view", function($ui$, view, icon) {
 		return views;
 	};
 
-	defineDreem(this, "handle", view, function() {
+	defineDreem.class(this, "handle", view, function() {
 		this.bgcolor = vec4(1,1,1,0.51);
 		this.height = this.width = 26;
 		this.borderradius = (this.height * 0.5) - 0.5;

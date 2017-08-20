@@ -96,13 +96,13 @@ export default defineDreem.class('$ui/label', function(requireDreem){
 	this.tabstop = 0
 
 	// background lines
-	defineDreem(this, 'bgline', this.Shader, function(){
+	defineDreem.class(this, 'bgline', this.Shader, function(){
 		this.update = function(){
 
 		}
 	})
 
-	defineDreem(this, 'cursorbar_row', this.Shader, function(){
+	defineDreem.class(this, 'cursorbar_row', this.Shader, function(){
 		this.updateorder = 8
 		this.draworder = 2
 		this.mesh = vec2.array()
@@ -139,7 +139,7 @@ export default defineDreem.class('$ui/label', function(requireDreem){
 	})
 	this.cursorbar_row = true
 
-	defineDreem(this, 'cursorbar_col', this.Shader, function(){
+	defineDreem.class(this, 'cursorbar_col', this.Shader, function(){
 		this.updateorder = 8
 		this.draworder = 4
 		this.mesh = vec2.array()
