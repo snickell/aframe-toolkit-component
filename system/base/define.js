@@ -561,7 +561,7 @@
 		// so then treat it as a local class
 		if(defineDreem.local_require_stack.length){
 			var outer_require = defineDreem.local_require_stack[defineDreem.local_require_stack.length - 1]
-			var outer_module = outer_requireDreem.module
+			var outer_module = outer_require.module
 			var module = {exports:{}, filename:outer_module.filename, factory:moduleFactory, outer:outer_module}
 			moduleFactory(outer_require, module.exports, module)
 
