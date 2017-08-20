@@ -262,7 +262,7 @@
 
 	// Class implementation
 	defineDreem.builtinClassArgs = {
-		exports:1, module:2, require:3, constructor:1, baseclass:5, outer:6
+		exports:1, module:2, requireDreem:3, constructor:1, baseclass:5, outer:6
 	}
 
 	defineDreem.walkClassArgs = function(map, callback){
