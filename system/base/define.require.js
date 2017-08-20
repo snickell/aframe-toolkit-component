@@ -248,7 +248,7 @@ defineDreem.loadAsync = function (files, from_file, inext) {
       
 			defineDreem.factory[facurl] = factory
 
-			if (!factory) return reject("Factory is null for " + url + " from file " + from_file + " : " + facurl)
+			if (!factory) return reject(new Error("Factory is null for " + url + " from file " + from_file + " : " + facurl))
 
 			var module_deps = factory.deps = []
 
