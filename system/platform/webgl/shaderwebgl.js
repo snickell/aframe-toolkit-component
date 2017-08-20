@@ -457,7 +457,7 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 					.replace(/ATTRLOC_ATTRIBPTR/, ATTRLOC_ATTRIBPTR)
 			}
 			return out
-		})
+		}.bind(this))
 
 		tpl = tpl.replace(/gl.[A-Z][A-Z0-9_]+/g, function(m){
 			return gltypes.gl[m.slice(3)]
