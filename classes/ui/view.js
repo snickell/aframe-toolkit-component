@@ -6,11 +6,12 @@
 
 "use strict"
 
+import FlexLayout from 'lib/layout';
+
 export default defineDreem.class('$system/base/node', function(requireDreem){
 // Base UI view object
 
 
-	var FlexLayout = requireDreem('$system/lib/layout')
 	var Render = requireDreem('$system/base/render')
 	var Shader = this.Shader = requireDreem('$system/platform/$platform/shader$platform')
 	var view = this.constructor
