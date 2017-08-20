@@ -29,17 +29,18 @@ window.defineDreem.localRequire = function (base_path, from_file) {
 		}
 
 		// SETH AND DREW IMPORT HERE
-		factory = lookupInImportLibrary(abs_path);
-		
+		if (!factory) {
+      factory = lookupInImportLibrary(abs_path);
 
-		if (factory) {
-			console.log("\tfound for ", abs_path, ": ", factory);
-			if (objectIsEmpty(factory)) {
-				console.warn("\tgot an empty module back for ", abs_path, " probably means we don't have a proper export default in the module yet??? Need to figure out how to rig this into all files, ugh.");
-			}
-		} else {
-			console.error("couldn't find factory for ", abs_path, base_path);
-		}
+  		if (factory) {
+  			console.log("\tloaded ", abs_path);
+  			if (objectIsEmpty(factory)) {
+  				console.warn("\tgot an empty module back for ", abs_path, " probably means we don't have a proper export default in the module yet??? Need to figure out how to rig this into all files, ugh.");
+  			}
+  		} else {
+  			console.error("couldn't find factory for ", abs_path, base_path);
+  		}
+    }
 		// END SETH AND DREW HA><0RY	
 
 		// lets reverse our path
@@ -147,8 +148,9 @@ window.defineDreem.requireDreem = defineDreem.localRequire('', 'root')
 
 // loadAsync is the resource loader
 defineDreem.loadAsync = function (files, from_file, inext) {
-
+  console.log("loadAsync()");
 	function loadResource(url, from_file, recurblock, module_deps) {
+    console.log("loadResourcce(", url, ")");
 		var ext = inext === undefined ? defineDreem.fileExt(url) : inext;
 		var abs_url, fac_url
 
@@ -238,7 +240,7 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 
 		return new defineDreem.Promise(function (resolve, reject) {
 			var moduleFromLibrary = lookupInImportLibrary(facurl);
-			console.log("loadScript(), found ", moduleFromLibrary, " for ", facurl);
+			console.log(`loadScript(${facurl})`);
 			resolve(moduleFromLibrary);
 		});
 

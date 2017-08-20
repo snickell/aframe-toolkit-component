@@ -459,7 +459,7 @@ function createPathToModule() {
   pathToModule['widgets/tracker'] = tracker;
   pathToModule['widgets/videoplayer'] = videoplayer;  
 }
-console.log('I got here')
+
 export default function lookupInImportLibrary(path) {
   // We do this here so we have late-binding properties on our imports
   // if we did this immediately, our libraries would all be undefined
@@ -474,6 +474,3 @@ export default function lookupInImportLibrary(path) {
   if (path.endsWith(".js")) path = path.slice(0,-3);
   return pathToModule[path];
 }
-console.log('I got here')
-
-window.lookupInImportLibrary = lookupInImportLibrary
