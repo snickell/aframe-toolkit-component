@@ -561,7 +561,7 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 		if (this.initialized){
 			if (typeof this._bgimage === 'string'){
 				// Path to image was specified
-				if (requireDream.loaded(this._bgimage)){
+				if (requireDreem.loaded(this._bgimage)){
 					var img = requireDreem(this._bgimage)
 					this.setBgImage(img)
 				} else {
