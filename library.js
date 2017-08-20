@@ -230,6 +230,8 @@ import buttons from 'examples/buttons';
 import checkboxes from 'examples/checkboxes';
 import sliders from 'examples/sliders';
 import drawers from 'examples/drawers';
+import lists from 'examples/lists';
+
 
 function createPathToModule() {
   pathToModule = {};
@@ -239,6 +241,8 @@ function createPathToModule() {
   pathToModule['examples/checkboxes'] = checkboxes;
   pathToModule['examples/sliders'] = sliders;
   pathToModule['examples/drawers'] = drawers;
+  pathToModule['examples/lists'] = lists;
+
   
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;

@@ -275,7 +275,6 @@ export default defineDreem.class(function(requireDreem, exports){
 		// Throttle picking at 15 fps
 		if (!this.pick_timer) {
 			this.pick_timer = setTimeout(callback, 1000/15)
-			this.pick_timer.time = this.last_time
 		}
 	}
 
