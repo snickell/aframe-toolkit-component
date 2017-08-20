@@ -47,7 +47,7 @@ export default defineDreem.class(function(requireDreem, baseclass){
 		var Texture = this.device.Texture
 		if(!this.drawtargets) this.drawtargets = []
 		if(this.drawtargets.indexOf(drawtarget) === -1) this.drawtargets.push(drawtarget)
-		texturetype = Texture.RGBA|Texture.DEPTH|Texture.STENCIL
+		var texturetype = Texture.RGBA|Texture.DEPTH|Texture.STENCIL
 		if (isfloat) {
 			texturetype |= Texture.FLOAT
 		}
