@@ -15,15 +15,6 @@ module.exports = {
     module: {
       loaders: [
         {
-          test: /.jsx?$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-          query: {
-            presets: ['env', 'react'],
-            plugins: [require('babel-plugin-transform-object-rest-spread')]            
-          }
-        },
-        {
           test: /.js?$/,
           loader: 'babel-loader',     
           exclude: /node_modules/,
