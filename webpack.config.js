@@ -17,7 +17,7 @@ module.exports = {
         {
           test: /.js?$/,
           loader: 'babel-loader',     
-          exclude: /node_modules/,
+          exclude: [/node_modules/, "/lib"],
           query: {
             presets: ['env'],
             plugins: [require('babel-plugin-transform-object-rest-spread')]            
