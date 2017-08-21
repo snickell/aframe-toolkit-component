@@ -27,8 +27,9 @@
 		$docs:"$root/docs",
     $atoolkit: "$root/a-toolkit",
 		$test:"$root/test",
-      main:["$system/base/math", "$examples/button.js", "$atoolkit/a-button.js"],
+      main:["$system/base/math", /*"$examples/button.js",*/ "$atoolkit/dreem-to-aframe.js"],
       atMain:function(requireDreem, modules){
+        
         setTimeout(function () {
           defineDreem.endLoader()
           requireDreem(modules[0])
@@ -36,7 +37,8 @@
           var serverattrs = {}
           var renderTarget;
           //           defineDreem.rootComposition = new Composition(defineDreem.rootComposition, undefined, serverattrs, renderTarget)
-
+          console.log("Abutton is ", AButton);
+          
           window.aButton = new AButton(defineDreem.rootComposition, undefined, serverattrs, renderTarget)
 
           //console.log("window.aButton = ", aButton)          

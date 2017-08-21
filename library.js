@@ -233,7 +233,8 @@ import drawers from 'examples/drawers';
 import lists from 'examples/lists';
 import lebutton from 'examples/button';
 
-import atoolkit from 'a-toolkit/a-button';
+import abutton from 'a-toolkit/a-button';
+import dreamtoaframe from 'a-toolkit/dreem-to-aframe';
 
 function createPathToModule() {
   pathToModule = {};
@@ -246,7 +247,8 @@ function createPathToModule() {
   pathToModule['examples/lists'] = lists;
   pathToModule['examples/button'] = lebutton;
 
-  pathToModule['a-toolkit/a-button'] = atoolkit;
+  pathToModule['a-toolkit/a-button'] = abutton;
+  pathToModule['a-toolkit/dreem-to-aframe'] = dreamtoaframe;
   
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;

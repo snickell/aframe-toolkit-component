@@ -9,6 +9,7 @@ export default defineDreem.class(function(requireDreem, baseclass){
 	var Shader = requireDreem('./shaderwebgl')
 
 	this.atConstructor = function(gldevice, view){
+    console.log("drawpasswebgl()", this);
 		this.device = gldevice
 		this.view = view
 		this.drawcount = 0
@@ -315,7 +316,6 @@ export default defineDreem.class(function(requireDreem, baseclass){
 	}
 
 	this.drawNormal = function(draw, view, matrices){
-    console.log("draw is ", draw);
 		draw.updateShaders()
 		var vtx_count = 0
 		// alright lets iterate the shaders and call em

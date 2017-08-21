@@ -19,6 +19,7 @@ export default defineDreem.class("../webgl/devicewebgl", function(requireDreem, 
 	var GLFW = requireDreem('node-glfw')
 
 	this.atConstructor = function(){
+    console.log("devicenodegl()");
 		this.window = 
 		this.document = this
 		baseclass.atConstructor.call(this)
