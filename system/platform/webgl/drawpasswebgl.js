@@ -315,6 +315,7 @@ export default defineDreem.class(function(requireDreem, baseclass){
 	}
 
 	this.drawNormal = function(draw, view, matrices){
+    console.log("draw is ", draw);
 		draw.updateShaders()
 		var vtx_count = 0
 		// alright lets iterate the shaders and call em

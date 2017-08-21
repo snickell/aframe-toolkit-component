@@ -101,8 +101,9 @@ export default defineDreem.class(function(requireDreem, exports){
 		}
     
 
-    this.canvas = document.getElementsByClassName("a-canvas")[0];
-    console.warn("Overriding this.canvas in devicewebgl.js with ", this.canvas);
+    const aCanvas = document.getElementsByClassName("a-canvas")[0];
+    console.warn("SETH DREW: Overriding this.canvas in devicewebgl.js with Aframe canvas: ", this.canvas);
+    // this.canvas = aCanvas;
     
 		var options = {
 			alpha: this.frame.type.indexOf('rgba') != -1,

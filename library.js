@@ -231,6 +231,7 @@ import checkboxes from 'examples/checkboxes';
 import sliders from 'examples/sliders';
 import drawers from 'examples/drawers';
 import lists from 'examples/lists';
+import lebutton from 'examples/button';
 
 import atoolkit from 'a-toolkit/a-button';
 
@@ -243,6 +244,7 @@ function createPathToModule() {
   pathToModule['examples/sliders'] = sliders;
   pathToModule['examples/drawers'] = drawers;
   pathToModule['examples/lists'] = lists;
+  pathToModule['examples/button'] = lebutton;
 
   pathToModule['a-toolkit/a-button'] = atoolkit;
   
