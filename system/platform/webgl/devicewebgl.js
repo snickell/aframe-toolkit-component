@@ -23,8 +23,11 @@ export default defineDreem.class(function(requireDreem, exports){
 	this.window =
 	this.document = typeof window !== 'undefined'?window : null
 
-	this.atConstructor = function(previous, canvas){
+  console.log("devicewebgl, creating class");
 
+
+	this.atConstructor = function(previous, canvas){
+    console.log("\n\ndevicewebgl()\n");
 		this.extensions = previous && previous.extensions || {}
 		this.shadercache = previous &&  previous.shadercache || {}
 		this.drawpass_list = previous && previous.drawpass_list || []
@@ -96,7 +99,11 @@ export default defineDreem.class(function(requireDreem, exports){
 			this.canvas.className = 'unselectable'
 			this.parent.appendChild(this.canvas)
 		}
+    
 
+    this.canvas = document.getElementsByClassName("a-canvas")[0];
+    console.warn("Overriding this.canvas in devicewebgl.js with ", this.canvas);
+    
 		var options = {
 			alpha: this.frame.type.indexOf('rgba') != -1,
 			depth: this.frame.type.indexOf('depth') != -1,
@@ -202,7 +209,6 @@ export default defineDreem.class(function(requireDreem, exports){
 		if(!this.first_draw_done){
 			this.doColor(this.last_time)
 		}
-
 		for(var i = 0, len = this.drawpass_list.length; i < len; i++){
 			var last = i === len - 1
 			//var skip = false

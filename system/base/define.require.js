@@ -149,9 +149,9 @@ window.defineDreem.requireDreem = defineDreem.localRequire('', 'root')
 
 // loadAsync is the resource loader
 defineDreem.loadAsync = function (files, from_file, inext) {
-  console.log("loadAsync()");
+  // console.log("loadAsync()");
 	function loadResource(url, from_file, recurblock, module_deps) {
-    console.log("loadResourcce(", url, ")");
+    // console.log("loadResource(", url, ")");
 		var ext = inext === undefined ? defineDreem.fileExt(url) : inext;
 		var abs_url, fac_url
 
@@ -243,7 +243,7 @@ defineDreem.loadAsync = function (files, from_file, inext) {
 			var base_path = defineDreem.filePath(url);
       
 			var factory = lookupInImportLibrary(facurl);
-			console.log(`loadScript(${facurl})`);
+			// console.log(`loadScript(${facurl})`);
       
       
 			defineDreem.factory[facurl] = factory

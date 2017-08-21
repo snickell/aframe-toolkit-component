@@ -232,6 +232,7 @@ import sliders from 'examples/sliders';
 import drawers from 'examples/drawers';
 import lists from 'examples/lists';
 
+import atoolkit from 'a-toolkit/a-button';
 
 function createPathToModule() {
   pathToModule = {};
@@ -243,6 +244,7 @@ function createPathToModule() {
   pathToModule['examples/drawers'] = drawers;
   pathToModule['examples/lists'] = lists;
 
+  pathToModule['a-toolkit/a-button'] = atoolkit;
   
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;
