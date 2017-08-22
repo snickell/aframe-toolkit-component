@@ -124,18 +124,15 @@ export default defineDreem.class(function(requireDreem, exports){
 		//canvas.webkitRequestFullscreen()
 
 		var resize = this.doSize = function(){
-			var pixelRatio = window.devicePixelRatio
+			var pixelRatio = 1; // window.devicePixelRatio
 
-			var w = this.parent.offsetWidth
-			var h = this.parent.offsetHeight
+			console.log(this.canvas.width)
+
+			var w = this.canvas.width;
+			var h = this.canvas.height;
 
 			var sw = w * pixelRatio
 			var sh = h * pixelRatio
-
-			this.canvas.width = sw
-			this.canvas.height = sh
-			this.canvas.style.width = w + 'px'
-			this.canvas.style.height = h + 'px'
 
 			this.gl.viewport(0, 0, sw, sh)
 			// store our w/h and pixelratio on our frame

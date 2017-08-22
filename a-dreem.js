@@ -10,8 +10,8 @@ function getRandomInt(min, max) {
 
 AFRAME.registerComponent('a-dreem', {
   schema: {
-    widthPx: {type: 'int', default: 1700},
-    heightPx: {type: 'int', default: 1500}
+    widthPx: {type: 'int', default: 800},
+    heightPx: {type: 'int', default: 600}
   },
   init: function () { 
 		this.initializedADreem = false;
@@ -19,7 +19,7 @@ AFRAME.registerComponent('a-dreem', {
 		const addPageXYToMouseEvent = (evt) => {
 			evt.pageX = Math.round(this.data.widthPx * evt.detail.intersection.uv.x);
 			evt.pageY = Math.round(this.data.heightPx * (1.0 - evt.detail.intersection.uv.y));
-			console.log(`${evt.type} event at ${evt.pageX},${evt.pageY}`);
+			// console.log(`${evt.type} event at ${evt.pageX},${evt.pageY}`);
 		};
 
 		this.el.addEventListener('click',   addPageXYToMouseEvent)		
@@ -38,9 +38,18 @@ AFRAME.registerComponent('a-dreem', {
 		this.initializedADreem = true;
 				
 		const canvasID = `dreem-to-aframe-${getRandomInt(0, 90000000000)}`;
+		this.canvas = document.createElement("canvas")
+		this.canvas.className = 'unselectable'
+		this.canvas.style.display = 'none';
+		this.canvas.id = canvasID;
+		this.canvas.width = this.data.widthPx; console.log(this.canvas.width)
+		this.canvas.height = this.data.heightPx;
 
+		const aAssets = document.getElementsByTagName("a-assets")[0];
+		aAssets.appendChild(this.canvas)
+		
 		const pointerEvtSrc = this.el;
-		window.dreemToAFrame = new DreemToAFrame(defineDreem.rootComposition, undefined, undefined, canvasID, pointerEvtSrc);
+		window.dreemToAFrame = new DreemToAFrame(defineDreem.rootComposition, undefined, undefined, this.canvas, pointerEvtSrc);
 		
 		this.el.setAttribute("material", `shader: flat; src: #${canvasID}`);		
 	},

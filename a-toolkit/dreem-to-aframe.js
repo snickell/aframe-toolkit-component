@@ -1,13 +1,7 @@
 export default defineDreem.class("$server/composition",function(requireDreem, baseclass, $ui$, slider, button, radiobutton, screen, label, view, icon, cadgrid) {
-	this.atConstructor = function(previous, parent, precached, canvasID, pointerEvtSrc){
-		this.canvas = document.createElement("canvas")
-		this.canvas.className = 'unselectable'
-		this.canvas.style.display = 'none';
-		this.canvas.id = canvasID;
-		const aAssets = document.getElementsByTagName("a-assets")[0];
-		aAssets.appendChild(this.canvas)
+	this.atConstructor = function(previous, parent, precached, canvas, pointerEvtSrc){
 
-		baseclass.atConstructor.call(this, previous, parent, precached, this.canvas, pointerEvtSrc)
+		baseclass.atConstructor.call(this, previous, parent, precached, canvas, pointerEvtSrc)
 	}
 
 	this.render = function() {
