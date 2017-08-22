@@ -8,10 +8,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-
-
-
-
 AFRAME.registerComponent('a-dreem', {
   schema: {
     widthPx: {type: 'int', default: 1700},
@@ -35,12 +31,13 @@ AFRAME.registerComponent('a-dreem', {
 	},
 	initWhenDreemReady: function () {
 		if (this.initializedADreem) return;
+		
 		const DreemToAFrame = getDreemToAFrame();
 		if (!DreemToAFrame) return;
 		
 		this.initializedADreem = true;
 				
-		const canvasID = `dreem-to-aframe-${getRandomInt(0, 9000000000)}`;
+		const canvasID = `dreem-to-aframe-${getRandomInt(0, 90000000000)}`;
 
 		const pointerEvtSrc = this.el;
 		window.dreemToAFrame = new DreemToAFrame(defineDreem.rootComposition, undefined, undefined, canvasID, pointerEvtSrc);
@@ -50,7 +47,6 @@ AFRAME.registerComponent('a-dreem', {
   update: function () {},
   tick: function () {
 		this.initWhenDreemReady();
-    window.object3D = this.el.object3D;
   },
   remove: function () {},
   pause: function () {},
