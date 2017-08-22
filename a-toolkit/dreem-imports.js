@@ -226,26 +226,11 @@ import fontsdfgen from 'system/typeface/fontsdfgen';
 import markershader from 'system/typeface/markershader';
 import typefaceshader from 'system/typeface/typefaceshader';
 
-import buttons from 'examples/buttons';
-import checkboxes from 'examples/checkboxes';
-import sliders from 'examples/sliders';
-import drawers from 'examples/drawers';
-import lists from 'examples/lists';
-import lebutton from 'examples/button';
-
 import dreamtoaframe from 'a-toolkit/dreem-to-aframe';
 import pointerproxy from 'a-toolkit/pointerproxy';
 
 function createPathToModule() {
   pathToModule = {};
-
-  // Examples
-  pathToModule['examples/buttons'] = buttons;
-  pathToModule['examples/checkboxes'] = checkboxes;
-  pathToModule['examples/sliders'] = sliders;
-  pathToModule['examples/drawers'] = drawers;
-  pathToModule['examples/lists'] = lists;
-  pathToModule['examples/button'] = lebutton;
 
   pathToModule['a-toolkit/dreem-to-aframe'] = dreamtoaframe;
 	pathToModule['a-toolkit/pointerproxy'] = pointerproxy;
