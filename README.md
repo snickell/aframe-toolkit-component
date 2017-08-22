@@ -1,2 +1,1 @@
-# A 2D UI Widget Toolkit for A-Frame
-
+# A UI Toolkit for A-Frame based on DreemGL

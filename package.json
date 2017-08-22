@@ -1,7 +1,7 @@
 {
-  "name": "dreemgl",
+  "name": "a-toolkit",
   "version": "0.0.1",
-  "description": "Standalone version of the dreemgl framework",
+  "description": "2D UI Widget Toolkit for A-Frame, based on DreemGL",
   "scripts": {
     "start": "webpack-dev-server -d --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
