@@ -16,6 +16,7 @@ export default defineDreem.class("$server/composition",function(requireDreem, ba
 				cadgrid({
 						name:"grid",
 						gridsize:8,
+						bgcolor:"gray",
 						majorevery:5,
 						majorline:vec4(0.34117648005485535,0.34117648005485535,0.34117648005485535,1),
 						minorline:vec4(0.2823529541492462,0.2823529541492462,0.2823529541492462,1),
