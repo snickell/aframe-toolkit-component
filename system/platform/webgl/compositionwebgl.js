@@ -11,7 +11,7 @@ export default defineDreem.class('$system/base/compositionclient', function(requ
 	var WebRTC = requireDreem('$system/rpc/webrtc')
 	var BusClient = requireDreem('$system/rpc/busclient')
 
-	this.atConstructor = function(previous, parent, precached, canvas){
+	this.atConstructor = function(previous, parent, precached, canvas, pointerEvtSrc){
 		window.composition = this
 		if(previous){
 			this.reload = (previous.reload || 0) + 1
@@ -21,7 +21,7 @@ export default defineDreem.class('$system/base/compositionclient', function(requ
 		}
 		else{
 			// lets spawn up a webGL device
-			this.device = new Device(undefined, canvas)
+			this.device = new Device(undefined, canvas, pointerEvtSrc)
 		}
 
 		baseclass.atConstructor.call(this, previous, parent, precached)

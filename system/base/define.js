@@ -872,7 +872,6 @@
 		// boot up using the MAIN property
 		if(defineDreem.main){
 			setTimeout(function () {
-				console.log("starting defineDreem.loadAsync()");
 				defineDreem.loadAsync(defineDreem.main, 'main').then(function(){
 					if(defineDreem.atMain) setTimeout(function(){
 						defineDreem.atMain(defineDreem.requireDreem, defineDreem.main)
@@ -883,7 +882,7 @@
 						defineDreem.showException(exc)
 					}
 				})	
-			}, 500);
+			}, 0);
 		}
 
 		var backoff = 1

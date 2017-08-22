@@ -7,7 +7,7 @@
 export default defineDreem.class(function(requireDreem, exports){
 
 	this.Keyboard = requireDreem('./keyboardwebgl')
-	this.Pointer = requireDreem('./pointerwebgl')
+	this.Pointer = requireDreem('./pointerproxy')
 	this.Midi = requireDreem('./midiwebgl')
 
 	// require embedded classes
@@ -23,10 +23,8 @@ export default defineDreem.class(function(requireDreem, exports){
 	this.window =
 	this.document = typeof window !== 'undefined'?window : null
 
-  console.log("devicewebgl, creating class");
 
-
-	this.atConstructor = function(previous, canvas){
+	this.atConstructor = function(previous, canvas, pointerEvtSrc){		
 		this.extensions = previous && previous.extensions || {}
 		this.shadercache = previous &&  previous.shadercache || {}
 		this.drawpass_list = previous && previous.drawpass_list || []
@@ -60,7 +58,7 @@ export default defineDreem.class(function(requireDreem, exports){
 			this.main_frame = this.Texture.fromType('rgb_depth')
 
 			this.keyboard = new this.Keyboard(this)
-			this.pointer = new this.Pointer(this)
+			this.pointer = new this.Pointer(this, pointerEvtSrc)
 			this.midi = new this.Midi(this)
 			this.drawtarget_pools = {}
 

@@ -59,13 +59,17 @@
 
   <a-scene id="scene">
     <a-assets></a-assets>
-    <a-plane a-dreem position="-1 0.5 -3" rotation="0 0 0" height="5" width="5"></a-plane>
+    <a-box a-dreem position="-1 0.5 -3" rotation="0 0 0" height="3" width="3" depth="0.1"></a-box>
 
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
     <a-cylinder position="3 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-sky color="pink"></a-sky>
 
     <a-entity id="left-hand" paint-controls laser-controls="hand: left"></a-entity>
     <a-entity id="right-hand" paint-controls laser-controls="hand: right"></a-entity>
+    <a-camera look-controls wasd-controls>
+			<a-cursor color="lightgreen"></a-cursor>
+		<a-camera>
   </a-scene>
 
   <script>//needed to delay evaluation until page load *sigh*</script>

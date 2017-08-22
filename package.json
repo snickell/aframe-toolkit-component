@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "aframe": "^0.6.1",
+    "aframe-mouse-cursor-component": "^0.5.2",
     "ansi-html": "^0.0.7",
     "html-entities": "^1.2.1",
     "loglevel": "^1.4.1",

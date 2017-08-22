@@ -235,6 +235,7 @@ import lebutton from 'examples/button';
 
 import abutton from 'a-toolkit/a-button';
 import dreamtoaframe from 'a-toolkit/dreem-to-aframe';
+import pointerproxy from 'system/platform/webgl/pointerproxy';
 
 function createPathToModule() {
   pathToModule = {};
@@ -249,6 +250,7 @@ function createPathToModule() {
 
   pathToModule['a-toolkit/a-button'] = abutton;
   pathToModule['a-toolkit/dreem-to-aframe'] = dreamtoaframe;
+	pathToModule['system/platform/webgl/pointerproxy'] = pointerproxy;
   
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;
