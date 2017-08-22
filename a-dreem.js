@@ -25,7 +25,8 @@ AFRAME.registerComponent('a-dreem', {
 			evt.pageY = Math.round(this.data.heightPx * (1.0 - evt.detail.intersection.uv.y));
 			console.log(`${evt.type} event at ${evt.pageX},${evt.pageY}`);
 		};
-		
+
+		this.el.addEventListener('click',   addPageXYToMouseEvent)		
 		this.el.addEventListener('mousemove',   addPageXYToMouseEvent)
 		this.el.addEventListener('mousedown',   addPageXYToMouseEvent)
 		this.el.addEventListener('mousemove',   addPageXYToMouseEvent)
@@ -55,83 +56,3 @@ AFRAME.registerComponent('a-dreem', {
   pause: function () {},
   play: function () {}
 });
-
-
-
-
-/*
-<a-entity material="shader: flat; src: #helloWorldCanvas"
-                geometry="primitive: plane; width: 160; height: 90"
-                position="0 60 -250" rotation="0 35 0"
-                draw-canvas-rectangles="#helloWorldCanvas">
-*/
-
-// in drawpasswebgl.js:
-// where draw is probably our component?
-// this.drawNormal(draw, view, matrices)
-
-// in render.js
-// 		Render.process(this.screen, previous && previous.screen)
-
-
-// from compositionclient.js:
-/*
-
-	this.doRender = function(previous, parent){
-
- 		this.screen.screen = this.screen
-		this.screen.device = this.device
-		this.screen.rpc = this.rpc
-		this.screen.composition = this.composition
-
-		if(parent){
-			this.screen.device = parent.screen.device
-			this.screen.parent = parent
-		}
-		//this.screen.teem = this
-
-		Render.process(this.screen, previous && previous.screen)
-
-		if(typeof document !== 'undefined' && this.screen.title !== undefined) document.title = this.screen.title
-
-		this.screen.device.redraw()
-
-		this.rendered = true
-	}
-
-*/
-
-// in drawpasswebgl.js:
-// where draw is probably our component?
-// this.drawNormal(draw, view, matrices)
-
-// in render.js
-// 		Render.process(this.screen, previous && previous.screen)
-
-
-// from compositionclient.js:
-/*
-
-	this.doRender = function(previous, parent){
-
- 		this.screen.screen = this.screen
-		this.screen.device = this.device
-		this.screen.rpc = this.rpc
-		this.screen.composition = this.composition
-
-		if(parent){
-			this.screen.device = parent.screen.device
-			this.screen.parent = parent
-		}
-		//this.screen.teem = this
-
-		Render.process(this.screen, previous && previous.screen)
-
-		if(typeof document !== 'undefined' && this.screen.title !== undefined) document.title = this.screen.title
-
-		this.screen.device.redraw()
-
-		this.rendered = true
-	}
-
-*/
