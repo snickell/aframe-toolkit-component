@@ -1,5 +1,4 @@
-import lookupInImportLibrary from 'library';
-// window.lookupInImportLibrary = lookupInImportLibrary
+import lookupInImportLibrary from 'a-toolkit/dreem-imports';
 
 function objectIsEmpty(obj) {
 	for (var key in obj) {

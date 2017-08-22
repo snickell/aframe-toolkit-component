@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = {
     entry: {
-        "dreemgl": "./dreemgl.js"        
+        "a-toolkit": "./a-toolkit/index.js"        
     },
     output: {
         path: path.resolve(__dirname, ""),

@@ -233,9 +233,8 @@ import drawers from 'examples/drawers';
 import lists from 'examples/lists';
 import lebutton from 'examples/button';
 
-import abutton from 'a-toolkit/a-button';
 import dreamtoaframe from 'a-toolkit/dreem-to-aframe';
-import pointerproxy from 'system/platform/webgl/pointerproxy';
+import pointerproxy from 'a-toolkit/pointerproxy';
 
 function createPathToModule() {
   pathToModule = {};
@@ -248,9 +247,8 @@ function createPathToModule() {
   pathToModule['examples/lists'] = lists;
   pathToModule['examples/button'] = lebutton;
 
-  pathToModule['a-toolkit/a-button'] = abutton;
   pathToModule['a-toolkit/dreem-to-aframe'] = dreamtoaframe;
-	pathToModule['system/platform/webgl/pointerproxy'] = pointerproxy;
+	pathToModule['a-toolkit/pointerproxy'] = pointerproxy;
   
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;

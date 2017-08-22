@@ -882,7 +882,7 @@
 						defineDreem.showException(exc)
 					}
 				})	
-			}, 0);
+			}, 500);
 		}
 
 		var backoff = 1

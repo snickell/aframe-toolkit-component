@@ -1,6 +1,6 @@
 export default defineDreem.class("$server/composition",function(requireDreem, baseclass, $ui$, slider, button, radiobutton, screen, label, view, icon, cadgrid) {
+	
 	this.atConstructor = function(previous, parent, precached, canvas, pointerEvtSrc){
-
 		baseclass.atConstructor.call(this, previous, parent, precached, canvas, pointerEvtSrc)
 	}
 
