@@ -3,53 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>A-DREEM</title>
+  <title>Dreeming of A-Frame</title>
   <meta http-equiv="cache-control" content="no-cache" />
   <meta http-equiv="pragma" content="no-cache" />
-  
-<script type="text/javascript">
-    //     window.defineDreem = {
-    //      $platform:"webgl",
-    //       paths:{"system":1,"resources":1,"3d":1,"behaviors":1,"server":1,"ui":1,"flow":1,"testing":1,"widgets":1,"sensors":1,"iot":1,"examples":1,"apps":1,"docs":1,"test":1},
-    //      $system:"$root/system",
-    // $resources:"$root/resources",
-    // $3d:"$root/3d",
-    // $behaviors:"$root/behaviors",
-    // $server:"$root/server",
-    // $ui:"$root/ui",
-    // $flow:"$root/flow",
-    // $testing:"$root/testing",
-    // $widgets:"$root/widgets",
-    // $sensors:"$root/sensors",
-    // $iot:"$root/iot",
-    // $examples:"$root/examples",
-    // $apps:"$root/apps",
-    // $docs:"$root/docs",
-    //     $atoolkit: "$root/a-toolkit",
-    // $test:"$root/test",
-    //       main:["$system/base/math", /*"$examples/button.js",*/ "$atoolkit/dreem-to-aframe.js"],
-    //       atMain:function(requireDreem, modules){
-    //
-    //         setTimeout(function () {
-    //           defineDreem.endLoader()
-    //           requireDreem(modules[0])
-    //           var AButton = requireDreem(modules[1])
-    //           var serverattrs = {}
-    //           var renderTarget;
-    //           //           defineDreem.rootComposition = new Composition(defineDreem.rootComposition, undefined, serverattrs, renderTarget)
-    //           console.log("Abutton is ", AButton);
-    //
-    //           window.aButton = new AButton(defineDreem.rootComposition, undefined, serverattrs, renderTarget)
-    //
-    //           //console.log("window.aButton = ", aButton)
-    //         }, 0);
-    //
-    //       },
-    //      atEnd:function(){
-    //        defineDreem.startLoader()
-    //       }
-    //     }
-  </script>  
   
   <script src="dist/dreemgl.js"></script>
 
@@ -59,7 +15,7 @@
 
   <a-scene id="scene">
     <a-assets></a-assets>
-    <a-box a-dreem position="-1 0.5 -3" rotation="0 0 0" height="3" width="3" depth="0.1"></a-box>
+    <a-box a-dreem position="0 1 -3" rotation="0 0 0" height="5" width="5" depth="0.1"></a-box>
 
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
     <a-cylinder position="3 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
@@ -71,8 +27,6 @@
 			<a-cursor color="lightgreen"></a-cursor>
 		<a-camera>
   </a-scene>
-
-  <script>//needed to delay evaluation until page load *sigh*</script>
 </body>
 
 </html>
