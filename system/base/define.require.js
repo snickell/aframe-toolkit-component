@@ -33,7 +33,7 @@ window.defineDreem.localRequire = function (base_path, from_file) {
 
   		if (factory) {
         // seth drew uncomment for debug
-  			// console.log("\tloaded ", abs_path);
+  			console.log("\tloaded ", abs_path);
   			if (objectIsEmpty(factory)) {
   				console.warn("\tgot an empty module back for ", abs_path, " probably means we don't have a proper export default in the module yet??? Need to figure out how to rig this into all files, ugh.");
   			}

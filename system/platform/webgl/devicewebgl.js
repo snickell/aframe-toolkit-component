@@ -7,7 +7,7 @@
 export default defineDreem.class(function(requireDreem, exports){
 
 	this.Keyboard = requireDreem('./keyboardwebgl')
-	this.Pointer = requireDreem('./pointerproxy')
+	this.Pointer = requireDreem('$atoolkit/pointerproxy')
 	this.Midi = requireDreem('./midiwebgl')
 
 	// require embedded classes
