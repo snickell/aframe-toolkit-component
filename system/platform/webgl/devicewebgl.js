@@ -27,7 +27,6 @@ export default defineDreem.class(function(requireDreem, exports){
 
 
 	this.atConstructor = function(previous, canvas){
-    console.log("\n\ndevicewebgl()\n");
 		this.extensions = previous && previous.extensions || {}
 		this.shadercache = previous &&  previous.shadercache || {}
 		this.drawpass_list = previous && previous.drawpass_list || []
@@ -99,11 +98,6 @@ export default defineDreem.class(function(requireDreem, exports){
 			this.canvas.className = 'unselectable'
 			this.parent.appendChild(this.canvas)
 		}
-    
-
-    const aCanvas = document.getElementsByClassName("a-canvas")[0];
-    console.warn("SETH DREW: Overriding this.canvas in devicewebgl.js with Aframe canvas: ", this.canvas);
-    // this.canvas = aCanvas;
     
 		var options = {
 			alpha: this.frame.type.indexOf('rgba') != -1,
