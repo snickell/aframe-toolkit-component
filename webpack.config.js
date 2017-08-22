@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = {
     entry: {
-        "a-toolkit": "./a-toolkit/index.js"        
+        "aframe-toolkit-component": "./a-toolkit/index.js"        
     },
     output: {
         path: path.resolve(__dirname, ""),
