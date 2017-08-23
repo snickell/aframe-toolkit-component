@@ -232,9 +232,8 @@ import dreamtoaframe from 'a-toolkit/dreem-to-aframe';
 import pointerproxy from 'a-toolkit/pointerproxy';
 import innerview from 'a-toolkit/innerview';
 
+pathToModule = {};
 function createPathToModule() {
-  pathToModule = {};
-
   pathToModule['a-toolkit/dreem-to-aframe'] = dreamtoaframe;
 	pathToModule['a-toolkit/pointerproxy'] = pointerproxy;
 	pathToModule['a-toolkit/innerview'] = innerview;
@@ -486,4 +485,8 @@ function lookupInImportLibrary(path) {
   return pathToModule[path];
 }	
 
-export { getUIWidgets, lookupInImportLibrary };
+function registerDreem(path, dreem) {
+	pathToModule[path] = dreem;
+}
+
+export { getUIWidgets, lookupInImportLibrary, registerDreem };

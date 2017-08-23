@@ -126,8 +126,6 @@ export default defineDreem.class(function(requireDreem, exports){
 		var resize = this.doSize = function(){
 			var pixelRatio = 1; // window.devicePixelRatio
 
-			console.log(this.canvas.width)
-
 			var w = this.canvas.width;
 			var h = this.canvas.height;
 

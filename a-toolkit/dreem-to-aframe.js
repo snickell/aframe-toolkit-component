@@ -12,7 +12,6 @@ export default defineDreem.class("$server/composition",function(requireDreem, ba
 
 	this.render = function() {
 		const iv = requireDreem("$atoolkit/innerview")		
-		console.log("Are we rendering?")
 		return [				
 			screen(iv()),
 		]

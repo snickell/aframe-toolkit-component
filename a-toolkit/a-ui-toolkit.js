@@ -11,7 +11,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-console.log("Registering a-ui-toolkit");
 const requireDreem = path => window.defineDreem.requireDreem(path);
 
 const dreemAppendChild = function(parent, child){
@@ -34,9 +33,7 @@ const dreemAppendChild = function(parent, child){
 	parent.relayout();
 }
 
-AFRAME.registerComponent('ui-entity', {
-	
-});
+
 
 AFRAME.registerComponent('ui-toolkit', {
   schema: {
@@ -44,7 +41,6 @@ AFRAME.registerComponent('ui-toolkit', {
     heightPx: {type: 'int', default: 600}
   },
   init: function () { 
-		console.log("Initialzing component");
 		this.initializedADreem = false;
 		
 		const addPageXYToMouseEvent = (evt) => {
@@ -136,23 +132,32 @@ AFRAME.registerComponent('ui-toolkit', {
 		const elToDreemInstance = new Map();
 		elToDreemInstance.set(this.el, dreemToAFrame.children[0].children[0]);
 
-		window.widgies = [];
+		widgetNameToPath.set('ui-entity', false);
+
+		// Go through all the dreem classes marked as UI and register A-Frame components for them
 		Array.from(widgetNameToPath.entries()).forEach(([widgetName, dreemPath]) => {
+			// console.log("registering " + widgetName);
 			AFRAME.registerComponent(widgetName, {
-				init() {					
+			  schema: {
+			    dreem: {type: 'string', default: ''}
+				},
+				init() {
+					// If they set <ui-entity dreemClass="$ui/some-dreem-class"> manually, use it
+					dreemPath = this.data.dreem.length > 0 ? this.data.dreem : dreemPath;
 					const DreemClass = requireDreem(dreemPath);
 					const dreemInstance = new DreemClass(props(this.el));
 					
 					appendToParentEl(dreemInstance, this.el);
-					
-					window.widgies.push(dreemInstance); // 4 debug
+					this.dreem = dreemInstance;					
 				}
 			});
 			const defaultComponents = {};
 			defaultComponents[widgetName] = {};
 			AFRAME.registerPrimitive('a-' + widgetName, {
 			  defaultComponents,
-			  mappings: {}
+			  mappings: {
+					dreem: widgetName + '.dreem'
+			  }
 			});			
 		});
 	},
@@ -163,13 +168,13 @@ AFRAME.registerComponent('ui-toolkit', {
 		if (!DreemToAFrame) return;
 				
 		this.initializedADreem = true;
-		console.log("initWhenDreemReady")
+
 		const canvasID = `dreem-to-aframe-${getRandomInt(0, 90000000000)}`;
 		this.canvas = document.createElement("canvas")
 		this.canvas.className = 'unselectable'
 		this.canvas.style.display = 'none';
 		this.canvas.id = canvasID;
-		this.canvas.width = this.data.widthPx; console.log(this.canvas.width)
+		this.canvas.width = this.data.widthPx;
 		this.canvas.height = this.data.heightPx;
 
 		const aAssets = document.getElementsByTagName("a-assets")[0];
