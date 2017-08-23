@@ -477,7 +477,7 @@ export default defineDreem.class(function(requireDreem, exports){
 	this.relayout = function(){
 		var layout_list = this.layout_list
 		for(var i = 0; i < layout_list.length; i++){
-			view = layout_list[i]
+			const view = layout_list[i]
 			if(!isNaN(view._flex) || view == this.screen){
 				view.relayout()
 			}
