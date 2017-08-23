@@ -64,13 +64,18 @@ AFRAME.registerComponent('a-toolkit', {
 		
 		const dreemToAFrame = this.dreemToAFrame;
 		window.dreemToAFrame = dreemToAFrame;
-		const appendToScreen = (dreemObj) => {
-			const innerview = dreemToAFrame.children[0].children[0];
-			const kids = innerview.kids;
+		const appendToParentEl = (dreemObj, el) => {
+			const parentDreem = elToDreemInstance.get(el.parentEl);
+			const kids = parentDreem.kids;
 			kids.push(dreemObj);
-			innerview.kids = kids;
+			parentDreem.kids = kids;
 		}	
 		window.props = props;
+		window.aToolkit = this;
+		
+		const InnerView = requireDreem("$atoolkit/innerview");
+		const elToDreemInstance = new Map();
+		elToDreemInstance.set(this.el, dreemToAFrame.children[0].children[0]);
 
 		Array.from(widgetNameToPath.entries()).forEach(([widgetName, dreemPath]) => {
 			console.log("Registering component: ", widgetName);
@@ -79,13 +84,12 @@ AFRAME.registerComponent('a-toolkit', {
 					console.log("initializing ", widgetName, dreemPath);
 					const DreemClass = requireDreem(dreemPath);
 					
-					// FIXME: DREW SETH need to recurse into children in DOM
-					const children = [];
 					const p = props(this.el);
-					
-					this.dreemInstance = new DreemClass(p);
+					const children = []; // FIXME: SETH DREW need to recurse into accursed kids
+					const dreemInstance = new DreemClass(p, children);
+					elToDreemInstance.set(this.el, dreemInstance);
 					setTimeout(() => {
-						appendToScreen(this.dreemInstance)
+						appendToParentEl(dreemInstance, this.el)
 					}, 100); // FIXME: DREW SETH we should figure out why we have to do this in a timeout with a random time, not 0
 				}
 			});

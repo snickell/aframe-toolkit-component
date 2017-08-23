@@ -4,13 +4,7 @@ export default defineDreem.class("$ui/view", function(requireDreem, baseclass, $
 	}
 	
 	this.render = function() {
-		console.log("InnerView: Are we rendering?")
 		return [
-				button({
-					name:"status",
-					marginbottom:20,
-					text:"Empty Screen"
-				}),
 				...this.kids
 		]
 	}	
