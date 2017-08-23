@@ -1,22 +1,20 @@
-export default defineDreem.class("$server/composition",function(requireDreem, baseclass, $ui$, slider, button, radiobutton, screen, label, view, icon, cadgrid, $widgets$, colorpicker) {
+
+
+export default defineDreem.class("$server/composition",function(requireDreem, baseclass, $ui$, slider, button, radiobutton, screen, label, view, icon, cadgrid, $widgets$, colorpicker, $atoolkit$, innerview) {
 	
 	this.atConstructor = function(previous, parent, precached, canvas, pointerEvtSrc){
 		baseclass.atConstructor.call(this, previous, parent, precached, canvas, pointerEvtSrc);
 	}
 
 	this.init = function() {
-		this.attributes={propname:Config({value:10})};
+		//this.attributes={kids:Config({value:[]})};
 	}
 
 	this.render = function() {
+		const iv = requireDreem("$atoolkit/innerview")		
+		console.log("Are we rendering?")
 		return [				
-			screen(
-				button({
-					name:"status",
-					marginbottom:20,
-					text:"Empty Screen"
-				})
-			)
+			screen(iv()),
 		]
 	}
 });

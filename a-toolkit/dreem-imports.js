@@ -230,12 +230,14 @@ import typefaceshader from 'system/typeface/typefaceshader';
 
 import dreamtoaframe from 'a-toolkit/dreem-to-aframe';
 import pointerproxy from 'a-toolkit/pointerproxy';
+import innerview from 'a-toolkit/innerview';
 
 function createPathToModule() {
   pathToModule = {};
 
   pathToModule['a-toolkit/dreem-to-aframe'] = dreamtoaframe;
 	pathToModule['a-toolkit/pointerproxy'] = pointerproxy;
+	pathToModule['a-toolkit/innerview'] = innerview;
   
   pathToModule['3d/ballrotate'] = ballrotate;
   pathToModule['3d/circle'] = circle;
@@ -461,8 +463,7 @@ function createPathToModule() {
   pathToModule['widgets/toolkit'] = toolkit;
   pathToModule['widgets/tracker'] = tracker;
   pathToModule['widgets/videoplayer'] = videoplayer;
-	
-	
+		
 	uiWidgets = Object.keys(pathToModule)
 		.filter(path => !uiWidgetsBlacklist.has(path))
 		.filter(path => path.startsWith('widgets/') || path.startsWith('ui/'));
