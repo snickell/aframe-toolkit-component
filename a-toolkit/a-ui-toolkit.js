@@ -34,7 +34,11 @@ const dreemAppendChild = function(parent, child){
 	parent.relayout();
 }
 
-AFRAME.registerComponent('a-ui-toolkit', {
+AFRAME.registerComponent('ui-entity', {
+	
+});
+
+AFRAME.registerComponent('ui-toolkit', {
   schema: {
     widthPx: {type: 'int', default: 800},
     heightPx: {type: 'int', default: 600}
@@ -61,7 +65,7 @@ AFRAME.registerComponent('a-ui-toolkit', {
 	registerUIWidgets: function () {
 		const uiWidgets = getUIWidgets();
 		const widgetNameToPath = new Map(
-			uiWidgets.map(path => ['a-' + path.split('/').slice(1).join('-'), path])
+			uiWidgets.map(path => [path.split('/').slice(1).join('-'), path])
 		);
 		
 		let attrBlacklist = new Set(["position", "scale", "rotation", "visible"]);
@@ -146,7 +150,7 @@ AFRAME.registerComponent('a-ui-toolkit', {
 			});
 			const defaultComponents = {};
 			defaultComponents[widgetName] = {};
-			AFRAME.registerPrimitive(widgetName, {
+			AFRAME.registerPrimitive('a-' + widgetName, {
 			  defaultComponents,
 			  mappings: {}
 			});			
@@ -194,13 +198,13 @@ AFRAME.registerComponent('a-ui-toolkit', {
 
 AFRAME.registerPrimitive('a-ui-toolkit', {
   defaultComponents: {
-    "a-ui-toolkit": {},
+    "ui-toolkit": {},
 	  geometry: {primitive: 'box', width: 1.33333333, height: 1, depth: 0.02, color: 'white' }		
   },
   // Maps HTML attributes to the `ocean` component's properties.
   mappings: {
-    widtpx: 'a-ui-toolkit.widthPx',
-    heightpx: 'a-ui-toolkit.depthPx',  },
+    widtpx: 'ui-toolkit.widthPx',
+    heightpx: 'ui-toolkit.depthPx',  },
 		depth: 'geometry.depth',
   	height: 'geometry.height',
   	width: 'geometry.width'		

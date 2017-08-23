@@ -1,7 +1,7 @@
 {
   "name": "a-ui-toolkit",
   "version": "0.0.1",
-  "description": "UI Toolkit for A-Frame, based on DreemGL. Large set of widgets, but 2D. Good for screens.",
+  "description": "UI Toolkit for A-Frame, based on DreemGL. Large set of 2D widgets makes it great for UI screens.",
   "scripts": {
     "start": "webpack-dev-server -d --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
