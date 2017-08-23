@@ -12,6 +12,32 @@ function getRandomInt(min, max) {
 }
 
 console.log("Registering a-toolkit");
+const requireDreem = path => window.defineDreem.requireDreem(path);
+
+const dreemAppendChild = function(parent, child){
+	var Render = requireDreem('$system/base/render');
+	
+	child.parent = parent
+	child.rpc = parent.rpc
+	child.screen = parent.screen
+	console.log("Screen is ", child.screen);
+	if (!child.screen.initialized) {
+		console.error("invalid screen on ", parent, parent.screen)
+		
+		throw new Error("INVALID SCREEN FOUND ON ", parent, parent.screen);
+	} else {
+		console.log("Valid screen on ", parent, parent.screen)
+	}
+	child.parent_viewport = parent._viewport?parent:parent.parent_viewport
+
+	parent.children.push(child);
+
+	// render it
+	Render.process(child, undefined, undefined, false)
+
+
+	parent.relayout();
+}
 
 AFRAME.registerComponent('a-toolkit', {
   schema: {
@@ -43,7 +69,6 @@ AFRAME.registerComponent('a-toolkit', {
 			uiWidgets.map(path => ['a-' + path.split('/').slice(1).join('-'), path])
 		);
 		
-		const requireDreem = path => window.defineDreem.requireDreem(path);
 		let attrBlacklist = new Set(["position", "scale", "rotation", "visible"]);
 		let attrNames = aComponent => Array.from(aComponent.attributes).filter(x => !attrBlacklist.has(x.name));
 		
@@ -64,12 +89,43 @@ AFRAME.registerComponent('a-toolkit', {
 		
 		const dreemToAFrame = this.dreemToAFrame;
 		window.dreemToAFrame = dreemToAFrame;
+		
+		// Sometimes we add a dreem before its parents are processed
+		// we need to wait to process them at this point
+		const waitingForParents = new Set();
+		const processIfParentsAppeared = () => {
+			// Try to append elements, see if their parents appeared yet
+			const parentsFoundFor = waitingForParents.filter(
+				({ dreemObj, el }) => appendToParentEl(dreemObj, el)
+			);
+			
+			// If anyone's parents appeared, remove them from the waitlist
+			parentsFoundFor.forEach(item => waitingForParents.delete(item));
+			
+			// recurse if we found anyone's parents, maybe somebody was waiting for THEM
+			if (parentsFoundFor.length > 0) processIfParentsAppeared();
+		};
+		
 		const appendToParentEl = (dreemObj, el) => {
+			// first lets register outselves...
+			elToDreemInstance.set(el, dreemObj);
+			
 			const parentDreem = elToDreemInstance.get(el.parentEl);
-			const kids = parentDreem.kids;
-			kids.push(dreemObj);
-			parentDreem.kids = kids;
-		}	
+			
+			if (!parentDreem) {
+				waitingForParents.add({ dreemObj, el });
+				return false;
+			}
+			
+			if (waitingForParents.length > 0) {
+				processIfParentsAppeared();
+			}			
+			
+			dreemAppendChild(parentDreem, dreemObj);
+			
+			return true;
+		};
+		
 		window.props = props;
 		window.aToolkit = this;
 		
@@ -77,20 +133,19 @@ AFRAME.registerComponent('a-toolkit', {
 		const elToDreemInstance = new Map();
 		elToDreemInstance.set(this.el, dreemToAFrame.children[0].children[0]);
 
+		window.widgies = [];
 		Array.from(widgetNameToPath.entries()).forEach(([widgetName, dreemPath]) => {
 			console.log("Registering component: ", widgetName);
 			AFRAME.registerComponent(widgetName, {
 				init() {
 					console.log("initializing ", widgetName, dreemPath);
-					const DreemClass = requireDreem(dreemPath);
 					
-					const p = props(this.el);
-					const children = []; // FIXME: SETH DREW need to recurse into accursed kids
-					const dreemInstance = new DreemClass(p, children);
-					elToDreemInstance.set(this.el, dreemInstance);
-					setTimeout(() => {
-						appendToParentEl(dreemInstance, this.el)
-					}, 100); // FIXME: DREW SETH we should figure out why we have to do this in a timeout with a random time, not 0
+					const DreemClass = requireDreem(dreemPath);
+					const dreemInstance = new DreemClass(props(this.el));
+					
+					appendToParentEl(dreemInstance, this.el);
+					
+					window.widgies.push(dreemInstance); // 4 debug
 				}
 			});
 			const defaultComponents = {};
