@@ -11,7 +11,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-console.log("Registering a-toolkit");
+console.log("Registering a-ui-toolkit");
 const requireDreem = path => window.defineDreem.requireDreem(path);
 
 const dreemAppendChild = function(parent, child){
@@ -34,7 +34,7 @@ const dreemAppendChild = function(parent, child){
 	parent.relayout();
 }
 
-AFRAME.registerComponent('a-toolkit', {
+AFRAME.registerComponent('a-ui-toolkit', {
   schema: {
     widthPx: {type: 'int', default: 800},
     heightPx: {type: 'int', default: 600}
@@ -134,11 +134,8 @@ AFRAME.registerComponent('a-toolkit', {
 
 		window.widgies = [];
 		Array.from(widgetNameToPath.entries()).forEach(([widgetName, dreemPath]) => {
-			console.log("Registering component: ", widgetName);
 			AFRAME.registerComponent(widgetName, {
-				init() {
-					console.log("initializing ", widgetName, dreemPath);
-					
+				init() {					
 					const DreemClass = requireDreem(dreemPath);
 					const dreemInstance = new DreemClass(props(this.el));
 					
@@ -195,15 +192,15 @@ AFRAME.registerComponent('a-toolkit', {
   play: function () {}
 });
 
-AFRAME.registerPrimitive('a-toolkit', {
+AFRAME.registerPrimitive('a-ui-toolkit', {
   defaultComponents: {
-    "a-toolkit": {},
+    "a-ui-toolkit": {},
 	  geometry: {primitive: 'box', width: 1.33333333, height: 1, depth: 0.02, color: 'white' }		
   },
   // Maps HTML attributes to the `ocean` component's properties.
   mappings: {
-    widtpx: 'a-toolkit.widthPx',
-    heightpx: 'a-toolkit.depthPx',  },
+    widtpx: 'a-ui-toolkit.widthPx',
+    heightpx: 'a-ui-toolkit.depthPx',  },
 		depth: 'geometry.depth',
   	height: 'geometry.height',
   	width: 'geometry.width'		
