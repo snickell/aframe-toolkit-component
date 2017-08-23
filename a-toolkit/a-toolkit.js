@@ -20,13 +20,8 @@ const dreemAppendChild = function(parent, child){
 	child.parent = parent
 	child.rpc = parent.rpc
 	child.screen = parent.screen
-	console.log("Screen is ", child.screen);
 	if (!child.screen.initialized) {
-		console.error("invalid screen on ", parent, parent.screen)
-		
 		throw new Error("INVALID SCREEN FOUND ON ", parent, parent.screen);
-	} else {
-		console.log("Valid screen on ", parent, parent.screen)
 	}
 	child.parent_viewport = parent._viewport?parent:parent.parent_viewport
 
@@ -95,35 +90,39 @@ AFRAME.registerComponent('a-toolkit', {
 		const waitingForParents = new Set();
 		const processIfParentsAppeared = () => {
 			// Try to append elements, see if their parents appeared yet
-			const parentsFoundFor = waitingForParents.filter(
-				({ dreemObj, el }) => appendToParentEl(dreemObj, el)
+			const parentsFoundFor = Array.from(waitingForParents).filter(
+				({ dreemObj, el }) => appendToParentEl(dreemObj, el, false)
 			);
 			
-			// If anyone's parents appeared, remove them from the waitlist
-			parentsFoundFor.forEach(item => waitingForParents.delete(item));
 			
 			// recurse if we found anyone's parents, maybe somebody was waiting for THEM
-			if (parentsFoundFor.length > 0) processIfParentsAppeared();
+			if (parentsFoundFor.length > 0) {
+				// If anyone's parents appeared, remove them from the waitlist
+				parentsFoundFor.forEach(item => waitingForParents.delete(item));
+				processIfParentsAppeared();
+			}
 		};
 		
-		const appendToParentEl = (dreemObj, el) => {
+		window.waitingForParents = waitingForParents;
+		window.processIfParentsAppeared = processIfParentsAppeared;
+		
+		const appendToParentEl = (dreemObj, el, notInWaitQueue=true) => {
 			// first lets register outselves...
 			elToDreemInstance.set(el, dreemObj);
 			
 			const parentDreem = elToDreemInstance.get(el.parentEl);
 			
-			if (!parentDreem) {
-				waitingForParents.add({ dreemObj, el });
-				return false;
+			if (parentDreem) {
+				dreemAppendChild(parentDreem, dreemObj);
+				
+				if (notInWaitQueue) processIfParentsAppeared();
+			
+				return true;				
+			} else {
+				// uhoh, we don't have parents yet, lets wait for them to appear
+				if (notInWaitQueue) waitingForParents.add({ dreemObj, el });
+				return false;			
 			}
-			
-			if (waitingForParents.length > 0) {
-				processIfParentsAppeared();
-			}			
-			
-			dreemAppendChild(parentDreem, dreemObj);
-			
-			return true;
 		};
 		
 		window.props = props;
