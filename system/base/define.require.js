@@ -1,4 +1,4 @@
-import lookupInImportLibrary from 'a-toolkit/dreem-imports';
+import { lookupInImportLibrary } from 'a-toolkit/dreem-imports';
 
 function objectIsEmpty(obj) {
 	for (var key in obj) {

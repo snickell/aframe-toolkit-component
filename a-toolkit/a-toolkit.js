@@ -1,4 +1,5 @@
 import getDreemToAFrame from './init-dreem';
+import { getUIWidgets } from './dreem-imports';
 import AFRAME from 'aframe';
 
 // FIXME: this is used by the example, should live there
@@ -27,12 +28,67 @@ AFRAME.registerComponent('a-toolkit', {
 			// console.log(`${evt.type} event at ${evt.pageX},${evt.pageY}`);
 		};
 
-		this.el.addEventListener('click',   addPageXYToMouseEvent)		
-		this.el.addEventListener('mousemove',   addPageXYToMouseEvent)
-		this.el.addEventListener('mousedown',   addPageXYToMouseEvent)
-		this.el.addEventListener('mousemove',   addPageXYToMouseEvent)
-		this.el.addEventListener('mouseup',     addPageXYToMouseEvent)
-		this.el.addEventListener('contextmenu', addPageXYToMouseEvent)		
+		this.el.addEventListener('click',   addPageXYToMouseEvent);
+		this.el.addEventListener('mousemove',   addPageXYToMouseEvent);
+		this.el.addEventListener('mousedown',   addPageXYToMouseEvent);
+		this.el.addEventListener('mousemove',   addPageXYToMouseEvent);
+		this.el.addEventListener('mouseup',     addPageXYToMouseEvent);
+		this.el.addEventListener('contextmenu', addPageXYToMouseEvent);	
+		
+		this.widgetNameToPath = new Map();
+	},
+	registerUIWidgets: function () {
+		const uiWidgets = getUIWidgets();
+		const widgetNameToPath = new Map(
+			uiWidgets.map(path => ['a-' + path.split('/').slice(1).join('-'), path])
+		);
+		
+		const requireDreem = path => window.defineDreem.requireDreem(path);
+		let attrBlacklist = new Set(["position", "scale", "rotation", "visible"]);
+		let attrNames = aComponent => Array.from(aComponent.attributes).filter(x => !attrBlacklist.has(x.name));
+		
+		function strMapToObj(strMap) {
+		    let obj = {};
+		    for (let [k,v] of strMap) {
+		        // We don’t escape the key '__proto__'
+		        // which can cause problems on older engines
+		        obj[k] = v;
+		    }
+		    return obj;
+		}		
+		
+		let props = aComponent => strMapToObj(new Map( 
+				attrNames(aComponent).map(attr => [attr.name, aComponent.getAttribute(attr.name)])
+		));
+				
+		
+		const dreemScreen = this.dreemToAFrame;
+		const appendToScreen = (dreemObj) => dreemScreen.children.push(dreemObj);
+		window.props = props;
+
+		Array.from(widgetNameToPath.entries()).forEach(([widgetName, dreemPath]) => {
+			console.log("Registering component: ", widgetName);
+			AFRAME.registerComponent(widgetName, {
+				init() {
+					console.log("initializing ", widgetName, dreemPath);
+					const DreemClass = requireDreem(dreemPath);
+					
+					// FIXME: need to recurse into children in DOM
+					const children = [];
+					const p = props(this.el);
+					
+					this.dreemInstance = new DreemClass(p);
+					
+					appendToScreen(this.dreemInstance);
+				}
+			});
+			const defaultComponents = {};
+			defaultComponents[widgetName] = {};
+			AFRAME.registerPrimitive(widgetName, {
+			  defaultComponents,
+			  mappings: {}
+			});			
+		});
 	},
 	initWhenDreemReady: function () {
 		if (this.initializedADreem) return;
@@ -54,9 +110,16 @@ AFRAME.registerComponent('a-toolkit', {
 		aAssets.appendChild(this.canvas)
 		
 		const pointerEvtSrc = this.el;
-		window.dreemToAFrame = new DreemToAFrame(defineDreem.rootComposition, undefined, undefined, this.canvas, pointerEvtSrc);
+
+
 		
-		this.el.setAttribute("material", `shader: flat; src: #${canvasID}`);		
+		this.dreemToAFrame = new DreemToAFrame(defineDreem.rootComposition, undefined, undefined, this.canvas, pointerEvtSrc);
+
+
+		this.registerUIWidgets();		
+		this.el.setAttribute("material", `shader: flat; src: #${canvasID}`);	
+		
+			
 	},
   update: function () {},
   tick: function () {
@@ -68,8 +131,6 @@ AFRAME.registerComponent('a-toolkit', {
 });
 
 AFRAME.registerPrimitive('a-toolkit', {
-  // Attaches the `ocean` component by default.
-  // Defaults the ocean to be parallel to the ground.
   defaultComponents: {
     "a-toolkit": {},
 	  geometry: {primitive: 'box', width: 1.33333333, height: 1, depth: 0.02, color: 'white' }		

@@ -1,5 +1,7 @@
 let pathToModule = null;
- 
+let uiWidgets = [];
+const uiWidgetsBlacklist = new Set(['widgets/toolkit']);
+
 import ballrotate from '3d/ballrotate';
 import circle from '3d/circle';
 import cone from '3d/cone';
@@ -458,10 +460,17 @@ function createPathToModule() {
   pathToModule['widgets/timeline/timeline'] = timeline;
   pathToModule['widgets/toolkit'] = toolkit;
   pathToModule['widgets/tracker'] = tracker;
-  pathToModule['widgets/videoplayer'] = videoplayer;  
+  pathToModule['widgets/videoplayer'] = videoplayer;
+	
+	
+	uiWidgets = Object.keys(pathToModule)
+		.filter(path => !uiWidgetsBlacklist.has(path))
+		.filter(path => path.startsWith('widgets/') || path.startsWith('ui/'));
 }
 
-export default function lookupInImportLibrary(path) {
+const getUIWidgets = () => uiWidgets;
+
+function lookupInImportLibrary(path) {
   // We do this here so we have late-binding properties on our imports
   // if we did this immediately, our libraries would all be undefined
   // becuase they wouldn't have loaded yet (circular import issues with es6)
@@ -470,8 +479,10 @@ export default function lookupInImportLibrary(path) {
   } catch (e) {
     console.error(`swallowing ${e}`);
   }
-  
+
   if (path.startsWith("/")) path = path.slice(1);
   if (path.endsWith(".js")) path = path.slice(0,-3);
   return pathToModule[path];
-}
+}	
+
+export { getUIWidgets, lookupInImportLibrary };

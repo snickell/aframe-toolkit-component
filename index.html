@@ -16,16 +16,18 @@
   <a-scene id="scene">
     <a-assets></a-assets>
 		
-    <a-toolkit position="0 1.5 -1.5"></a-toolkit>
+    <a-toolkit position="0 1.5 -0.8">
+    	<a-button text="Hi Hi Hi World"/>
+    </a-toolkit>
 
     <a-sky color="#87CEEB"></a-sky>
     <a-plane position="0 -10 -25" rotation="-90 0 0" width="50" height="50" color="#7BC8A4"></a-plane>
 
-    <a-entity id="left-hand" paint-controls laser-controls="hand: left"></a-entity>
-    <a-entity id="right-hand" paint-controls laser-controls="hand: right"></a-entity>
+    <a-entity id="left-hand" laser-controls="hand: left"></a-entity>
+    <a-entity id="right-hand" laser-controls="hand: right"></a-entity>
     <a-camera look-controls wasd-controls>
 			<a-cursor></a-cursor>
-		<a-camera>
+		</a-camera>
   </a-scene>
 </body>
 
