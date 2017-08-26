@@ -212,11 +212,15 @@
   <a-scene id="scene">
     <a-assets></a-assets>
 		
-    <a-ui-toolkit position="0 1.5 -1.5">
+		<a-ui-toolkit position="1 1.5 -1.5" widthpx="100" heightpx="50" width="0.5" height="0.25">
+	    		<a-button text="All You Need Is"></a-button>
+    </a-ui-toolkit>		
+		
+    <a-ui-toolkit position="-1 1.5 -1.5">
 			<a-cadgrid bgcolor="#888888" alignself="stretch" flexdirection='column' alignitems="stretch" justifycontent='space-around'>
 				<a-view flex="1" alignitems="flex-start" justifycontent="space-around" margin-top="100">
 	    		<a-button text="Hello World"></a-button>
-					<a-slider value="0.1" width="300" height="5"></a-slider>
+					<a-slider value="0.1" width="300" height="10"></a-slider>
 						<a-button text="Created with a-button"></a-button>
 						<a-ui-entity dreem="$ui/button" text="Created with a-ui-entity"></a-ui-entity>
 				</a-view>
@@ -224,9 +228,10 @@
 
 			<a-ui-entity dreem="$custom/demo"></a-ui-entity>
 
-
-
     </a-ui-toolkit>
+		
+		
+
 
     <a-sky color="#87CEEB"></a-sky>
     <a-plane position="0 -10 -25" rotation="-90 0 0" width="50" height="50" color="#7BC8A4"></a-plane>

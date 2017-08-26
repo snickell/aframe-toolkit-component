@@ -116,6 +116,9 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 
 	this.useShader = function(gl, shader){
 		if(!shader) return
+			if (gl.drawingBufferWidth > 700) {
+				console.log("break here");
+			}
 		if(shader.use) return shader.use(gl, shader, this)
 		// use the shader
 		gl.useProgram(shader)

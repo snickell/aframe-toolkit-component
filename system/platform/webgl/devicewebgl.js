@@ -24,7 +24,8 @@ export default defineDreem.class(function(requireDreem, exports){
 	this.document = typeof window !== 'undefined'?window : null
 
 
-	this.atConstructor = function(previous, canvas, pointerEvtSrc){		
+	this.atConstructor = function(previous, canvas, pointerEvtSrc){
+		console.log("Creating deviceweebgl", previous, canvas, pointerEvtSrc, this);
 		this.extensions = previous && previous.extensions || {}
 		this.shadercache = previous &&  previous.shadercache || {}
 		this.drawpass_list = previous && previous.drawpass_list || []
@@ -110,6 +111,8 @@ export default defineDreem.class(function(requireDreem, exports){
 		this.gl = this.canvas.getContext('webgl', options) ||
 			this.canvas.getContext('webgl-experimental', options) ||
 			this.canvas.getContext('experimental-webgl', options)
+
+		console.log("gl is ", this.gl);
 
 		if(!this.gl){
 			console.log(this.canvas)

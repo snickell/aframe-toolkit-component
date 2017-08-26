@@ -9,6 +9,7 @@ export default defineDreem.class(function(requireDreem, baseclass){
 	var Shader = requireDreem('./shaderwebgl')
 
 	this.atConstructor = function(gldevice, view){
+		console.log("Creating drawpassgl for gl device=", gldevice);
 		this.device = gldevice
 		this.view = view
 		this.drawcount = 0
