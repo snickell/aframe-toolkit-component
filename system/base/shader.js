@@ -38,7 +38,8 @@ export default defineDreem.class(function(requireDreem, exports){
 	this.visible = true
 
 	this.pickalpha = 0.01
-
+	this.pickguid = vec3()
+	
 	// we can use singletons of these stateless classes
 	var onejsparser = new OneJSParser()
 	onejsparser.parser_cache = {}
@@ -499,11 +500,17 @@ export default defineDreem.class(function(requireDreem, exports){
 			while(!proto.hasOwnProperty('dirty')){
 				proto = Object.getPrototypeOf(proto)
 			}
-			if(!proto.hasOwnProperty('shader')){
-				this.shader = proto.shader = this.compileShader(gldevice)
+			
+			if (!proto.hasOwnProperty('deviceToShader')) {
+				proto.deviceToShader = new Map();
+			}
+			
+			if(!proto.deviceToShader.has(gldevice)){
+				this.shader = this.compileShader(gldevice);
+				proto.deviceToShader.set(gldevice, this.shader);
 			}
 			else{
-				this.shader = proto.shader
+				this.shader = proto.deviceToShader.get(gldevice);
 			}
 			return
 		}
