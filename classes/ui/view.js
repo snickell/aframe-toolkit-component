@@ -482,6 +482,8 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 			if (shader){
 				var prevshader = prev && prev.shaders && prev.shaders[key]
 				var shobj
+				if (!this.sethId) this.sethId = Math.random()
+				console.log('am craating shaader nao en view.jsss', this.sethId)
 				// ok so instead of comparing constructor, lets compare the computational result
 				if (prevshader && (prevshader.constructor === shader || prevshader.isShaderEqual(shader.prototype, this, prev))){
 					shobj = prevshader
@@ -1382,6 +1384,12 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 		this.dont_scroll_as_viewport = true
 		this.mesh = vec2.array()
 		this.mesh.pushQuad(0,0,1,0,0,1,1,1)
+		this.atConstructor = () => {
+			this.mesh = vec2.array()
+			this.mesh.pushQuad(0,0,1,0,0,1,1,1)
+			this.mesh.sethId = Math.random()
+			console.log('CONSTRUCTING: ', this.mesh.sethId)
+		}
 		this.position = function(){
 			uv = mesh.xy
 			pos = vec2(mesh.x * view.layout.width, mesh.y * view.layout.height)

@@ -119,7 +119,19 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 			if (gl.drawingBufferWidth > 700) {
 				console.log("break here");
 			}
-		if(shader.use) return shader.use(gl, shader, this)
+		if(shader.use) {
+			if (!shader.sethId) shader.sethId = Math.random()
+			if (!this.sethId) this.sethId = Math.random()
+			console.log(`
+				shader.use
+				shaderName: ${this.shadername}
+				this.meshID: ${this.mesh.sethId}
+				shader.sethId: ${shader.sethId}
+				this.sethId: ${this.sethId}
+				gl.drawingBufferWidth: ${gl.drawingBufferWidth}
+			`)
+			return shader.use(gl, shader, this)			
+		} 
 		// use the shader
 		gl.useProgram(shader)
 
@@ -488,6 +500,7 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 		if(!this.hasOwnProperty('shader') || this.shader === undefined) this.compile(devicewebgl)
 		if(!this.shader) return
 		var gl = devicewebgl.gl
+		console.log('this.view.sethId: ', this.view.sethId)
 		var len = this.useShader(gl, sub? this.shader[sub]: this.shader)
 		if(len) gl.drawArrays(this.drawtype_enum, start || 0, end === undefined?len: end)
 		return len
