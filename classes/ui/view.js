@@ -1383,7 +1383,7 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 		this.draworder = 0
 		this.dont_scroll_as_viewport = true
 		this.mesh = vec2.array()
-		this.mesh.pushQuad(0,0,1,0,0,1,1,1)
+		this.mesh.pushQuad(1,2,3,4,5,6,7,8)
 		this.atConstructor = () => {
 			this.mesh = vec2.array()
 			this.mesh.pushQuad(0,0,1,0,0,1,1,1)
