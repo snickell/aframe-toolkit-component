@@ -503,7 +503,7 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 		if(!this.hasOwnProperty('shader') || this.shader === undefined) this.compile(devicewebgl)
 		if(!this.shader) return
 		var gl = devicewebgl.gl
-		console.log('this.view.sethId: ', this.view.sethId, this.view, " with shader_enable.sethId=", this.view.shader_enable.sethId);
+		console.log('drawArrays(this.view=', this.view.constructor.name, this.view.sethId, ")");
 		var len = this.useShader(gl, sub? this.shader[sub]: this.shader)
 		if(len) gl.drawArrays(this.drawtype_enum, start || 0, end === undefined?len: end)
 		return len
