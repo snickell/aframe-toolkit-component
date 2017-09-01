@@ -8,6 +8,9 @@
 
 import FlexLayout from 'lib/layout';
 
+var danumby = 0;
+var viewN = 0;
+
 export default defineDreem.class('$system/base/node', function(requireDreem){
 // Base UI view object
 
@@ -451,7 +454,9 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 
 	// internal, initialization of a view
 	this.atViewInit = function(prev){
-
+		if (!this.sethId) this.sethId = "view-#" + viewN++;
+		
+		console.log("atViewInit() ", this.constructor.name, " with id ", this.sethId);
 		this.anims = {}
 		//this.layout = {width:0, height:0, left:0, top:0, right:0, bottom:0}
 		this.shader_list = []
@@ -482,8 +487,6 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 			if (shader){
 				var prevshader = prev && prev.shaders && prev.shaders[key]
 				var shobj
-				if (!this.sethId) this.sethId = Math.random()
-				console.log('am craating shaader nao en view.jsss', this.sethId)
 				// ok so instead of comparing constructor, lets compare the computational result
 				if (prevshader && (prevshader.constructor === shader || prevshader.isShaderEqual(shader.prototype, this, prev))){
 					shobj = prevshader
@@ -501,7 +504,9 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 						}
 					}
 					prevshader.reused = true
+					console.log("view.js ", this.sethId, ": re-using shader", this.shader.sethId);
 				} else {
+					console.log('view ', this.constructor.name, " with id ", this.sethId, ": creating new shader for ", shader.name);
 					shobj = new shader(this)
 				}
 				shobj.shadername = key
@@ -666,7 +671,9 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 
 	// internal, custom hook in the inner class assignment to handle nested shaders specifically
 	this.atInnerClassAssign = function(key, value){
-		if (!this.hasOwnProperty('shader_enable')) this.shader_enable = Object.create(this.shader_enable || {})
+		if (!this.hasOwnProperty('shader_enable')) {
+			this.shader_enable = Object.create(this.shader_enable || {})
+		}
 		// set the shader order
 		if (!value || typeof value === 'number' || typeof value === 'boolean'){
 			this.shader_enable[key] = value? true: false
@@ -1382,13 +1389,26 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 		this.updateorder = 0
 		this.draworder = 0
 		this.dont_scroll_as_viewport = true
+		Object.defineProperty(this, 'mesh', {
+			get: function() {
+				console.log("\t\tget hardrect.mesh with id ", this._mesh.sethId);
+				return this._mesh;
+			},
+			set: function (value) {
+				console.log("\t\tset hardrect.mesh to id ", value.sethId);
+				this._mesh = value;
+			}
+		})
 		this.mesh = vec2.array()
 		this.mesh.pushQuad(1,2,3,4,5,6,7,8)
 		this.atConstructor = () => {
-			this.mesh = vec2.array()
-			this.mesh.pushQuad(0,0,1,0,0,1,1,1)
-			this.mesh.sethId = Math.random()
-			console.log('CONSTRUCTING: ', this.mesh.sethId)
+			var daMesh = vec2.array();
+			if (!daMesh.sethId) daMesh.sethId = `mesh-#${window.meshN++}`;
+			this.mesh = daMesh;
+			this.mesh.pushQuad(danumby,0,1,0,0,1,1,1);
+			console.log('\tcreated mesh: ', this.mesh.sethId, "=", this.mesh.array)
+			if (!this.sethId) this.sethId = `hardrect-#${window.shaderCreateN++}`;
+			danumby += 1;			
 		}
 		this.position = function(){
 			uv = mesh.xy
@@ -1401,7 +1421,7 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 			return vec4(col.rgb, col.a * view.opacity)
 		}
 	})
-	this.hardrect = true
+	this.hardrect = true	
 
 	this.bordercolorfn = function(pos){
 		return bordercolor

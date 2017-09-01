@@ -4,6 +4,9 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 
+window.shaderN = 0;
+window.meshN = 0;
+window.shaderCreateN = 0;
 
 export default defineDreem.class('$system/base/shader', function(requireDreem, exports){
 
@@ -120,16 +123,16 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 				console.log("break here");
 			}
 		if(shader.use) {
-			if (!shader.sethId) shader.sethId = Math.random()
-			if (!this.sethId) this.sethId = Math.random()
-			console.log(`
-				shader.use
-				shaderName: ${this.shadername}
-				this.meshID: ${this.mesh.sethId}
-				shader.sethId: ${shader.sethId}
-				this.sethId: ${this.sethId}
-				gl.drawingBufferWidth: ${gl.drawingBufferWidth}
-			`)
+			if (!this.sethIdUse) this.sethIdUse = `shaderwebgl-#${shaderN++}`;
+			if (this.shadername === 'hardrect')
+				console.log(`
+				hardrect.use()
+					shaderName: ${this.shadername}
+					this.mesh.sethId: ${this.mesh.sethId}
+					this.sethIdUse: ${this.sethIdUse}
+					this.sethId: ${this.sethId}
+					gl.drawingBufferWidth: ${gl.drawingBufferWidth}
+				`, this.mesh.array)
 			return shader.use(gl, shader, this)			
 		} 
 		// use the shader
@@ -500,7 +503,7 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 		if(!this.hasOwnProperty('shader') || this.shader === undefined) this.compile(devicewebgl)
 		if(!this.shader) return
 		var gl = devicewebgl.gl
-		console.log('this.view.sethId: ', this.view.sethId, this.view)
+		console.log('this.view.sethId: ', this.view.sethId, this.view, " with shader_enable.sethId=", this.view.shader_enable.sethId);
 		var len = this.useShader(gl, sub? this.shader[sub]: this.shader)
 		if(len) gl.drawArrays(this.drawtype_enum, start || 0, end === undefined?len: end)
 		return len
