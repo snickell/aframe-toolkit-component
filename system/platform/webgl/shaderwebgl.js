@@ -124,15 +124,15 @@ export default defineDreem.class('$system/base/shader', function(requireDreem, e
 			}
 		if(shader.use) {
 			if (!this.sethIdUse) this.sethIdUse = `shaderwebgl-#${shaderN++}`;
-			if (this.shadername === 'hardrect')
-				console.log(`
-				hardrect.use()
-					shaderName: ${this.shadername}
-					this.mesh.sethId: ${this.mesh.sethId}
-					this.sethIdUse: ${this.sethIdUse}
-					this.sethId: ${this.sethId}
-					gl.drawingBufferWidth: ${gl.drawingBufferWidth}
-				`, this.mesh.array)
+			
+			console.log(`
+			${this.shadername}.use()
+				shaderName: ${this.shadername}
+				this.mesh.sethId: ${this.mesh.sethId}
+				this.sethIdUse: ${this.sethIdUse}
+				this.sethId: ${this.sethId}
+				gl.drawingBufferWidth: ${gl.drawingBufferWidth}
+			`, this.mesh.array)
 			return shader.use(gl, shader, this)			
 		} 
 		// use the shader

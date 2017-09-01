@@ -8,7 +8,6 @@
 
 import FlexLayout from 'lib/layout';
 
-var danumby = 0;
 var viewN = 0;
 
 export default defineDreem.class('$system/base/node', function(requireDreem){
@@ -507,7 +506,6 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 					console.log("view.js ", this.sethId, ": re-using shader", this.shader.sethId);
 				} else {
 					console.log('view ', this.constructor.name, " with id ", this.sethId, ": creating new shader for ", shader.name);
-					console.error("The problem seems to be here, when we modify the new object, we're ALSO modifying shader.prototype. WTF")
 					shobj = new shader(this)
 				}
 				shobj.shadername = key
@@ -1390,32 +1388,14 @@ export default defineDreem.class('$system/base/node', function(requireDreem){
 		this.updateorder = 0
 		this.draworder = 0
 		this.dont_scroll_as_viewport = true
-		Object.defineProperty(this, 'mesh', {
-			get: function() {
-				//console.log("\t\tget hardrect.mesh with id ", this._mesh.sethId);
-				return this._mesh;
-			},
-			set: function (value) {
-				console.log("\t\tset hardrect[" + this.sethId + "].mesh = ", value.sethId);
-				this._mesh = value;
-			}
-		})
-		const msh = vec2.array();
-		msh.sethId = "un-initialized-mesh";
-		this.mesh = msh;
+
+		this.mesh = vec2.array();
 		this.mesh.pushQuad(1,2,3,4,5,6,7,8)
-		this.atConstructor = function () {
-			if (!this.sethId) 
-				this.sethId = 'hardrect-#' + window.shaderCreateN++;
-			else
-				console.error("ALREDAY HAS ID")
-			console.log("\t", this.sethId, ".atConstructor():")			
+		this.atConstructor = function () {		
 			var daMesh = vec2.array();
-			if (!daMesh.sethId) daMesh.sethId = `mesh-#${window.meshN++}`;
 			this.mesh = daMesh;
-			this.mesh.pushQuad(danumby,0,1,0,0,1,1,1);
-			console.log('\t\tcreated mesh: ', this.mesh.sethId, "=", this.mesh.array)
-			danumby += 1;			
+			// seth drew fixme: make sure first # should be 1, look in history
+			this.mesh.pushQuad(1,0,1,0,0,1,1,1);
 		}
 		this.position = function(){
 			uv = mesh.xy
