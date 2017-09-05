@@ -8,6 +8,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 // A simple UI label for displaying text
 // <br/><a href="/examples/text">examples &raquo;</a>
 
+	
 
 	var TypeFace = requireDreem('$system/typeface/typefaceshader')
 
@@ -136,10 +137,24 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 		}
 	}
 
+	
+	Object.defineProperty(this, 'font', {
+		get: function () { return this._font; },
+		set: function (value) {
+			// Make a deep-ish copy of the font so we don't have a multi-screen problem
+			this._font = Object.assign({}, event.value);
+			this._font.texture = Object.assign({}, this._font.texture);
+			if (!this._font.sethId || this._font.sethId === "uninitialized") this._font.sethId = "font-#" + window.fontN++;
+			if (!this._font.texture.sethId) this._font.texture.sethId = "font.texture-#" + window.fontTexN++;
+			console.warn("Created ", this._font.sethId, "with", this._font.texture.sethId);
+		}
+	});
+	
 	this.font = function(event){
 		// DALi needs a baked font
 		if (!this.font.baked  && defineDreem.$platform === 'dali')
 			this.font = requireDreem('$resources/fonts/ubuntu_monospace_ascii_baked.glf')
+
 
 		this.selectShader()
 	}

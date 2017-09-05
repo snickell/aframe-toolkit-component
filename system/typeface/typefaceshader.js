@@ -4,11 +4,21 @@
    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and limitations under the License.*/
 // Parts copyright 2012 Google, Inc. All Rights Reserved. (APACHE 2.0 license)
+window.fontN = 0;
+window.fontTexN = 0;
+
 export default defineDreem.class('$system/platform/$platform/shader$platform', function(requireDreem, exports, baseclass){
 	//internal
 
 	// the font
-	this.font = requireDreem('$resources/fonts/opensans_regular_ascii.glf')
+	this.atConstructor = function () {
+		this.font =requireDreem('$resources/fonts/opensans_regular_ascii.glf');
+
+		this.mesh = this.textgeom.array()
+		this.mesh.font = this.font		
+	}
+	this.font = requireDreem('$resources/fonts/opensans_regular_ascii.glf');
+	this.font.sethId = "uninitialized";
 
 	// initial pixel and vertex shaders
 	this.position = "glyphy_mesh()"
@@ -678,7 +688,8 @@ export default defineDreem.class('$system/platform/$platform/shader$platform', f
 	})
 
 	// for type information
-	this.mesh = this.textgeom.array()
+	this.mesh = this.textgeom.array()	
+
 
 	// this thing makes a new text array buffer
 	this.newText = function(length){
