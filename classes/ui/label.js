@@ -124,7 +124,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 	this.typeface = true
 
 	this.selectShader = function(){
-		if(this._font && this._font.baked){
+		if(this.font && this.font.baked){
 			if(this._subpixel){
 				this.typeface = this.typefacesubpixelaa
 			}
@@ -137,16 +137,22 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 		}
 	}
 
-	
+	var superFontSetter = Object.getOwnPropertyDescriptor(this, 'font').set.bind(this);
 	Object.defineProperty(this, 'font', {
-		get: function () { return this._font; },
 		set: function (value) {
 			// Make a deep-ish copy of the font so we don't have a multi-screen problem
-			this._font = Object.assign({}, event.value);
-			this._font.texture = Object.assign({}, this._font.texture);
-			if (!this._font.sethId || this._font.sethId === "uninitialized") this._font.sethId = "font-#" + window.fontN++;
-			if (!this._font.texture.sethId) this._font.texture.sethId = "font.texture-#" + window.fontTexN++;
-			console.warn("Created ", this._font.sethId, "with", this._font.texture.sethId);
+			let font = value;
+			
+			if (typeof font !== "function") {
+				font = Object.assign({}, font);
+				font.texture = Object.assign({}, font.texture);
+				font.sethId = "font-#" + window.fontN++;
+				font.texture.sethId = "font.texture-#" + window.fontTexN++;
+				console.warn("\tCreated ", font.sethId, "with", font.texture.sethId);	
+			}
+
+			// Basically: super.font = font
+			superFontSetter(font);
 		}
 	});
 	
