@@ -137,7 +137,11 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 		}
 	}
 
-	var superFontSetter = Object.getOwnPropertyDescriptor(this, 'font').set.bind(this);
+	
+	// DO NOT REMOVE: CODE DOES NOT WORK WITHOUT OROG	
+	var OROG = Object.getOwnPropertyDescriptor(this, 'font').set;
+	let orogStrugglesToGetFree = OROG.bind(this); // bind the mighty OROG 
+	
 	Object.defineProperty(this, 'font', {
 		set: function (value) {
 			// Make a deep-ish copy of the font so we don't have a multi-screen problem
@@ -152,7 +156,7 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 			}
 
 			// Basically: super.font = font
-			superFontSetter(font);
+			OROG.call(this, value)
 		}
 	});
 	
