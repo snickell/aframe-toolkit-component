@@ -137,28 +137,17 @@ export default defineDreem.class(function(requireDreem, $ui$, view){
 		}
 	}
 
-	
-	// DO NOT REMOVE: CODE DOES NOT WORK WITHOUT OROG	
-	var OROG = Object.getOwnPropertyDescriptor(this, 'font').set;
-	let orogStrugglesToGetFree = OROG.bind(this); // bind the mighty OROG 
-	
-	Object.defineProperty(this, 'font', {
-		set: function (value) {
-			// Make a deep-ish copy of the font so we don't have a multi-screen problem
-			let font = value;
-			
-			if (typeof font !== "function") {
-				font = Object.assign({}, font);
-				font.texture = Object.assign({}, font.texture);
-				font.sethId = "font-#" + window.fontN++;
-				font.texture.sethId = "font.texture-#" + window.fontTexN++;
-				console.warn("\tCreated ", font.sethId, "with", font.texture.sethId);	
-			}
+	this.atConstructor = function () {
+		// SETH DREW FIXME
+		
+		// Make a semi-deep-copy of the font object so that its not shared
+		// between GL contexts (each a-frame-ui component is a GL context)
 
-			// Basically: super.font = font
-			OROG.call(this, value)
-		}
-	});
+		// But now we copy the font PER LABEL, really we only want a copy cached
+		// per GL context. How we do?
+		this.font = Object.assign({}, this.font);
+		this.font.texture = Object.assign({}, this.font.texture);
+	};
 	
 	this.font = function(event){
 		// DALi needs a baked font
